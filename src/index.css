@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* body, html{ */
+  /* overflow-x: hidden */
+  /* contain: paint; */
+/* } */
+.component{
+  margin-top: 70px
+}
+
+@media screen and (max-width: 520px) {
+  .component{
+    margin-top: 45px
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

@@ -2,7 +2,7 @@
     height: 70px;
     border-bottom: 1px solid black;
     background-color: beige;
-    position: fixed;
+    position: fixed !important;
 }
 
 #topBarLogo{
@@ -12,7 +12,6 @@
 
 #topBarLinks{
     display: flex;
-    /* grid-template-columns: repeat(3, 1fr); */
     gap: 20px;
     justify-items: center;
     position: absolute;
@@ -38,18 +37,21 @@
     justify-items: center;
     align-items: center;
     position: absolute;
-   right: 0;
+   right: 50px;
    top: 50%;
-   translate: 0 -50%
+   translate: 0 -50%;
+   width: 213px
 }
 
 .topBarIcons:hover{
     color: dimgray;
     transition: color .3s;
 }
+
 #basket{
     position: relative
 }
+
 #notification{
     width: 10px;
     aspect-ratio: 1/1;
@@ -58,14 +60,15 @@
 
 #searchBar{
     position: fixed;
-    width: 75%;
+    width: 75vw;
     min-width: 250px;
     background-color: snow;
     border: 0 solid silver;
-    /* box-shadow: 0 0 40px 0px black; */
-
+left: 50%;
+translate: -50%;
+height: 30px;
+line-height: 30px;
 transition: top .35s ease-out;
-    /* border-radius: 50px; */
 background: #e0e0e0;
 box-shadow: inset 10px 10px 10px #bebebe,
             inset -10px -10px 10px #ffffff;
@@ -74,20 +77,23 @@ box-shadow: inset 10px 10px 10px #bebebe,
 #searchInput{
     width: calc(100% - 50px);
     margin-left: 10px;
+    margin-right: 10px;
     float:left;
 outline: none;
 text-align: center;
 background-color: transparent;
 }
 
-
+#glass{
+    line-height: 30px;
+   color: grey
+}
 
 @media screen and (max-width: 888px){
     #topBarLinks{
-        position: absolute;
+        position: fixed;
         height: 100vh;
         width: 100vw;
-        /* opacity: .1; */
         top: 0;
         left: 100%;
         opacity: 0;
@@ -95,14 +101,10 @@ background-color: transparent;
         flex-direction: column;
         z-index: 100;
         justify-content: center !important;
+        align-items: center !important;
         background-color: rgb(0, 0, 0, .7);
         color: whitesmoke;
         backdrop-filter: blur(5px);
-        /* transition: left .5s .5s opacity .5s; */
-
-    }
-
-    #topBarLinks {
         font-size: 2em    
     }
 
@@ -110,7 +112,6 @@ background-color: transparent;
         left: 0 !important;
         opacity: 1 !important;
         transition: left .5s, opacity .5s  !important;
-
     }
 
     #xMark{
@@ -122,7 +123,8 @@ background-color: transparent;
 
     #topBarIcons{
         grid-template-columns: repeat(5, 1fr);
-        width: max(40%, 300px);
+        width: max(30%, 300px);
+        right: 25px
     }
 
     #hamburger{
