@@ -1,0 +1,137 @@
+#topBar{
+    height: 70px;
+    border-bottom: 1px solid black;
+    background-color: beige;
+    position: fixed;
+}
+
+#topBarLogo{
+    display: block;
+    margin-left: 50px
+}
+
+#topBarLinks{
+    display: flex;
+    /* grid-template-columns: repeat(3, 1fr); */
+    gap: 20px;
+    justify-items: center;
+    position: absolute;
+   left: 250px;
+   top: 50%;
+   translate: 0% -50%
+}
+
+#xMark, #hamburger{
+    display: none
+}
+
+#topBarLinks a:hover{
+    color: dimgray
+}
+
+#topBarIcons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+   right: 0;
+   top: 50%;
+   translate: 0 -50%
+}
+
+.topBarIcons:hover{
+    color: dimgray
+}
+#basket{
+    position: relative
+}
+#notification{
+    width: 10px;
+    aspect-ratio: 1/1;
+    position: absolute;
+}
+
+#searchBar{
+    position: fixed;
+    width: 75%;
+    min-width: 250px;
+    background-color: snow;
+    border: 0 solid silver;
+    /* box-shadow: 0 0 40px 0px black; */
+
+transition: top .35s ease-out;
+    /* border-radius: 50px; */
+background: #e0e0e0;
+box-shadow: inset 10px 10px 10px #bebebe,
+            inset -10px -10px 10px #ffffff;
+}
+
+#searchInput{
+    width: calc(100% - 50px);
+    margin-left: 10px;
+    float:left;
+outline: none;
+text-align: center;
+background-color: transparent;
+}
+
+
+
+@media screen and (max-width: 888px){
+    #topBarLinks{
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        /* opacity: .1; */
+        top: 0;
+        /* left: 100%; */
+        transition: left .5s;
+        translate: 0 0;
+        flex-direction: column;
+        z-index: 100;
+        justify-content: center !important;
+        background-color: rgb(0, 0, 0, .7);
+        color: whitesmoke;
+        backdrop-filter: blur(5px);
+    }
+
+    #topBarLinks {
+        font-size: 2em    
+    }
+
+    #xMark{
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 50px
+    }
+
+    #topBarIcons{
+        grid-template-columns: repeat(5, 1fr);
+        width: max(40%, 300px);
+    }
+
+    #hamburger{
+        display: block;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    #topBar{
+        height: 45px;
+    }
+
+    #topBarLogo{
+        width: 100px;
+        margin-left: 5%
+       }
+
+    #topBarIcons{
+        width: max(50%, 140px);
+        right: 10px
+    }
+    .topBarIcons{
+        font-size: 20px;
+    }
+}
