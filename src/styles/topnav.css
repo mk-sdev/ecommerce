@@ -1,7 +1,7 @@
 #topBar{
     height: 70px;
     border-bottom: 1px solid black;
-    background-color: beige;
+    background-color: snow;
     position: fixed !important;
 }
 
@@ -64,16 +64,42 @@
     min-width: 250px;
     background-color: snow;
     border: 0 solid silver;
-left: 50%;
-translate: -50%;
-height: 30px;
-line-height: 30px;
-transition: top .35s ease-out;
-background: #e0e0e0;
-box-shadow: inset 10px 10px 10px #bebebe,
-            inset -10px -10px 10px #ffffff;
+    left: 50%;
+    translate: -50%;
+    height: 40px;
+    line-height: 40px;
+    transition: top .35s ease-out;
+    background: linear-gradient(#dbdae1, #b2b2b2);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .4),
+    15px 15px 15px rgba(0, 0, 0, .3),
+    20px 20px 15px rgba(0, 0, 0, .2),
+    30px 30px 15px rgba(0, 0, 0, .1),
+    inset 6px 4px 2px #fff,
+    inset -6px -4px 2px #9d9d9d;
+    overflow: hidden;
 }
+/* #searchBar::before{
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+width: 10px;
+height: 100%;
+background-image: linear-gradient(#fff, #fff, #e3e3e3);
 
+filter: blur(1px)
+}
+#searchBar::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 10px;
+    height: 100%;
+    background-color: #9d9d9d;
+    z-index: 1;
+    filter: blur(1px)
+    } */
 #searchInput{
     width: calc(100% - 50px);
     margin-left: 10px;
@@ -83,7 +109,10 @@ outline: none;
 text-align: center;
 background-color: transparent;
 }
-
+#searchInput::placeholder{
+    color: gray;
+    font-family: consolas;
+}
 #glass{
     line-height: 30px;
    color: grey

@@ -55,9 +55,10 @@ export default function Topnav() {
 
     <div id="searchBar" className='rounded-md text-black font-semibold' 
       style={{top: search}}>
-      <input id='searchInput' className='rounded-l-md ' placeholder='type any title' type='text' ref={searchBar} ></input>
+      <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' ref={searchBar} ></input>
       <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} onClick={e=>setSearch('-100px')}  />
       
+      <div id="shadow"></div>
       {/* <FontAwesomeIcon style={{position: 'absolute', top: '-100%', right: '0px'}} className='text-red-500 text-3xl hover:text-red-400' icon={faSquareXmark} onClick={e=>setMenu(true)} /> */}
     </div>
 
