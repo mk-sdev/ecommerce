@@ -1,6 +1,7 @@
 #books{
     /* width: 100% !important; */
     height: calc(100vh - 70px);
+    /* min-height: 400px; */
     /* background-image: url('../images/books.jpg'); */
     background-position-y: bottom;
     background-size: cover;
@@ -96,6 +97,7 @@
 #caret{
     z-index: 3;
     animation: jump 2s linear infinite alternate;
+    bottom: 5%;
 }
 
 @keyframes jump {
@@ -122,30 +124,117 @@
 
 
 
-#whyUs{
+#whyUs, #opinions{
     position: relative;
     display: block;
-    padding-top: 50px !important;
-    /* height: 500px; */
+    padding-top: min(50px, 4vw);
+    /* padding-bottom: auto !important; */
     background-color: snow;
+    /* min-height: calc(100vh - 70px) */
 }
 
-#whyUs p:first-of-type{
+#whyUsP, #opinionsP{
     font-family: Oswald;
     font-weight: 600;
-    font-size: 2vw
+    font-size: max(3vw, 15px);
+    padding-inline: 5px
 }
 
 
 
 #reasons{
+    /* padding: auto; */
+    padding-top: min(50px, 4vw);
+    padding-bottom: min(50px, 3vw);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
-    grid-template-rows: 20px 300px;
+    /* grid-template-rows: 20px 300px; */
+
 }
 #reasons p{
     font-family: Oswald;
+    font-weight: 200 !important;
+    font-size: 2vw ;
+    min-height: 6vw;
+}
+
+#reasons img{
+    margin-inline: auto;
+    width: 70%
+}
+
+@media screen and (max-width: 785px) {
+    #reasons{
+        grid-template-columns: 1fr;
+        gap: 10px
+    }
+
+   #reasons div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+   }
+   #reasons div:nth-child(2) img{
+    order: 1
+   }
+   #reasons div:nth-child(2) p{
+    order: 2
+   }
+   #reasons p, .quotes{
+    height: fit-content;
+    min-height: 0;
+    font-size: 3vw !important;
+    /* padding-inline: 15px; */
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 400px) {
+   #reasons div{
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 10px
+   }
+   #reasons div:nth-child(2) img{
+    order: 2
+   }
+   #reasons div:nth-child(2) p{
+    order: 1
+   }
+   #reasons img{
+    width: 60%
+   }
+   #reasons p, .quotes{
+    font-size: 4vw !important;
+   }
+}
+
+
+#opinions{
+    padding-bottom: 100px
+}
+.quotes{
+    max-width: 640px;
+    margin-top: min(50px, 3vw);
+    margin-inline: auto;
+    padding-inline: auto;
+    font-family: Oswald;
+    font-size: 26px ;
+    padding-inline: 20px !important;
     font-weight: 200;
-    font-size: 2vw 
+
+}
+.quotes *{
+    margin-inline: auto;
+    text-align: center;
+}
+.autor{
+    text-align: right;
+    margin-top: 20px;
+    font-weight: 400;
 }
