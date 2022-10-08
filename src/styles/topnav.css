@@ -69,13 +69,13 @@
     height: 40px;
     line-height: 40px;
     transition: top .35s ease-out;
-    background: linear-gradient(#dbdae1, #b2b2b2);
+    background: linear-gradient(#dbdae1, snow);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .4),
     15px 15px 15px rgba(0, 0, 0, .3),
     20px 20px 15px rgba(0, 0, 0, .2),
     30px 30px 15px rgba(0, 0, 0, .1),
     inset 6px 4px 2px #fff,
-    inset -6px -4px 2px #9d9d9d;
+    inset -6px -4px 2px #b2b2b2;
     overflow: hidden;
 }
 /* #searchBar::before{
@@ -136,7 +136,9 @@ background-color: transparent;
         backdrop-filter: blur(5px);
         font-size: 2em    
     }
-
+    #topBarLinks a:hover{
+        color: lightgray
+    }
     .open{
         left: 0 !important;
         opacity: 1 !important;

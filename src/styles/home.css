@@ -1,7 +1,7 @@
 #books{
     /* width: 100% !important; */
     height: calc(100vh - 70px);
-    background-image: url('../images/books.jpg');
+    /* background-image: url('../images/books.jpg'); */
     background-position-y: bottom;
     background-size: cover;
     text-align: center;
@@ -12,6 +12,99 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     /* animation: books 35s infinite alternate ease-in-out; */
     overflow: hidden;
+    margin-bottom: 0
+}
+#books1, #books2{
+    top: 0;
+    left: 0;
+    background-size: cover;
+}
+#books1{
+    background-image: url('../images/books.jpg');
+    background-position-y: bottom;
+    z-index: 2;
+
+    animation: books1 20s linear infinite;
+}
+
+@keyframes books1 {
+    0%{
+        opacity: 1
+    }
+    20%{
+        opacity: 1
+    }
+    25%{
+        opacity: 0
+    }
+    75%{
+        opacity: 0
+    }
+    80%{
+        opacity: 1
+    }
+    100%{
+        opacity: 1
+    }
+}
+
+#books2{
+    background-image: url('../images/books2.jpg');
+    background-position-x: 100%;
+    z-index: 1;
+    animation: books2 20s 4s linear infinite
+}
+
+@keyframes books2 {
+    0%{
+        opacity: 0;
+        background-position-x: 100%;
+    }
+    8%{
+        opacity: 1
+    }
+    53%{
+        opacity: 1
+    }
+    58%{
+        opacity: 0
+    }
+    100%{
+        opacity: 0;
+        background-position-x: 20%;
+    }
+}
+
+#books p:first-of-type{
+    z-index: 3;
+    font-family: Oswald, sans-serif;
+    background-color: rgba(0, 0, 0, .4);
+    font-size: max(8vw, 50px);
+    margin-top: 10vh;
+    backdrop-filter: blur(2px);
+}
+
+#books p:last-of-type{
+    z-index: 3;
+    font-weight: 200;
+    font-size: max(3vw, 30px);
+    font-family: Oswald;
+    background-color: rgba(0, 0, 0, .4);
+    backdrop-filter: blur(2px);
+}
+
+#caret{
+    z-index: 3;
+    animation: jump 2s linear infinite alternate;
+}
+
+@keyframes jump {
+    from{
+        translate: 0 -10%
+    }
+    to{
+        translate: 0 10%
+    }
 }
 
 @media screen and (max-width: 520px) {
@@ -20,3 +113,39 @@
     }
   }
 
+
+
+
+
+
+
+
+
+
+#whyUs{
+    position: relative;
+    display: block;
+    padding-top: 50px !important;
+    /* height: 500px; */
+    background-color: snow;
+}
+
+#whyUs p:first-of-type{
+    font-family: Oswald;
+    font-weight: 600;
+    font-size: 2vw
+}
+
+
+
+#reasons{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 20px 300px;
+}
+#reasons p{
+    font-family: Oswald;
+    font-weight: 200;
+    font-size: 2vw 
+}

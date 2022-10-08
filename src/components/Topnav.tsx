@@ -19,7 +19,7 @@ export default function Topnav() {
   return (
     <>
 
-    <div id='topBar' className='w-screen top-0'>
+    <div id='topBar' className='w-screen top-0 z-10'>
     <img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' />
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
@@ -53,7 +53,7 @@ export default function Topnav() {
     </div>
   </div>
 
-    <div id="searchBar" className='rounded-md text-black font-semibold' 
+    <div id="searchBar" className='rounded-md text-black font-semibold z-10' 
       style={{top: search}}>
       <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' ref={searchBar} ></input>
       <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} onClick={e=>setSearch('-100px')}  />
