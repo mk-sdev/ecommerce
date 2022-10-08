@@ -98,6 +98,7 @@
     z-index: 3;
     animation: jump 2s linear infinite alternate;
     bottom: 5%;
+    /* left: 50%; */
 }
 
 @keyframes jump {
@@ -146,7 +147,8 @@
     /* padding: auto; */
     padding-top: min(50px, 4vw);
     padding-bottom: min(50px, 3vw);
-    width: 100%;
+    width: 95%;
+    margin-inline: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     /* grid-template-rows: 20px 300px; */
@@ -194,6 +196,12 @@
 
 
 @media screen and (max-width: 400px) {
+    #reasons{
+        gap: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px
+    }
+
    #reasons div{
     display: grid;
     grid-template-columns: 1fr;
@@ -216,18 +224,25 @@
 
 
 #opinions{
-    padding-bottom: 100px
+    padding-bottom: 100px;
+
+    /* height: 400px */
 }
+
 .quotes{
     max-width: 640px;
+    width: 90%;
     margin-top: min(50px, 3vw);
-    margin-inline: auto;
+    /* margin-inline: auto; */
     padding-inline: auto;
     font-family: Oswald;
     font-size: 26px ;
     padding-inline: 20px !important;
     font-weight: 200;
 
+    position: absolute;
+    left: 50%;
+    translate: -50%
 }
 .quotes *{
     margin-inline: auto;
@@ -238,3 +253,33 @@
     margin-top: 20px;
     font-weight: 400;
 }
+.quotes img{
+    max-width: 130px;
+    width: 30%
+}
+
+#quote1{
+    animation: quote 21s infinite;
+}
+#quote2{
+    animation: quote 21s -7s infinite;
+}
+#quote3{
+    animation: quote 21s -14s infinite;
+}
+
+@keyframes quote {
+    0%{
+        opacity: 1;
+    }
+    31%{
+        opacity: 1;
+    }
+    35%{
+        opacity: 0;
+    }
+    98%{
+        opacity: 0;
+    }
+}
+
