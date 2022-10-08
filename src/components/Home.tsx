@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import '../styles/home.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown}  from '@fortawesome/free-solid-svg-icons'
@@ -6,16 +6,6 @@ import {faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
 import {faQuoteRight} from '@fortawesome/free-solid-svg-icons'
 
 export default function Home() {
-  const [state, setState] = useState(1)
-
-  useEffect(()=>{
-
-    setInterval(()=>{
-      state===3 ? setState(1) : setState(state + 1)
-      console.log(state)
-    },7000)
-
-  }, [])
 
   return (
     <div className='component' >
@@ -67,7 +57,7 @@ export default function Home() {
       <br /> who found their books on Book Store:</p>
 
 
-      {state && <div id='quote1' className="quotes">
+      <div id='quote1' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
           &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam tempora deserunt fuga accusantium <span style={{whiteSpace:'nowrap'}}>voluptatibus! &nbsp;
@@ -75,29 +65,31 @@ export default function Home() {
 
         <p className='autor'>~ Lisa, 21</p>
         <img src={require('../images/person1.svg').default} alt='mySvgImage' />
-      </div>}
+      </div>
 
 
-      {state && <div id='quote2' className="quotes">
+      <div id='quote2' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
-          &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam tempora deserunt fuga accusantium <span style={{whiteSpace:'nowrap'}}>voluptatibus! &nbsp;
+          &nbsp; Ullam saepe deserunt iusto? Molestiae delectus dolore placeat. Ipsum deserunt mollitia id quibusdam eveniet deleniti, quisquam labore fugit suscipit ipsam quis.<span style={{whiteSpace:'nowrap'}}> &nbsp;
           <FontAwesomeIcon icon={faQuoteRight} /></span></p>
 
         <p className='autor'>~ David, 34</p>
         <img src={require('../images/person2.svg').default} alt='mySvgImage' />
-      </div>}
+      </div>
 
 
-      {state && <div id='quote3' className="quotes">
+      <div id='quote3' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
-          &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam tempora deserunt fuga accusantium <span style={{whiteSpace:'nowrap'}}>voluptatibus! &nbsp;
+          &nbsp; Quidem pariatur, consequuntur odio soluta reprehenderit mollitia cupiditate necessitatibus officia quia perspiciatis delectus obcaecati, magnam quis? Non, deleniti id totam temporibus aliquam repellat!<span style={{whiteSpace:'nowrap'}}> &nbsp;
           <FontAwesomeIcon icon={faQuoteRight} /></span></p>
 
         <p className='autor'>~ Valentina, 27</p>
         <img src={require('../images/person3.svg').default} alt='mySvgImage' />
-      </div>}
+    <div className="spacer"></div>
+      </div>
+
 
     </div>
 
