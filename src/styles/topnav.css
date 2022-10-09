@@ -74,8 +74,8 @@
     border: 0 solid silver;
     left: 50%;
     translate: -50%;
-    height: 40px;
-    line-height: 40px;
+    height: 60px;
+    line-height: 60px;
     transition: top .35s ease-out;
     background: linear-gradient(#dbdae1, snow);
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .4),
@@ -85,6 +85,8 @@
     inset 6px 4px 2px #fff,
     inset -6px -4px 2px #b2b2b2;
     overflow: hidden;
+    color: var(--dark);
+    font-size: 20px
 }
 /* #searchBar::before{
 content: '';
@@ -111,7 +113,7 @@ filter: blur(1px)
 #searchInput{
     width: calc(100% - 50px);
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 5px;
     float:left;
 outline: none;
 text-align: center;
