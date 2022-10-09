@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import '../styles/home.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCaretDown}  from '@fortawesome/free-solid-svg-icons'
-import {faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
-import {faQuoteRight} from '@fortawesome/free-solid-svg-icons'
-import { setConstantValue } from 'typescript'
+import {faCaretDown, faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
+import {faBasketShopping}  from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import { convertCompilerOptionsFromJson, setConstantValue } from 'typescript'
+import {Link} from 'react-router-dom'
 
 export default function Home() {
 
@@ -16,22 +17,70 @@ export default function Home() {
   //   }, 1000)
   // }, [])
 
+const [imag, setImag] = useState('')
 
+  axios.get('https://www.googleapis.com/books/v1/volumes?q=animalliberation&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o')
+  .then(res=>{console.log(res.data.items[1].volumeInfo.imageLinks.thumbnail)
+    ;setImag(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+  .catch(err=>console.log(err))
+
+  const harry = require("../images/covers/harry.png")
+  const animals = require("../images/covers/animals.png")
   return (
     <div className='component' >
     
     {/* <img id='books' src={String(books)} alt="" className='hover:cursor-pointer mx-auto'  /> */}
 
     <div id="books" className='w-full bg-black'>
-      <p className='text-slate-100 relative' >Welcome to Book Store</p>  
+      <p className='text-slate-100 relative' >Welcome to <span className='whitespace-nowrap'>Book Store</span></p>  
       <p className='text-slate-100 relative' >Looking for a book? Book Store is a place for you!</p>  
       <FontAwesomeIcon id='caret' icon={faCaretDown} className='text-slate-100 absolute'/>
       <div id="books1" className='w-full h-full absolute'></div>
       <div id="books2" className='w-full h-full absolute'></div>
-
     </div>
 
+    <div id='homeItems'>
+      <div className="item">
+       
+        <img src={String(harry)} alt="" className='w-full m-auto'/>
+      
+        <FontAwesomeIcon id='caret' icon={faBasketShopping} />
 
+        <span>Harry Potter and The Chamber of Secrets</span>
+        <br />
+       <span>50$</span>
+      </div>
+
+      <div className="item hover:ease-linear duration-200 hover:scale-105">
+      <img src={String(animals)} alt="" className='w-full m-auto '/>
+      
+      
+    {/* <span className='h-full w-ful absolute bg-red-400' style={{opacity: '.5', top: '0', left: '0', background: 'red', width: '100%', height: '100%'}}>
+    </span> */}
+    <div className='bestseller'>bestseller</div>
+
+
+      <span>Harry Potter</span>
+      <br />
+     <span>50$</span>
+    <FontAwesomeIcon className='basket' icon={faBasketShopping} />
+      </div>
+
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+      <div className="item"></div>
+
+      <Link to='/books' id='moreBooks'>
+        show more books
+        </Link>
+    </div>
 
 
     <div id='whyUs' className='mt-0' >     

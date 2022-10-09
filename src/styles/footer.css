@@ -9,12 +9,17 @@
     gap: 10px;
     top: 10px;
 }
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 400px) {
     #footerLinks{
         font-size: 12px;
     }
     #socials{
         margin-top: 30px !important
+    }
+}
+@media screen and (max-width: 300px) {
+    #footerLinks, #copyright{
+        font-size: 9px;
     }
 }
 

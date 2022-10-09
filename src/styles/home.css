@@ -120,7 +120,48 @@
 
 
 
+  #homeItems{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 80%;
+    margin-inline: auto;
+    margin-top: 50px;
+    position: relative;
+    gap: 50px;
+}
 
+.item{
+    border: 1px solid var(--dark);
+    width: 100%;
+    aspect-ratio: 8/9;;
+position: relative;
+}
+.basket{
+    color: black; 
+}
+.bestseller{
+    background-color: red;
+    color: black;
+    width: 120px;
+    height: 40px;
+    position: absolute;
+    top: 10px; 
+    right: 0px
+}
+
+#moreBooks{
+    grid-column: 1/5;
+    font-family: Oswald;
+    font-weight: 400;
+    font-size: min(30px, 5vw); 
+    margin-inline: auto;
+    color: rgb(249, 168, 38);
+    transition: .5s;
+}
+
+#moreBooks:hover{
+    color: hsl(37, 95%, 71%);
+}
 
 
 
@@ -167,8 +208,22 @@
     margin-inline: auto;
     width: 70%
 }
-
+@media screen and (max-width: 1200px) {
+    #homeItems{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    #moreBooks{
+        grid-column: 1/4;
+    }
+}
 @media screen and (max-width: 785px) {
+    #homeItems{
+        grid-template-columns: 1fr 1fr;
+    }
+    #moreBooks{
+        grid-column: 1/3;
+    }
+
     #reasons{
         grid-template-columns: 1fr;
         gap: 10px
@@ -198,6 +253,12 @@
 
 
 @media screen and (max-width: 400px) {
+    #homeItems{
+        grid-template-columns: 1fr;
+    }
+    #moreBooks{
+        grid-column: 1/2;
+    }
     #reasons{
         gap: 40px;
         padding-top: 40px;
