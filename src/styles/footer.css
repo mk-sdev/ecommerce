@@ -1,13 +1,9 @@
 #footer{
-    /* height: 130px; */
     background-color: var(--dark);
     color: snow;
-    position: relative;
-    /* padding-top: 10px */
 }
 
 #footerLinks{
-    position: relative;
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -29,7 +25,6 @@
 }
 
 #socials{
-    position: relative;
     margin-top: 50px;
     display: flex;
     gap: 10px;
@@ -43,7 +38,6 @@
 }
 
 #copyright{
-    position: relative;
     text-align: center;
     margin-top: 20px;
    bottom: 10px;

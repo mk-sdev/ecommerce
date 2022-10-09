@@ -6,9 +6,9 @@ import {faInstagram, faPinterest, faTwitter}  from '@fortawesome/free-brands-svg
 export default function Footer() {
   return (
     <>
-    <div id='footer'>
+    <div id='footer' className='relative'>
 
-    <div id="footerLinks">
+    <div id="footerLinks" className='relative'>
       <a href="">STATUT</a>·
       <a href="">PAYMENT</a>·
       <a href="">CONTACT</a>·
@@ -16,13 +16,13 @@ export default function Footer() {
       <a href="">FAQ</a>
     </div>
 
-    <div id="socials">
+    <div id="socials" className='relative'>
     <a href="https://www.instagram.com/"><FontAwesomeIcon icon={faInstagram} className='footerIcons text-3xl' /></a>
     <a href="https://pl.pinterest.com/"><FontAwesomeIcon icon={faPinterest} className='footerIcons text-3xl' /></a>
     <a href="https://twitter.com/home"><FontAwesomeIcon icon={faTwitter} className='footerIcons text-3xl' /></a>
     </div>
 
-    <p id='copyright'>Copyright © 2021 BookStore.</p>
+    <p id='copyright' className='relative'>Copyright © 2022 BookStore.</p>
     </div>
     </>
   )
