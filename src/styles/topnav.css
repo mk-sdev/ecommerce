@@ -1,6 +1,6 @@
 #topBar{
     height: 70px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--dark);
     background-color: snow;
     position: fixed !important;
 }
@@ -26,6 +26,9 @@
     transition: color .3s
 }
 
+#topBarLinks a{
+    color: var(--dark) 
+}
 #topBarLinks a:hover{
     color: dimgray;
     transition: color .3s
@@ -40,7 +43,12 @@
    right: 50px;
    top: 50%;
    translate: 0 -50%;
-   width: 213px
+   width: 213px;
+}
+
+.topBarIcons{
+    color: var(--dark) 
+
 }
 
 .topBarIcons:hover{
@@ -134,7 +142,10 @@ background-color: transparent;
         background-color: rgb(0, 0, 0, .7);
         color: whitesmoke;
         backdrop-filter: blur(5px);
-        font-size: 2em    
+        font-size: 2em;
+    }
+    #topBarLinks a{
+        color: snow
     }
     #topBarLinks a:hover{
         color: lightgray

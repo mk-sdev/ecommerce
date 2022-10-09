@@ -1,3 +1,4 @@
+
 #books{
     /* width: 100% !important; */
     height: calc(100vh - 70px);
@@ -131,6 +132,7 @@
     padding-top: min(50px, 4vw);
     /* padding-bottom: auto !important; */
     background-color: snow;
+    color: var(--dark)
     /* min-height: calc(100vh - 70px) */
 }
 
@@ -227,12 +229,22 @@
     height: 50px
 }
 
+#opinionsP{
+    margin-bottom: 50px
+}
+#quotesdiv{
+    background-color: orange;
+    width: 90%;
+    height: fit-content;
+    position: relative
+}
 .quotes{
     max-width: 640px;
     width: 90%;
-    margin-top: min(50px, 3vw);
-    margin-bottom: min(50px, 3vw);
-    margin-bottom:200px;
+    top: 0;
+    /* margin-top: min(50px, 3vw); */
+    /* margin-bottom: min(50px, 3vw); */
+    /* margin-bottom:200px; */
     /* margin-inline: auto; */
     padding-inline: auto;
     font-family: Oswald;
@@ -240,11 +252,12 @@
     padding-inline: 20px !important;
     font-weight: 200;
 
-    position: absolute;
+    position: relative;
     left: 50%;
     translate: -50%
 }
 .quotes *{
+    position: relative;
     margin-inline: auto;
     text-align: center;
 }
@@ -262,10 +275,10 @@
     animation: quote 21s infinite;
 }
 #quote2{
-    animation: quote 21s -7s infinite;
+    animation: quote 21s -14s infinite;
 }
 #quote3{
-    animation: quote 21s -14s infinite;
+    animation: quote 21s -7s infinite;
 }
 
 @keyframes quote {

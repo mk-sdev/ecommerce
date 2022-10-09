@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Profile from './components/Profile';
 import Books from './components/Books';
 import Cart from './components/Cart'
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
 </Routes>
 
 
-
+<Footer></Footer>
     
    
     </>

@@ -20,13 +20,13 @@ export default function Topnav() {
     <>
 
     <div id='topBar' className='w-screen top-0 z-10'>
-    <img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' />
+    <Link to='/'><img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' /></Link>
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
       <Link to='/books/new'>NEW</Link>
       <Link to='/books/bestsellers'>BESTSELLERS</Link>
       <Link to='/books/discounts'>DISCOUNTS</Link>
-    <FontAwesomeIcon id='xMark' className='text-red-500 hover:text-red-400' icon={faSquareXmark} onClick={e=>setMenu(true)} />
+    <FontAwesomeIcon id='xMark' className='text-red-500 hover:text-red-400 hover:cursor-pointer' icon={faSquareXmark} onClick={e=>setMenu(true)} />
     </div>
 
 

@@ -1,11 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import '../styles/home.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown}  from '@fortawesome/free-solid-svg-icons'
 import {faQuoteLeft} from '@fortawesome/free-solid-svg-icons'
 import {faQuoteRight} from '@fortawesome/free-solid-svg-icons'
+import { setConstantValue } from 'typescript'
 
 export default function Home() {
+
+  // const [timer, setTimer] = useState(0);
+
+  // useEffect(()=>{
+  //   setInterval(()=>{
+  //     setTimer(time => time === 21 ? 0 : time + 1);
+  //   }, 1000)
+  // }, [])
+
 
   return (
     <div className='component' >
@@ -24,8 +34,8 @@ export default function Home() {
 
 
 
-    <div id='whyUs' className='mt-0' >
-
+    <div id='whyUs' className='mt-0' >     
+    
     <p id='whyUsP' className=' text-center mx-auto'>Why should you order your books in Book Store? <br /> Here are 3 reasons:</p>
 
     <div id="reasons">
@@ -52,12 +62,12 @@ export default function Home() {
     </div>
 
 
-    <div id='opinions'>
+    {/* <div id='opinions'>
       <p id='opinionsP' className='text-center'>Here are some opinions from people
-      <br /> who found their books on Book Store:</p>
+      <br /> who found their books on Book Store:</p> */}
 
-
-      <div id='quote1' className="quotes">
+    {/* <div id="quotesdiv"> */}
+     {/* {timer>=0 && timer<=7 && <div id='quote1' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
           &nbsp; Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, quam tempora deserunt fuga accusantium <span style={{whiteSpace:'nowrap'}}>voluptatibus! &nbsp;
@@ -65,10 +75,10 @@ export default function Home() {
 
         <p className='autor'>~ Lisa, 21</p>
         <img src={require('../images/person1.svg').default} alt='mySvgImage' />
-      </div>
+      </div>}
 
 
-      <div id='quote2' className="quotes">
+      {timer>7 && timer<=14 &&<div id='quote2' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
           &nbsp; Ullam saepe deserunt iusto? Molestiae delectus dolore placeat. Ipsum deserunt mollitia id quibusdam eveniet deleniti, quisquam labore fugit suscipit ipsam quis.<span style={{whiteSpace:'nowrap'}}> &nbsp;
@@ -76,10 +86,10 @@ export default function Home() {
 
         <p className='autor'>~ David, 34</p>
         <img src={require('../images/person2.svg').default} alt='mySvgImage' />
-      </div>
+      </div>}
 
 
-      <div id='quote3' className="quotes">
+     {timer>14 && timer<=21 && <div id='quote3' className="quotes">
         <p>
         <FontAwesomeIcon icon={faQuoteLeft} />
           &nbsp; Quidem pariatur, consequuntur odio soluta reprehenderit mollitia cupiditate necessitatibus officia quia perspiciatis delectus obcaecati, magnam quis? Non, deleniti id totam temporibus aliquam repellat!<span style={{whiteSpace:'nowrap'}}> &nbsp;
@@ -87,12 +97,10 @@ export default function Home() {
 
         <p className='autor'>~ Valentina, 27</p>
         <img src={require('../images/person3.svg').default} alt='mySvgImage' />
-    <div className="spacer"></div>
-      </div>
+      </div>} */}
 
-
-    </div>
-
+      {/* </div> */}
+    {/* </div> */}
 
 
     </div>

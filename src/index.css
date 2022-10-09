@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --dark: rgb(47, 46, 65);
+}
 /* body, html{ */
   /* overflow-x: hidden */
   /* contain: paint; */
