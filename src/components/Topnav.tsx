@@ -20,7 +20,7 @@ export default function Topnav() {
     <>
 
     <div id='topBar' className='w-screen top-0 z-10'>
-    <Link to='/'><img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' /></Link>
+    <Link to='/' style={{display: 'inline-block'}}><img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' /></Link>
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
       <Link to='/books/new'>NEW</Link>

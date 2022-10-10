@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, forwardRef} from 'react'
 import '../styles/home.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown, faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
@@ -17,12 +17,44 @@ export default function Home() {
   //   }, 1000)
   // }, [])
 
-const [imag, setImag] = useState('')
+// const array=['harrypotter', 'animalliberation', 'billgates']
+const [harryImg, setHarryImg] = useState('')
+const [animalImg, setAnimalImg] = useState('')
+const [superImg, setSuperImg] = useState('')
+const [gatesImg, setGatesImg] = useState('')
 
-  axios.get('https://www.googleapis.com/books/v1/volumes?q=animalliberation&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o')
-  .then(res=>{console.log(res.data.items[1].volumeInfo.imageLinks.thumbnail)
-    ;setImag(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
-  .catch(err=>console.log(err))
+useEffect(()=>{
+    
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=harrypotter&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setHarryImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+    // .catch(err=>console.log(err))
+
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=animalliberation&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setAnimalImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+    // .catch(err=>console.log(err))
+    
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=superintelligence&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setSuperImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)})
+    // .catch(err=>console.log(err))
+    
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=billgates&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+    // .catch(err=>console.log(err))
+
+    // array.map((el, i)=>{
+    //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=${el}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    //   .then(res=>{
+
+    //    if(i===0) setHarryImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
+    //    else if (i===1) setAnimalImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
+    //    else if (i===2) setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
+    //   })
+    //   .catch(err=>console.log(err))
+  
+    // })
+
+}, [])
+
 
   const harry = require("../images/covers/harry.png")
   const animals = require("../images/covers/animals.png")
@@ -39,43 +71,156 @@ const [imag, setImag] = useState('')
       <div id="books2" className='w-full h-full absolute'></div>
     </div>
 
+    {/* {imag.1} */}
     <div id='homeItems'>
+
+      <div className="item">{harryImg==='' ? 'Loading...' :
+                <img src={harryImg} alt="" className='bookImg'/>}
+                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      
+      <div className="item">{animalImg==='' ? 'Loading...' :
+                <img src={animalImg} alt="" className='bookImg'/>}
+                <div className='bestseller'>bestseller</div>
+                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Animal liberation</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">{superImg==='' ? 'Loading...' :
+                <img src={superImg} alt="" className='bookImg'/>}
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Superintelligence</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">{gatesImg==='' ? 'Loading...' :
+                <img src={gatesImg} alt="" className='bookImg'/>}
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Who is Bill Gates?</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
       <div className="item">
-       
-        <img src={String(harry)} alt="" className='w-full m-auto'/>
-      
-        <FontAwesomeIcon id='caret' icon={faBasketShopping} />
-
-        <span>Harry Potter and The Chamber of Secrets</span>
-        <br />
-       <span>50$</span>
+      <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
       </div>
 
-      <div className="item hover:ease-linear duration-200 hover:scale-105">
-      <img src={String(animals)} alt="" className='w-full m-auto '/>
-      
-      
-    {/* <span className='h-full w-ful absolute bg-red-400' style={{opacity: '.5', top: '0', left: '0', background: 'red', width: '100%', height: '100%'}}>
-    </span> */}
-    <div className='bestseller'>bestseller</div>
+      <Link to='/books/item'><div className="item">
+      <img src={'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
 
-
-      <span>Harry Potter</span>
-      <br />
-     <span>50$</span>
-    <FontAwesomeIcon className='basket' icon={faBasketShopping} />
+      <div className="item">
+      <img src={String(harry)} alt="" className='bookImg'/>
+      {/* <div className='bestseller'>bestseller</div> */}
+               {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
       </div>
 
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
-      <div className="item"></div>
+      <div className="item">
+      <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">
+         <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">
+         <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">
+         <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
+      <div className="item">
+         <img src={String(harry)} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='price'>50$</div>
+              </div>
+      </div>
+
 
       <Link to='/books' id='moreBooks'>
         show more books

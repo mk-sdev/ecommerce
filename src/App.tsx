@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 import Books from './components/Books';
 import Cart from './components/Cart'
 import Footer from './components/Footer';
-
+import Book from './components/Book'
 function App() {
   return (
     <>
@@ -19,8 +19,9 @@ function App() {
 <Routes>
   <Route path='/' element={<Home/>}></Route>
   <Route path='/profile' element={<Profile/>}></Route>
-  <Route path='/books' element={<Books/>}></Route>
   <Route path='/cart' element={<Cart/>}></Route>
+  <Route path='/books' element={<Books/>}></Route>
+  <Route path='/books/:id' element={<Book/>}></Route>
 </Routes>
 
 
