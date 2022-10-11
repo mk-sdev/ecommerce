@@ -20,8 +20,8 @@ function App() {
   <Route path='/' element={<Home/>}></Route>
   <Route path='/profile' element={<Profile/>}></Route>
   <Route path='/cart' element={<Cart/>}></Route>
-  <Route path='/books' element={<Books/>}></Route>
-  <Route path='/books/:id' element={<Book/>}></Route>
+  <Route path='/books/:title' element={<Books/>}></Route>
+  <Route path='/books/:title/:nr' element={<Book/>}></Route>
 </Routes>
 
 

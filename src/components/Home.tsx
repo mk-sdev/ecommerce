@@ -1,5 +1,6 @@
 import React, {useState, useEffect, forwardRef} from 'react'
 import '../styles/home.css'
+import '../styles/books.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCaretDown, faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
 import {faBasketShopping}  from '@fortawesome/free-solid-svg-icons'
@@ -18,28 +19,31 @@ export default function Home() {
   // }, [])
 
 // const array=['harrypotter', 'animalliberation', 'billgates']
-const [harryImg, setHarryImg] = useState('')
-const [animalImg, setAnimalImg] = useState('')
-const [superImg, setSuperImg] = useState('')
-const [gatesImg, setGatesImg] = useState('')
+const [starwarsImg, setStarwarsImg] = useState('')
+//thelittleprince
+const [princeImg, setPrinceImg] = useState('')
+//euclidselements
+const [witcherImg, setWitcherImg] = useState('')
+// const [gatesImg, setGatesImg] = useState('')
 
 useEffect(()=>{
     
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=harrypotter&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setHarryImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=starwars&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setStarwarsImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
     // .catch(err=>console.log(err))
 
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=animalliberation&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setAnimalImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+  //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=meditations&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+  //   .then(res=>{setPrinceImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
+  // console.log(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+  //   .catch(err=>console.log(err))
+    
+    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=witcher&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    // .then(res=>{setWitcherImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)})
     // .catch(err=>console.log(err))
     
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=superintelligence&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setSuperImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)})
-    // .catch(err=>console.log(err))
-    
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=billgates&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
-    // .catch(err=>console.log(err))
+  //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=billgates&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+  //   .then(res=>{setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
+  //   .catch(err=>console.log(err))
 
     // array.map((el, i)=>{
     //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=${el}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
@@ -74,70 +78,10 @@ useEffect(()=>{
     {/* {imag.1} */}
     <div id='homeItems'>
 
-      <div className="item">{harryImg==='' ? 'Loading...' :
-                <img src={harryImg} alt="" className='bookImg'/>}
-                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
+      <div id='recommended'>Recommended by Book Store</div>
 
-      
-      <div className="item">{animalImg==='' ? 'Loading...' :
-                <img src={animalImg} alt="" className='bookImg'/>}
-                <div className='bestseller'>bestseller</div>
-                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Animal liberation</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
-
-      <div className="item">{superImg==='' ? 'Loading...' :
-                <img src={superImg} alt="" className='bookImg'/>}
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Superintelligence</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
-
-      <div className="item">{gatesImg==='' ? 'Loading...' :
-                <img src={gatesImg} alt="" className='bookImg'/>}
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Who is Bill Gates?</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
-
-      <div className="item">
-      <img src={String(harry)} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
-
-      <Link to='/books/item'><div className="item">
-      <img src={'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
+    <Link to='/books/harrypotter/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=8exSvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
@@ -148,82 +92,145 @@ useEffect(()=>{
               </div>
       </div></Link>
 
-      <div className="item">
-      <img src={String(harry)} alt="" className='bookImg'/>
-      {/* <div className='bestseller'>bestseller</div> */}
-               {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
-                <div className='price'>50$</div>
-              </div>
-      </div>
-
-      <div className="item">
-      <img src={String(harry)} alt="" className='bookImg'/>
+      
+      <Link to='/books/animalliberation/1'><div className="item">
+      <img src={'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
+      <div className='bestseller'>bestseller</div>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
                 <br />
                 <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='title'>Animal liberation</div>
                 <div className='price'>50$</div>
               </div>
-      </div>
+      </div></Link>
 
-      <div className="item">
-         <img src={String(harry)} alt="" className='bookImg'/>
+      <Link to='/books/superintelligence/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=7_H8AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
                 <br />
                 <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='title'>Superintelligence</div>
                 <div className='price'>50$</div>
               </div>
-      </div>
+      </div></Link>
 
-      <div className="item">
-         <img src={String(harry)} alt="" className='bookImg'/>
+      <Link to='/books/billgates/1'><div className="item">
+      <img src={'http://books.google.com/books/content?id=oeAcYb_Gq8cC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
                 <br />
                 <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
-                <div className='price'>50$</div>
+                <div className='title'>Who Is Bill Gates?</div>
+                <div className='price'>28.49$</div>
               </div>
-      </div>
+      </div></Link>
 
-      <div className="item">
-         <img src={String(harry)} alt="" className='bookImg'/>
+      <Link to='/books/meditations/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=xp5CvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
                 <br />
                 <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='title'>Meditations</div>
                 <div className='price'>50$</div>
               </div>
-      </div>
+      </div></Link>
 
-      <div className="item">
-         <img src={String(harry)} alt="" className='bookImg'/>
+      <Link to='/books/ww2/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=wpfOoQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
                <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
               <div className="data">
                 <br />
                 <br />
                 <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
+                <div className='title'>WW2</div>
                 <div className='price'>50$</div>
               </div>
-      </div>
+      </div></Link>
+
+      <Link to='/books/euclidselements/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Euclid's elements</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
+
+      <Link to='/books/thelordoftherings/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=_NsHAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
+      <div className='bestseller'>bestseller</div>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>The Lord of The Rings</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
+
+      <Link to='/books/poordadrichdad/1'><div className="item">
+      <img src={'http://books.google.com/books/content?id=PIypDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
+      <div className='bestseller'>bestseller</div>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Poor dad rich dad</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
+
+      <Link to='/books/theoldmanandthesea/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=Uwn0CAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>The old man and the sea</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
+
+      <Link to='/books/thelittleprince/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=0fehDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Tle little prince</div>
+                <div className='price'>9,33$</div>
+              </div>
+      </div></Link>
+
+      <Link to='/books/witcher/0'><div className="item">
+      <img src={'http://books.google.com/books/content?id=8u9KEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>Witcher</div>
+                <div className='price'>50$</div>
+              </div>
+      </div></Link>
 
 
-      <Link to='/books' id='moreBooks'>
-        show more books
+      <Link to='/books/dupa' id='moreBooks'>
+        search for more books
         </Link>
     </div>
 

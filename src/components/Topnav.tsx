@@ -7,14 +7,23 @@ import {faBasketShopping}  from '@fortawesome/free-solid-svg-icons'
 import {faSquareXmark}  from '@fortawesome/free-solid-svg-icons'
 import {faBars}  from '@fortawesome/free-solid-svg-icons'
 import '../styles/topnav.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 const logo = require("../images/logo.png")
 
 export default function Topnav() {
   
+  const navigate = useNavigate()
   const [search, setSearch] = useState('-100px')
+  const [title, setTitle] = useState('')
   const [menu, setMenu] = useState(true)
   const searchBar = React.useRef<HTMLInputElement>(null);
+
+  function searchBooks(e?: string):void{
+    if((e==='Enter' || e===undefined) && title!=='' ) {
+      setSearch('-100px')
+      navigate(`/books/${title}`)
+    } else searchBar.current?.focus()
+  }
 
   return (
     <>
@@ -55,8 +64,12 @@ export default function Topnav() {
 
     <div id="searchBar" className='rounded-md text-black font-semibold z-10' 
       style={{top: search}}>
-      <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' ref={searchBar} ></input>
-      <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} onClick={e=>setSearch('-100px')}  />
+      <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' value={title} ref={searchBar}
+      onChange={e=>setTitle(e.target.value)} 
+      onKeyDown={e=>searchBooks(e.key)} ></input>
+      <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} 
+      onClick={e=>searchBooks()}  />
+      
       
       <div id="shadow"></div>
       {/* <FontAwesomeIcon style={{position: 'absolute', top: '-100%', right: '0px'}} className='text-red-500 text-3xl hover:text-red-400' icon={faSquareXmark} onClick={e=>setMenu(true)} /> */}

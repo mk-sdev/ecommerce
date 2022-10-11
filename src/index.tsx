@@ -15,3 +15,6 @@ root.render(
     </BrowserRouter>
  // </React.StrictMode>
 );
+
+//scrol restoration, uporządkowanie kodu (usunięcie niepotrzebnych rzeczy), czy jakieś nazwy ze sobą nie kolidują, dostosować do typescriptu
+//padding przy .component itp, stopka
