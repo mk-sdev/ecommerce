@@ -5,6 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faBasketShopping, faN}  from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
+import { objectTraps } from 'immer/dist/internal'
 
 
 export default function Books() {
@@ -48,7 +49,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     console.log(searchTitle, searchAuthor.length, link)
 
-     axios.get(link)
+     axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTitle}&maxResults=12&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{
             
           setData(res.data.items)
@@ -71,7 +72,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
                 // setId(res.data.items[Number(nr)].id)
             // setImage(res.data.items[Number(nr)].volumeInfo.imageLinks.thumbnail);
-            // setTitle1(res.data.items[Number(nr)].volumeInfo.title)
+            setTitle1(res.data.items[Number(0)].volumeInfo.title)
             // setDate(res.data.items[Number(nr)].volumeInfo.publishedDate)
             // setDescription(res.data.items[Number(nr)].volumeInfo.description)
             // setPagecount(res.data.items[Number(nr)].volumeInfo.pageCount)
@@ -81,6 +82,9 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
    
         })
         .catch(err=>console.log(err))
+
+        console.log(obj)
+
   }, [title, page])
 
 
@@ -148,10 +152,27 @@ function searchBooks(e?: string):void{
 
     <div id='homeItems' style={{display: title!==undefined ? 'grid' : 'block'}}>
 
-      String({data[0]})
-      <div>referf</div>
-      <div>referf</div>
-      <div>referf</div>
+      {data ? data.map((a: any, i: any)=>{
+        return (
+          <Link to={`/book/${data[i].id}`} key={i}> <div className='item'>
+               {data[i].volumeInfo.imageLinks ? 
+
+               <img src={data[i].volumeInfo.imageLinks.thumbnail} alt={data[i].volumeInfo.title+' cover'} className='bookImg'/> : 
+
+                <img src={require('../images/image.svg').default} alt="book cover" className='bookImg' />}
+
+               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+              <div className="data">
+                <br />
+                <br />
+                <br />
+                <div className='title'>{data[i].volumeInfo.title}</div>
+                <div className='price'>{data[i].saleInfo.retailPrice ? data[i].saleInfo.retailPrice.amount+'$' : '25$'}</div>
+              </div>
+          </div></Link>
+        )
+      }) : 'oops... an error occured'}
+
 
           {title && 
             <div id="moreBooks" className='breadcrumbs'>
