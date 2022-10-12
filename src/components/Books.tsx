@@ -49,7 +49,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
     console.log(searchTitle, searchAuthor.length, link)
 
-     axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTitle}&maxResults=12&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+     axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTitle}&maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{
             
           setData(res.data.items)
@@ -84,6 +84,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         .catch(err=>console.log(err))
 
         console.log(obj)
+        // alert('ddd')
 
   }, [title, page])
 
