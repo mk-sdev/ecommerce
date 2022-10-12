@@ -22,6 +22,7 @@ function App() {
   <Route path='/cart' element={<Cart/>}></Route>
   <Route path='/books' element={<Books/>}></Route>
   <Route path='/books/:title' element={<Books/>}></Route>
+  <Route path='/books/:title/:page' element={<Books/>}></Route>
   {/* <Route path='/books/:title/:nr' element={<Book/>}></Route> */}
   <Route path='/book/:id/' element={<Book/>}></Route>
 </Routes>

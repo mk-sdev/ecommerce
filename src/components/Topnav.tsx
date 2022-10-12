@@ -21,7 +21,7 @@ export default function Topnav() {
   function searchBooks(e?: string):void{
     if((e==='Enter' || e===undefined) && title!=='' ) {
       setSearch('-100px')
-      navigate(`/books/${title}`)
+      navigate(`/books/${title.replace(/ /g,'').toLowerCase()}`)
     } else searchBar.current?.focus()
   }
 

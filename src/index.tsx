@@ -17,7 +17,7 @@ root.render(
 );
 
 //scrol restoration, uporządkowanie kodu (usunięcie niepotrzebnych rzeczy), czy jakieś nazwy ze sobą nie kolidują, dostosować do typescriptu
-//padding przy .component itp, stopka
+//padding przy .component itp, stopka, breadcrumbs, opisy zamienić na xml
 
 // {
 //   "kind": "books#volume",

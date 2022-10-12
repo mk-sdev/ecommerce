@@ -61,8 +61,7 @@ useEffect(()=>{
 }, [])
 
 
-  const harry = require("../images/covers/harry.png")
-  const animals = require("../images/covers/animals.png")
+
   return (
     <div className='component' >
     
@@ -188,7 +187,7 @@ useEffect(()=>{
                 <br />
                 <br />
                 <br />
-                <div className='title'>Poor dad rich dad</div>
+                <div className='title'>Rich Dad Poor Dad</div>
                 <div className='price'>36.59$</div>
               </div>
       </div></Link>

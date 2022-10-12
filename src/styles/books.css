@@ -104,7 +104,13 @@ transition: .3s
 #moreBooks:hover{
     color: hsl(37, 95%, 71%);
 }
+.breadcrumbs{
+    width: 100%;
 
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+}
 
 
 @media screen and (max-width: 1200px) {
