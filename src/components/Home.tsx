@@ -1,31 +1,13 @@
-import React, {useState, useEffect, forwardRef} from 'react'
+import React, {useEffect} from 'react'
 import '../styles/home.css'
 import '../styles/books.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faCaretDown, faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
-import {faBasketShopping}  from '@fortawesome/free-solid-svg-icons'
-import {faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
+import {faCaretDown, faBasketShopping, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import {faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
 import { convertCompilerOptionsFromJson, setConstantValue } from 'typescript'
 import {Link} from 'react-router-dom'
 
 export default function Home() {
-
-  // const [timer, setTimer] = useState(0);
-
-  // useEffect(()=>{
-  //   setInterval(()=>{
-  //     setTimer(time => time === 21 ? 0 : time + 1);
-  //   }, 1000)
-  // }, [])
-
-// const array=['harrypotter', 'animalliberation', 'billgates']
-const [starwarsImg, setStarwarsImg] = useState('')
-//thelittleprince
-const [princeImg, setPrinceImg] = useState('')
-//euclidselements
-const [witcherImg, setWitcherImg] = useState('')
-// const [gatesImg, setGatesImg] = useState('')
 
 useEffect(()=>{
     
@@ -60,12 +42,94 @@ useEffect(()=>{
 
 }, [])
 
-
+  const bookObj = [{ //harry potter
+    id: '8exSvgAACAAJ',
+    img: 'http://books.google.com/books/content?id=8exSvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Harry Potter and The Chamber of Secrets',
+    price: '25$',
+    bestseller: false
+  },
+  {//animal liberation
+    id: 'crbWwAEACAAJ',
+    img: 'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Animal Liberation',
+    price: '25$',
+    bestseller: true
+  },
+  {//superintelligence
+    id: '7_H8AwAAQBAJ',
+    img: 'http://books.google.com/books/content?id=7_H8AwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Superintelligence',
+    price: '25$',
+    bestseller: false
+  },
+  {
+    id: 'oeAcYb_Gq8cC',
+    img: 'http://books.google.com/books/content?id=oeAcYb_Gq8cC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Who Is Bill Gates?',
+    price: '28.49$',
+    bestseller: false
+  },
+  {
+    id: 'xp5CvgAACAAJ',
+    img: 'http://books.google.com/books/content?id=xp5CvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Meditations',
+    price: '25$',
+    bestseller: false
+  },
+  {
+    id: 'wpfOoQEACAAJ',
+    img: 'http://books.google.com/books/content?id=wpfOoQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'World War II',
+    price: '25$',
+    bestseller: false
+  },
+  {
+    id: 'nc1UAAAAYAAJ',
+    img: 'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "Euclid's elements",
+    price: '25$',
+    bestseller: false
+  },
+  {
+    id: 'DqLPAAAAMAAJ',
+    img: 'http://books.google.com/books/content?id=_NsHAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "The Lord of The Rings",
+    price: '25$',
+    bestseller: true
+  },
+  {
+    id: 'PIypDwAAQBAJ',
+    img: 'http://books.google.com/books/content?id=PIypDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "Rich Dad Poor Dad",
+    price: '36.59$',
+    bestseller: true
+  },
+  {
+    id: 'Uwn0CAAAQBAJ',
+    img: 'http://books.google.com/books/content?id=Uwn0CAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "The old man and the sea",
+    price: '52.37$',
+    bestseller: false
+  },
+  {
+    id: '0fehDAAAQBAJ',
+    img: 'http://books.google.com/books/content?id=0fehDAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "The little prince",
+    price: '9.33$',
+    bestseller: false
+  },
+  {
+    id: '8u9KEAAAQBAJ',
+    img: 'http://books.google.com/books/content?id=8u9KEAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "The Witcher Volume 6: Witch's Lament",
+    price: '25$',
+    bestseller: false
+  },
+]
 
   return (
     <div className='component' >
-    
-    {/* <img id='books' src={String(books)} alt="" className='hover:cursor-pointer mx-auto'  /> */}
 
     <div id="books" className='w-full bg-black'>
       <p className='text-slate-100 relative' >Welcome to <span className='whitespace-nowrap'>Book Store</span></p>  
@@ -75,159 +139,26 @@ useEffect(()=>{
       <div id="books2" className='w-full h-full absolute'></div>
     </div>
 
-    {/* {imag.1} */}
     <div id='homeItems'>
-
       <div id='recommended'>Recommended by Book Store</div>
 
-    <Link to='/book/8exSvgAACAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=8exSvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Harry Potter and The Chamber of Secrets</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      
-      <Link to='/book/crbWwAEACAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-      <div className='bestseller'>bestseller</div>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Animal liberation</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/7_H8AwAAQBAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=7_H8AwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Superintelligence</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/oeAcYb_Gq8cC'><div className="item">
-      <img src={'http://books.google.com/books/content?id=oeAcYb_Gq8cC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Who Is Bill Gates?</div>
-                <div className='price'>28.49$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/xp5CvgAACAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=xp5CvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Meditations</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/wpfOoQEACAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=wpfOoQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>World War II</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/nc1UAAAAYAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Euclid's elements</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/DqLPAAAAMAAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=_NsHAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'} alt="" className='bookImg'/>
-      <div className='bestseller'>bestseller</div>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>The Lord of The Rings</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/PIypDwAAQBAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=PIypDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-      <div className='bestseller'>bestseller</div>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Rich Dad Poor Dad</div>
-                <div className='price'>36.59$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/Uwn0CAAAQBAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=Uwn0CAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>The old man and the sea</div>
-                <div className='price'>52.37$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/0fehDAAAQBAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=0fehDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>Tle little prince</div>
-                <div className='price'>9,33$</div>
-              </div>
-      </div></Link>
-
-      <Link to='/book/8u9KEAAAQBAJ'><div className="item">
-      <img src={'http://books.google.com/books/content?id=8u9KEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'} alt="" className='bookImg'/>
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>The Witcher Volume 6: Witch's Lament</div>
-                <div className='price'>25$</div>
-              </div>
-      </div></Link>
-
+     { bookObj.map((a: any, i: any)=>{
+        return (
+          <Link key={i} to={`/book/${bookObj[i].id}`}><div className="item">
+          <img src={bookObj[i].img} alt="" className='bookImg'/>
+          {bookObj[i].bestseller ? <div className='bestseller'>bestseller</div> : null}
+                   <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+                  <div className="data">
+                    <br />
+                    <br />
+                    <br />
+                    <div className='title'>{bookObj[i].title}</div>
+                    <div className='price'>{bookObj[i].price}</div>
+                  </div>
+            </div></Link>
+          )
+        })
+      }
 
       <Link to='/books' id='moreBooks'>
         search for more books  <FontAwesomeIcon icon={ faMagnifyingGlass} />

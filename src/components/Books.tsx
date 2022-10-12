@@ -19,11 +19,6 @@ export default function Books() {
   //used to navigate
   const {title} = useParams()
   const {page} = useParams()
-
-  const [price, setPrice] = useState([25])
-  const [idd, setId] = useState<any>([''])
-  const [image, setImage] = useState([''])
-  const [title1, setTitle1] = useState([''])
   
   const [data, setData] = useState<any>()
 const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -55,24 +50,13 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
           setData(res.data.items)
     //        console.log('data: ' , data[1].id)
            console.log('data: ' , res.data.items[0])
-
-// for(let i =0; i<9; i++){
-//   console.log(data[i].id)
-//   setId([...idd, data[i].id])
-// }
-// setTimeout(()=>{
-
-//   console.log('ID,s: ', idd)
-// }, 5000)
-       
-
          
           // res.data.items.map((a: any, i: number)=>console.log(a))
 
 
                 // setId(res.data.items[Number(nr)].id)
             // setImage(res.data.items[Number(nr)].volumeInfo.imageLinks.thumbnail);
-            setTitle1(res.data.items[Number(0)].volumeInfo.title)
+            // setTitle1(res.data.items[Number(0)].volumeInfo.title)
             // setDate(res.data.items[Number(nr)].volumeInfo.publishedDate)
             // setDescription(res.data.items[Number(nr)].volumeInfo.description)
             // setPagecount(res.data.items[Number(nr)].volumeInfo.pageCount)
@@ -91,6 +75,7 @@ const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
      useEffect(()=>{
 
+    //tutaj lista ketogorii: https://bisg.org/page/bisacedition
 
     // po gatunku:
     //     axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
