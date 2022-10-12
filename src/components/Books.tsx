@@ -21,7 +21,6 @@ export default function Books() {
   const {page} = useParams()
   
   const [data, setData] = useState<any>()
-const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   useEffect(()=>{
 
     const obj: any = title?.replace('_autor-', ' ').replace('_genre-', ' ').split(" ")
@@ -121,11 +120,14 @@ function searchBooks(e?: string):void{
     <input type="text" placeholder='title' value={searchTitle} 
     onChange={e=>setSearchTitle(e.target.value)} onKeyDown={e=>searchBooks(e.key)} />
 
-    <input type="number" placeholder='year' />
-
     <input type="text" placeholder='autor' value={searchAuthor}
     onChange={e=>setSearchAuthor(e.target.value)} onKeyDown={e=>searchBooks(e.key)}/>
+
+    <div id="genre" className='relative' onMouseEnter={e=>{document.querySelector('#test')!.innerHTML='s'}}>
     <input type="text" placeholder='genre'/>
+    <div id="test" className='absolute bg-blue-500 w-full'>cece</div>
+    </div>
+
     <button>search</button>
   {/* //jeszcze po cenie i długosci */}
   </div>
