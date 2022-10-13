@@ -10,62 +10,47 @@ import { objectTraps } from 'immer/dist/internal'
 
 export default function Books() {
   const navigate=useNavigate()
+  
+  //used to navigate
+  const {title} = useParams()
+  const {page} = useParams()
 
   //used in inputs and to define the axios link
+  // const [searchTitle, setSearchTitle] = useState<string | undefined>(title?.replace('_title:', '').substr(0, indexOf(":")))
   const [searchTitle, setSearchTitle] = useState<string | undefined>('')
   const [searchAuthor, setSearchAuthor] = useState<string | undefined>('')
   const [searchGenre, setSearchGenre] = useState<string | undefined>('')
   const [searchKey, setSearchKey] = useState<string | undefined>(undefined)
- 
-  //used to navigate
-  const {title} = useParams()
-  const {page} = useParams()
-  
+//gdybym zmienił zdanie to usunąć to co poniżej, zmienić url (! @ $) i usunąć useEffect jedno
+  const [isTitle, setIsTitle] = useState<undefined | string>('')
+  const [isAuthor, setIsAuthor] = useState<undefined | string>('')
+  const [isGenre, setIsGenre] = useState<undefined | string>('')
+
   const [showGenres, setShowGenres] = useState(false)
   const [data, setData] = useState<any>()
+
+
+
   useEffect(()=>{
+    let titlee = searchTitle ?'intitle:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'&' : ''
+    
+    let author = searchAuthor ? 'inauthor:'+searchAuthor?.replace(/ /g,'+').toLowerCase()+'&' : ''
+    
+    let genre = searchGenre ? 'subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'&' : ''
 
-    const obj: any = title?.replace('_autor-', ' ').replace('_genre-', ' ').split(" ")
-  
-    let k: keyof typeof obj;  // Type is "one" | "two" | "three"
-    for (k in obj) {
-      // const searchtitle = obj[0]
-      // const searchAuthor = obj[1]
-      // const searchgenre = obj[2]
-    }
+    let key = searchKey ? searchKey+'&' : ''
+     console.log('',searchTitle, searchGenre, searchAuthor)
+    console.log(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
 
     
-
-    
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchKey ? searchKey+'&' : ''}${searchGenre ? 'subject:'+searchGenre.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchTitle ?'intitle:'+searchTitle.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchAuthor ? 'inauthor:'+searchAuthor.replace(/ /g,'+').toLowerCase()+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-        .then(res=>{
-            
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+        .then(res=>{ 
           setSearchKey(undefined)
           setData(res.data.items)
-           console.log('data: ' , res.data.items[0])
-         
-
-           console.log(`https://www.googleapis.com/books/v1/volumes?q=${searchGenre ? 'subject:'+searchGenre.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchTitle ?'intitle:'+searchTitle.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchAuthor ? 'inauthor:'+searchAuthor.replace(/ /g,'+').toLowerCase()+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-          // res.data.items.map((a: any, i: number)=>console.log(a))
-
-
-                // setId(res.data.items[Number(nr)].id)
-            // setImage(res.data.items[Number(nr)].volumeInfo.imageLinks.thumbnail);
-            // setTitle1(res.data.items[Number(0)].volumeInfo.title)
-            // setDate(res.data.items[Number(nr)].volumeInfo.publishedDate)
-            // setDescription(res.data.items[Number(nr)].volumeInfo.description)
-            // setPagecount(res.data.items[Number(nr)].volumeInfo.pageCount)
-            // setRate(res.data.items[Number(nr)].volumeInfo.averageRating)
-            // setAuthors(res.data.items[Number(nr)].volumeInfo.authors)
-            // setPrice(res.data.items[Number(nr)].saleInfo.retailPrice.amount)
-   
         })
         .catch(err=>{console.log(err); 
           setSearchKey(undefined)
         })
-
-        console.log(obj)
-
 
   }, [title, page])
 
@@ -92,12 +77,56 @@ export default function Books() {
 
       //w przypadku searchTitle i searchAuthor jeśli skałdają się z samych spacji, to stają się undefined. Jeśli są undefined to axios je pomija. Jeśli nie, to w miejscu spacji dodawane są plusy i całość jet sprowadzana do małyc liter. W url są uwzględniane tylko jeśli składają się z przynajmniej jednej litery
 
-      searchTitle?.replaceAll(' ', '')==='' ? setSearchTitle(undefined) : console.log('')
-      searchAuthor?.replaceAll(' ', '')==='' ? setSearchAuthor(undefined) : console.log('')
-      searchGenre?.replaceAll(' ', '')==='' ? setSearchGenre(undefined) : console.log('')
+      searchTitle?.replaceAll(' ', '')==='' && setSearchTitle(undefined) 
+      searchAuthor?.replaceAll(' ', '')==='' && setSearchAuthor(undefined) 
+      searchGenre?.replaceAll(' ', '')==='' && setSearchGenre(undefined) 
 
     }, [searchTitle, searchAuthor, searchGenre])
 
+    useEffect(()=>{
+      //niepowiązane. sprawdzałem jak w TS działa iteracja po wartośćiach kluczy obiektu 
+ const obj: any = title?.replace('_author:', ' ').replace('_subject:', ' ').replace('_title:', ' ').split(" ")
+
+ let k: keyof typeof obj;  // Type is "one" | "two" | "three"
+ for (k in obj) {
+   // setSearchTitle(obj[1])
+   // setSearchAuthor(obj[2])
+   // setSearchGenre(obj[3])
+ }
+
+ setTimeout(()=>{
+//   if(title && title?.indexOf("_title:")>-1){
+//   let isTitle = title?.replace('_title:', '').substr(0, title?.indexOf("_")-1)}
+  
+//   if(title && title?.indexOf("_author:")>-1){
+//   let isAuthor = title?.substr(title?.indexOf('_author:')+8, title?.replace('_title:', '').replace('_author:', '').indexOf('_') - ) 
+// alert(isAuthor  )}
+if(title && title?.indexOf("_title:")>-1){
+  setIsTitle(title?.substring(title?.indexOf('_title:')+7, title?.indexOf('!')))
+
+}
+if(title && title?.indexOf("_author:")>-1){
+  setIsAuthor(title?.substring(title?.indexOf('_author:')+8, title?.indexOf('@')))
+
+}
+if(title && title?.indexOf("_subject:")>-1){
+  setIsGenre(title?.substring(title?.indexOf('_subject:')+9, title?.indexOf('$')))
+
+}
+console.log(isTitle, isAuthor, isGenre)
+   axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchKey ? searchKey+'&' : ''}${isTitle ? 'intitle:'+isTitle+'&' : ''}${isAuthor ? 'inauthor:'+isAuthor+'&' : ''}${isGenre ? 'subject:'+isGenre+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+   .then(res=>{ 
+     setSearchKey(undefined)
+     setData(res.data.items)
+
+     
+   })
+   .catch(err=>{console.log(err); 
+     setSearchKey(undefined)
+   })
+ }, 1000)
+
+}, [])
   //1. obczaić jeszcze czy sa się wyszukać bez tytułu np po samym autorze lub gatunku. jeśli się da to dodać w Book.tsx opcję zobacz więcej od tego autora oraz w topnav wyszukiwanie po gatunku. Jak nie to dać warunek w inputach że musi być tytuł podany.
   //2. Druga kwestia to show more books, trzeba też to jakoś wykminić. Może dodać przycisk następnej strony.
   //3. trzecia rzecz taka, że ten oto komponent można wykorzystać zarówno podczas wyszukiwania lupą , search for more, ale także new, bestsellers i discounts. Jeśli uda sie wykminić wysszukiwanie bez tytułu (patrz punkt 1) to nie trzeba nawet dodawać ręcznie.
@@ -105,20 +134,32 @@ export default function Books() {
   //fucntion fn(){ pobieranie danych za API [wspomóc się repo tego gościa
 //https://github.com/Kirti-salunkhe/OpenBook/blob/main/src/Components/Main.js   ] }
 function searchBooks(e?: string):void{
-console.log('title: ',searchTitle)
+
   if(e==='Enter') {
     if(searchTitle?.replace(/ /g, '')==='' && searchAuthor?.replace(/ /g, '')==='' && searchGenre?.replace(/ /g, '')==='')
     navigate(`/books`); 
-    else if(searchTitle!==undefined || searchAuthor!==undefined || searchGenre!==undefined)
-    navigate(`/books/${searchTitle ? '_title:'+searchTitle.replace(/ /g,'+').toLowerCase() : ''}${searchAuthor ? '_author:'+searchAuthor.replace(/ /g,'+').toLowerCase() : ''}${searchGenre? '_subject:'+searchGenre.replace(/ /g,'+').toLowerCase() : ''}`)
+    else if(searchTitle!==undefined || searchAuthor!==undefined || searchGenre!==undefined){
+      let titlee = searchTitle ?'_title:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'!' : ''
+    
+    let author = searchAuthor ? '_author:'+searchAuthor?.replace(/ /g,'+').toLowerCase()+'@' : ''
+    
+    let genre = searchGenre ? '_subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'$' : ''
+
+    navigate(`/books/${titlee}${author}${genre}`)}
     } 
   }
 
   function searchBooksBtn(){
     if(searchTitle?.replace(/ /g, '')==='' && searchAuthor?.replace(/ /g, '')==='' && searchGenre?.replace(/ /g, '')==='')
     navigate(`/books`); 
-    else 
-    navigate(`/books/${searchTitle ? '_title:'+searchTitle.replace(/ /g,'+').toLowerCase() : ''}${searchAuthor ? '_author:'+searchAuthor.replace(/ /g,'+').toLowerCase() : ''}${searchGenre? '_subject:'+searchGenre.replace(/ /g,'+').toLowerCase() : ''}`)
+    else if(searchTitle!==undefined || searchAuthor!==undefined || searchGenre!==undefined){
+      let titlee = searchTitle ?'_title:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'!' : ''
+    
+    let author = searchAuthor ? '_author:'+searchAuthor?.replace(/ /g,'+').toLowerCase()+'@' : ''
+    
+    let genre = searchGenre ? '_subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'$' : ''
+
+    navigate(`/books/${titlee}${author}${genre}`)}
   }
   
   return (
@@ -159,7 +200,7 @@ console.log('title: ',searchTitle)
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FICTION')}}>FICTION</li>
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FOREIGN LANGUAGE STUDY')}}>FOREIGN LANGUAGE STUDY</li>
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GAMES & ACTIVITIES')}}>GAMES & ACTIVITIES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GARDENING ')}}>GARDENING </li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GARDENING')}}>GARDENING </li>
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HEALTH & FITNESS')}}>HEALTH & FITNESS</li>
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HISTORY')}}>HISTORY</li>
       <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HOUSE & HOME')}}>HOUSE & HOME</li>
@@ -208,7 +249,7 @@ console.log('title: ',searchTitle)
     :
 
     <div id='homeItems' style={{display: title!==undefined ? 'grid' : 'block'}}>
-
+{isTitle} {isGenre} {isAuthor}
       {data ? data.map((a: any, i: any)=>{
         return (
           <Link to={`/book/${data[i].id}`} key={i}> <div className='item'>
@@ -228,14 +269,19 @@ console.log('title: ',searchTitle)
               </div>
           </div></Link>
         )
-      }) : 'oops... an error occured'}
+      }) :  <div>{data}</div>}
 
 
           {title && 
             <div id="moreBooks" className='breadcrumbs'>
 
-               {page && +page>=1 &&
+               {page && +page>=2 &&
                  <Link to={`/books/${title}/${page? +page-1 : 1}`} id='moreBooks'>
+                  previous page
+                  </Link>
+                }
+                {page && +page==1 &&
+                 <Link to={`/books/${title}`} id='moreBooks'>
                   previous page
                   </Link>
                 }
