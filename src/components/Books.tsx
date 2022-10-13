@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link , useParams, useNavigate} from 'react-router-dom'
 import '../styles/books.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBasketShopping, faN}  from '@fortawesome/free-solid-svg-icons'
+import {faBasketShopping, faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 import { objectTraps } from 'immer/dist/internal'
@@ -12,14 +12,16 @@ export default function Books() {
   const navigate=useNavigate()
 
   //used in inputs and to define the axios link
-  const [searchTitle, setSearchTitle] = useState('')
-  const [searchAuthor, setSearchAuthor] = useState('')
+  const [searchTitle, setSearchTitle] = useState<string | undefined>('')
+  const [searchAuthor, setSearchAuthor] = useState<string | undefined>('')
+  const [searchGenre, setSearchGenre] = useState<string | undefined>('')
+  const [searchKey, setSearchKey] = useState<string | undefined>(undefined)
  
-  const [link, setLink] = useState('')
   //used to navigate
   const {title} = useParams()
   const {page} = useParams()
   
+  const [showGenres, setShowGenres] = useState(false)
   const [data, setData] = useState<any>()
   useEffect(()=>{
 
@@ -31,25 +33,19 @@ export default function Books() {
       // const searchAuthor = obj[1]
       // const searchgenre = obj[2]
     }
-    console.log('ss', searchTitle.replace(/ /g,'')==='', searchAuthor); 
-    if(searchTitle.replace(/ /g,'')!=='' && searchAuthor.replace(/ /g,'')==='')
-    setLink(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTitle}&maxResults=12&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
 
-    else if (searchTitle.replace(/ /g,'')==='' && searchAuthor.replace(/ /g,'')!=='')
-    setLink(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${searchAuthor}&maxResults=12&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    
 
-    else if(searchTitle.replace(/ /g,'')!=='' && searchAuthor.replace(/ /g,'')!=='')
-    setLink(`https://www.googleapis.com/books/v1/volumes?q=intitle=${searchTitle}&inauthor:${searchAuthor}&maxResults=12&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-
-    console.log(searchTitle, searchAuthor.length, link)
-
-     axios.get(`https://www.googleapis.com/books/v1/volumes?q=intitle:${searchTitle}&maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
+    
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchKey ? searchKey+'&' : ''}${searchGenre ? 'subject:'+searchGenre.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchTitle ?'intitle:'+searchTitle.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchAuthor ? 'inauthor:'+searchAuthor.replace(/ /g,'+').toLowerCase()+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{
             
+          setSearchKey(undefined)
           setData(res.data.items)
-    //        console.log('data: ' , data[1].id)
            console.log('data: ' , res.data.items[0])
          
+
+           console.log(`https://www.googleapis.com/books/v1/volumes?q=${searchGenre ? 'subject:'+searchGenre.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchTitle ?'intitle:'+searchTitle.replace(/ /g,'+').toLowerCase()+'&' : ''}${searchAuthor ? 'inauthor:'+searchAuthor.replace(/ /g,'+').toLowerCase()+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
           // res.data.items.map((a: any, i: number)=>console.log(a))
 
 
@@ -64,10 +60,12 @@ export default function Books() {
             // setPrice(res.data.items[Number(nr)].saleInfo.retailPrice.amount)
    
         })
-        .catch(err=>console.log(err))
+        .catch(err=>{console.log(err); 
+          setSearchKey(undefined)
+        })
 
         console.log(obj)
-        // alert('ddd')
+
 
   }, [title, page])
 
@@ -92,8 +90,13 @@ export default function Books() {
       //   .then(res=>{ console.log(res.data)})
       //  .catch(err=>console.log(err))
 
+      //w przypadku searchTitle i searchAuthor jeśli skałdają się z samych spacji, to stają się undefined. Jeśli są undefined to axios je pomija. Jeśli nie, to w miejscu spacji dodawane są plusy i całość jet sprowadzana do małyc liter. W url są uwzględniane tylko jeśli składają się z przynajmniej jednej litery
 
-    }, [])
+      searchTitle?.replaceAll(' ', '')==='' ? setSearchTitle(undefined) : console.log('')
+      searchAuthor?.replaceAll(' ', '')==='' ? setSearchAuthor(undefined) : console.log('')
+      searchGenre?.replaceAll(' ', '')==='' ? setSearchGenre(undefined) : console.log('')
+
+    }, [searchTitle, searchAuthor, searchGenre])
 
   //1. obczaić jeszcze czy sa się wyszukać bez tytułu np po samym autorze lub gatunku. jeśli się da to dodać w Book.tsx opcję zobacz więcej od tego autora oraz w topnav wyszukiwanie po gatunku. Jak nie to dać warunek w inputach że musi być tytuł podany.
   //2. Druga kwestia to show more books, trzeba też to jakoś wykminić. Może dodać przycisk następnej strony.
@@ -102,33 +105,99 @@ export default function Books() {
   //fucntion fn(){ pobieranie danych za API [wspomóc się repo tego gościa
 //https://github.com/Kirti-salunkhe/OpenBook/blob/main/src/Components/Main.js   ] }
 function searchBooks(e?: string):void{
-
+console.log('title: ',searchTitle)
   if(e==='Enter') {
-    if(searchTitle.replace(' ', '')==='' && searchAuthor.replace(/ /g, '')==='')
+    if(searchTitle?.replace(/ /g, '')==='' && searchAuthor?.replace(/ /g, '')==='' && searchGenre?.replace(/ /g, '')==='')
     navigate(`/books`); 
-    else 
-    navigate(`/books/${searchTitle.replace(/ /g,'').toLowerCase()}_autor-${searchAuthor}`)
+    else if(searchTitle!==undefined || searchAuthor!==undefined || searchGenre!==undefined)
+    navigate(`/books/${searchTitle ? '_title:'+searchTitle.replace(/ /g,'+').toLowerCase() : ''}${searchAuthor ? '_author:'+searchAuthor.replace(/ /g,'+').toLowerCase() : ''}${searchGenre? '_subject:'+searchGenre.replace(/ /g,'+').toLowerCase() : ''}`)
     } 
   }
 
+  function searchBooksBtn(){
+    if(searchTitle?.replace(/ /g, '')==='' && searchAuthor?.replace(/ /g, '')==='' && searchGenre?.replace(/ /g, '')==='')
+    navigate(`/books`); 
+    else 
+    navigate(`/books/${searchTitle ? '_title:'+searchTitle.replace(/ /g,'+').toLowerCase() : ''}${searchAuthor ? '_author:'+searchAuthor.replace(/ /g,'+').toLowerCase() : ''}${searchGenre? '_subject:'+searchGenre.replace(/ /g,'+').toLowerCase() : ''}`)
+  }
+  
   return (
-    <div className='component books' >
+    <div className='component books' style={{paddingTop: '0'}} >
 
-  <div id='inputs' className='bg-red-300 p-1 flex flex-wrap'
-  style={{justifyContent: 'center', alignItems: 'center', gap: '10px'}}>
+  <div id='inputs' className='p-3 flex flex-wrap'
+  style={{justifyContent: 'center', alignItems: 'center', gap: '20px'}}>
 
-    <input type="text" placeholder='title' value={searchTitle} 
+    <input id='titleInp' type="text" placeholder='title' value={searchTitle} 
     onChange={e=>setSearchTitle(e.target.value)} onKeyDown={e=>searchBooks(e.key)} />
 
-    <input type="text" placeholder='autor' value={searchAuthor}
+    <input id='authorInp' type="text" placeholder='author' value={searchAuthor}
     onChange={e=>setSearchAuthor(e.target.value)} onKeyDown={e=>searchBooks(e.key)}/>
 
-    <div id="genre" className='relative' onMouseEnter={e=>{document.querySelector('#test')!.innerHTML='s'}}>
-    <input type="text" placeholder='genre'/>
-    <div id="test" className='absolute bg-blue-500 w-full'>cece</div>
+    <div id="genre" className='relative z-10' onMouseEnter={e=>{setShowGenres(true)}} onMouseLeave={e=>{setShowGenres(false)}}>
+
+    <input type="text" placeholder='genre'  
+    value={searchGenre?.toLowerCase().replaceAll('+', ' ')} 
+    onChange={e=>{setSearchGenre(e.target.value)}} onKeyUp={e=>searchBooks(e.key)} className='w-full rounded-sm'/>
+
+    {showGenres && <div id='genreCon' onClick={e=>setShowGenres(false)} className='absolute w-full overflow-y-scroll'>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('antiques+&+collectibles')}}
+      >ANTIQUES & COLLECTIBLES</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('architecture')}}>ARCHITECTURE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('art')}}>ART</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BIBLES')}}>BIBLES</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BIOGRAPHY & AUTOBIOGRAPHY')}}>BIOGRAPHY & AUTOBIOGRAPHY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BODY, MIND & SPIRIT')}}>BODY, MIND & SPIRIT</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BUSINESS & ECONOMICS')}}>BUSINESS & ECONOMICS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COMICS & GRAPHIC NOVELS')}}>COMICS & GRAPHIC NOVELS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COMPUTERS')}}>COMPUTERS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COOKING')}}>COOKING</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('CRAFTS & HOBBIES')}}>CRAFTS & HOBBIES</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('DESIGN')}}>DESIGN</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('DRAMA')}}>DRAMA</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('EDUCATION')}}>EDUCATION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FAMILY & RELATIONSHIPS')}}>FAMILY & RELATIONSHIPS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FICTION')}}>FICTION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FOREIGN LANGUAGE STUDY')}}>FOREIGN LANGUAGE STUDY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GAMES & ACTIVITIES')}}>GAMES & ACTIVITIES</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GARDENING ')}}>GARDENING </li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HEALTH & FITNESS')}}>HEALTH & FITNESS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HISTORY')}}>HISTORY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HOUSE & HOME')}}>HOUSE & HOME</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HUMOR')}}>HUMOR</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('JUVENILE FICTION')}}>JUVENILE FICTION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('JUVENILE NONFICTION')}}>JUVENILE NONFICTION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LANGUAGE ARTS & DISCIPLINES')}}>LANGUAGE ARTS & DISCIPLINES</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LAW')}}>LAW</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('literary collections')}}>LITERARY COLLECTIONS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LITERARY CRITICISM')}}>LITERARY CRITICISM</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('mathematics')}}>MATHEMATICS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('medical')}}>MEDICAL</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('music')}}>MUSIC</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('nature')}}>NATURE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('performing arts')}}>PERFORMING ARTS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('pets')}}>PETS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('photography')}}>PHOTOGRAPHY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('philospohy')}}>PHILOSOPHY </li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('political science')}}>POLITICAL SCIENCE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('poetry')}}>POETRY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('reference')}}>REFERENCE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('psychology')}}>PSYCHOLOGY</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('sceince')}}>SCIENCE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('religion')}}>RELIGION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('social science')}}>SOCIAL SCIENCE</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('self-help')}}>SELF-HELP</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('study aids')}}>STUDY AIDS</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('sports & recreation')}}>SPORTS & RECREATION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('transportation')}}>TRANSPORTATION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('technology')}}>TECHNOLOGY & ENGINEERING</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('true crime')}}>TRUE CRIME</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('travel')}}>TRAVEL</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('young adult nonfiction')}}>YOUNG ADULT NONFICTION</li>
+      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('young adult fiction')}}>YOUNG ADULT FICTION</li>
+    </div>}
     </div>
 
-    <button>search</button>
+    <button id='searchBtn' onClick={e=>searchBooksBtn()} >search  <FontAwesomeIcon icon={ faMagnifyingGlass} /> </button>
   {/* //jeszcze po cenie i długosci */}
   </div>
 
@@ -182,3 +251,4 @@ function searchBooks(e?: string):void{
     </div>
   )
 }
+

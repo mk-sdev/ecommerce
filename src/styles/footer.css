@@ -24,7 +24,7 @@
 }
 
 #footerLinks a:hover{
-    color: rgb(249, 168, 38);
+    color: var(--goldenrod);
     transition: .5s;
     text-decoration: underline;
 }
@@ -39,7 +39,7 @@
 
 .footerIcons:hover{
     transition: .5s;
-    color: rgb(249, 168, 38)
+    color: var(--goldenrod)
 }
 
 #copyright{

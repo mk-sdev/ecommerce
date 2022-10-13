@@ -97,7 +97,7 @@ transition: .3s
     font-weight: 400;
     font-size: min(30px, 6vw); 
     margin-inline: auto;
-    color: rgb(249, 168, 38);
+    color: var(--goldenrod);
     transition: .5s;
 }
 
@@ -138,4 +138,48 @@ transition: .3s
     #moreBooks , #recommended{
         grid-column: 1/2;
     }
+}
+
+#inputs{
+    background-color: var(--dark);
+}
+
+#genreCon{
+    max-height: 70vh;
+    font-family: Oswald;
+    font-weight: 400;
+    background-color: aliceblue;
+}
+
+#titleInp, #authorInp, #genre{
+    width: 20%;
+    min-width: 200px;
+    border-radius: 2px;
+}
+
+#searchBtn{
+    width: 10%;
+    min-width: 200px;
+    background-color: var(--goldenrod);
+    border-radius: 2px;
+    font-family: Oswald;
+    transition: .3s;
+    color: var(--dark);
+    max-height: 24px;;
+    font-size: 17px
+}
+#searchBtn:hover{
+    background-color: hsl(37, 95%, 71%);
+}
+
+.genre{
+    color: var(--dark);
+    transition: .3s;
+    cursor: pointer;
+    border-top: 1px solid lightgray;
+    list-style-type: none;
+}
+.genre:hover{
+    background-color: hsl(37, 95%, 71%);
+    padding-left:15px
 }

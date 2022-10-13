@@ -4,6 +4,19 @@
 
 :root {
   --dark: rgb(47, 46, 65);
+  --goldenrod: rgb(249, 168, 38)
+}
+
+*::placeholder{
+  font-family: Consolas;
+  text-align: center;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--dark);
+}
+::-webkit-scrollbar{
+  background-color: lightgray
 }
 /* body, html{ */
   /* overflow-x: hidden */

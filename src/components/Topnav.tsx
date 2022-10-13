@@ -28,7 +28,7 @@ export default function Topnav() {
   return (
     <>
 
-    <div id='topBar' className='w-screen top-0 z-10'>
+    <div id='topBar' className='w-screen top-0'>
     <Link to='/' style={{display: 'inline-block'}}><img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' /></Link>
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
@@ -62,7 +62,7 @@ export default function Topnav() {
     </div>
   </div>
 
-    <div id="searchBar" className='rounded-md text-black font-semibold z-10' 
+    <div id="searchBar" className='rounded-md text-black font-semibold' 
       style={{top: search}}>
       <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' value={title} ref={searchBar}
       onChange={e=>setTitle(e.target.value)} 
