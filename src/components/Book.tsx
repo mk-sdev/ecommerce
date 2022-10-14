@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link  } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/book.css'
+
 
 export default function Book() {
     // const {title} = useParams()
@@ -12,7 +13,7 @@ export default function Book() {
     const [pagecount, setPagecount] = useState('unknown')
     const [description, setDescription] = useState(`description not available`)
     const [date, setDate] = useState('unknown')
-    const [rate, setRate] = useState(4.8)
+    const [rate, setRate] = useState('4.8')
     const [price, setPrice] = useState(25)
     const [idd, setId] = useState<any>('25')
 
@@ -61,30 +62,58 @@ export default function Book() {
 
 
   return (
-    <div id='contener' className='component'>
+    <div  className='component'>
 
 
+    <div id="contener">
     <img src={image} className='image' ></img>
    
-   <div id="info" className='bg-red-300'>
-    {/* <span id='priceBook'>50$</span> */}
-    {true ? <button>add to cart</button> :
+   <div id="info" >
+
+      
+     <span id='title' className='text-4xl'>{title1}</span>
+     <span id='price'><span className='thin'>price: </span>{price}$</span>
+     
+
+    {false? <button id='add' className='border-current border-2 rounded text-2xl'>add to cart</button> :
     <>
+    <div id="buttons">
+    <button id='plus' >+</button>
     <span id='quantity'>0</span>
-    <button>+</button>
-    <button>-</button>
+    <button id='minus' >-</button>
+    </div>
+
     <input type="number" value='5' />
+    <span id='total'><span className='thin'>in total: </span> x $</span>
     </>}
 
-oto id: {idd}
-<br />
-    {title1} 
-    price: {price}$
-     rok: {date}, autors: {authors}, ilość stron: {pagecount} , ocena: {rate}
-     <br />
-     opis: 
-     <div dangerouslySetInnerHTML={{__html: description}} />
+    {/* {authors.length===1 ? 
+
+    <span><span className='thin'>author: </span>
+    {authors[0]}
+    </span>
+  :
+    <span><span className='thin'>author(s): </span>
+      {authors.map(({a, i}:any)=>{return <p key={i}>&nbsp; &nbsp; - {i}</p>})}
+      </span>
+
+      } */}
+ <span><span className='thin'>author(s): </span>
+      {authors.map(({a, i}:any)=>{return <p key={Math.random()}>&nbsp; &nbsp; - {a}</p>})}
+      </span>
+
+
+    <span><span className='thin'>pages: </span> {pagecount}</span>
+    <span><span className='thin'>date of release: </span> {date}</span>
+    <span><span className='thin'>rate: </span> {rate ? rate : '4.2'}/5</span>
+
+    <Link to={`/books/_author:${authors}@`} id='moreFrom' className='text-2xl'>see more from this author</Link>
     </div>
+    </div>
+
+     <div id='description' className='px-10 pb-5' dangerouslySetInnerHTML={{__html: description}} />
+    
+
 
     </div>
   )

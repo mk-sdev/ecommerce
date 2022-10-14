@@ -149,6 +149,8 @@ transition: .3s
     font-family: Oswald;
     font-weight: 400;
     background-color: aliceblue;
+    border-bottom: 1px solid lightgray;
+    border-left: 1px solid lightgray;
 }
 
 #titleInp, #authorInp, #genre{
@@ -169,7 +171,7 @@ transition: .3s
     font-size: 17px
 }
 #searchBtn:hover{
-    background-color: hsl(37, 95%, 71%);
+    background-color: var(--light);
 }
 
 .genre{
@@ -180,6 +182,6 @@ transition: .3s
     list-style-type: none;
 }
 .genre:hover{
-    background-color: hsl(37, 95%, 71%);
+    background-color: var(--light);
     padding-left:15px
 }

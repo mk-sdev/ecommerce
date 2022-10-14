@@ -137,18 +137,8 @@ export default function Books() {
   //fucntion fn(){ pobieranie danych za API [wspomóc się repo tego gościa
 //https://github.com/Kirti-salunkhe/OpenBook/blob/main/src/Components/Main.js   ] }
 function searchBooks(e?: string):void{
-
   if(e==='Enter') {
-    if(searchTitle?.replace(/ /g, '')==='' && searchAuthor?.replace(/ /g, '')==='' && searchGenre?.replace(/ /g, '')==='')
-    navigate(`/books`); 
-    else if(searchTitle!==undefined || searchAuthor!==undefined || searchGenre!==undefined){
-      let titlee = searchTitle ?'_title:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'!' : ''
-    
-    let author = searchAuthor ? '_author:'+searchAuthor?.replace(/ /g,'+').toLowerCase()+'@' : ''
-    
-    let genre = searchGenre ? '_subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'$' : ''
-
-    navigate(`/books/${titlee}${author}${genre}`)}
+      setShowGenres(false)
     } 
   }
 
@@ -164,7 +154,23 @@ function searchBooks(e?: string):void{
 
     navigate(`/books/${titlee}${author}${genre}`)}
   }
+
+  function searchFn(){
   
+    let li = document.querySelectorAll("li");
+
+    
+    for (let i = 0; i < li.length; i++) {
+      // console.log(li[i].id.indexOf(searchGenre!.toLowerCase()))
+      if (li[i].id.indexOf(searchGenre!.toLowerCase()) > -1) {
+        li[i].setAttribute("style", "display: block");
+      } else {
+        li[i].setAttribute("style", "display: none");
+      }
+    }
+
+  }
+
   return (
     <div className='component books' style={{paddingTop: '0'}} >
 
@@ -172,72 +178,73 @@ function searchBooks(e?: string):void{
   style={{justifyContent: 'center', alignItems: 'center', gap: '20px'}}>
 
     <input id='titleInp' type="text" placeholder='title' value={searchTitle} 
-    onChange={e=>setSearchTitle(e.target.value)} onKeyDown={e=>searchBooks(e.key)} />
+    onChange={e=>setSearchTitle(e.target.value)}  />
 
     <input id='authorInp' type="text" placeholder='author' value={searchAuthor}
-    onChange={e=>setSearchAuthor(e.target.value)} onKeyDown={e=>searchBooks(e.key)}/>
+    onChange={e=>setSearchAuthor(e.target.value)}/>
 
-    <div id="genre" className='relative z-10' onMouseEnter={e=>{setShowGenres(true)}} onMouseLeave={e=>{setShowGenres(false)}}>
+    <div id="genre" className='relative z-10' onMouseEnter={e=>{setShowGenres(true)}} onMouseLeave={e=>{setShowGenres(false)}} >
 
-    <input type="text" placeholder='genre'  
+    <input type="text" placeholder='subject'  
     value={searchGenre?.toLowerCase().replaceAll('+', ' ')} 
-    onChange={e=>{setSearchGenre(e.target.value)}} onKeyUp={e=>searchBooks(e.key)} className='w-full rounded-sm'/>
+    onChange={e=>{setSearchGenre(e.target.value); setShowGenres(true); searchFn()}} 
+    onKeyUp={e=>{searchBooks(e.key); searchFn()}}  className='w-full rounded-sm'/>
 
-    {showGenres && <div id='genreCon' onClick={e=>setShowGenres(false)} className='absolute w-full overflow-y-scroll'>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('antiques+&+collectibles')}}
+    {showGenres && <div id='genreCon' onClick={e=>setShowGenres(false)} className='absolute w-full overflow-y-auto'>
+      <li className='genre w-full pl-2' id='antiques & collectibles' onClick={e=>{setSearchGenre('antiques+&+collectibles')}}
       >ANTIQUES & COLLECTIBLES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('architecture')}}>ARCHITECTURE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('art')}}>ART</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BIBLES')}}>BIBLES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BIOGRAPHY & AUTOBIOGRAPHY')}}>BIOGRAPHY & AUTOBIOGRAPHY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BODY, MIND & SPIRIT')}}>BODY, MIND & SPIRIT</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('BUSINESS & ECONOMICS')}}>BUSINESS & ECONOMICS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COMICS & GRAPHIC NOVELS')}}>COMICS & GRAPHIC NOVELS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COMPUTERS')}}>COMPUTERS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('COOKING')}}>COOKING</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('CRAFTS & HOBBIES')}}>CRAFTS & HOBBIES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('DESIGN')}}>DESIGN</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('DRAMA')}}>DRAMA</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('EDUCATION')}}>EDUCATION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FAMILY & RELATIONSHIPS')}}>FAMILY & RELATIONSHIPS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FICTION')}}>FICTION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('FOREIGN LANGUAGE STUDY')}}>FOREIGN LANGUAGE STUDY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GAMES & ACTIVITIES')}}>GAMES & ACTIVITIES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('GARDENING')}}>GARDENING </li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HEALTH & FITNESS')}}>HEALTH & FITNESS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HISTORY')}}>HISTORY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HOUSE & HOME')}}>HOUSE & HOME</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('HUMOR')}}>HUMOR</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('JUVENILE FICTION')}}>JUVENILE FICTION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('JUVENILE NONFICTION')}}>JUVENILE NONFICTION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LANGUAGE ARTS & DISCIPLINES')}}>LANGUAGE ARTS & DISCIPLINES</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LAW')}}>LAW</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('literary collections')}}>LITERARY COLLECTIONS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('LITERARY CRITICISM')}}>LITERARY CRITICISM</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('mathematics')}}>MATHEMATICS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('medical')}}>MEDICAL</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('music')}}>MUSIC</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('nature')}}>NATURE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('performing arts')}}>PERFORMING ARTS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('pets')}}>PETS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('photography')}}>PHOTOGRAPHY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('philospohy')}}>PHILOSOPHY </li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('political science')}}>POLITICAL SCIENCE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('poetry')}}>POETRY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('reference')}}>REFERENCE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('psychology')}}>PSYCHOLOGY</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('sceince')}}>SCIENCE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('religion')}}>RELIGION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('social science')}}>SOCIAL SCIENCE</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('self-help')}}>SELF-HELP</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('study aids')}}>STUDY AIDS</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('sports & recreation')}}>SPORTS & RECREATION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('transportation')}}>TRANSPORTATION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('technology')}}>TECHNOLOGY & ENGINEERING</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('true crime')}}>TRUE CRIME</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('travel')}}>TRAVEL</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('young adult nonfiction')}}>YOUNG ADULT NONFICTION</li>
-      <li className='genre w-full pl-2' onClick={e=>{setSearchGenre('young adult fiction')}}>YOUNG ADULT FICTION</li>
+      <li className='genre w-full pl-2' id='architecture' onClick={e=>{setSearchGenre('architecture')}}>ARCHITECTURE</li>
+      <li className='genre w-full pl-2' id='art' onClick={e=>{setSearchGenre('art')}}>ART</li>
+      <li className='genre w-full pl-2' id='bibles' onClick={e=>{setSearchGenre('BIBLES')}}>BIBLES</li>
+      <li className='genre w-full pl-2' id='biography & autobiography' onClick={e=>{setSearchGenre('BIOGRAPHY & AUTOBIOGRAPHY')}}>BIOGRAPHY & AUTOBIOGRAPHY</li>
+      <li className='genre w-full pl-2' id='body, mind & spirit' onClick={e=>{setSearchGenre('BODY, MIND & SPIRIT')}}>BODY, MIND & SPIRIT</li>
+      <li className='genre w-full pl-2' id='business & economics' onClick={e=>{setSearchGenre('BUSINESS & ECONOMICS')}}>BUSINESS & ECONOMICS</li>
+      <li className='genre w-full pl-2' id='comiscs & graphic novels' onClick={e=>{setSearchGenre('COMICS & GRAPHIC NOVELS')}}>COMICS & GRAPHIC NOVELS</li>
+      <li className='genre w-full pl-2' id='computers' onClick={e=>{setSearchGenre('COMPUTERS')}}>COMPUTERS</li>
+      <li className='genre w-full pl-2' id='cooking' onClick={e=>{setSearchGenre('COOKING')}}>COOKING</li>
+      <li className='genre w-full pl-2' id='crafts & hobbbies' onClick={e=>{setSearchGenre('CRAFTS & HOBBIES')}}>CRAFTS & HOBBIES</li>
+      <li className='genre w-full pl-2' id='design' onClick={e=>{setSearchGenre('DESIGN')}}>DESIGN</li>
+      <li className='genre w-full pl-2' id='drama' onClick={e=>{setSearchGenre('DRAMA')}}>DRAMA</li>
+      <li className='genre w-full pl-2' id='education' onClick={e=>{setSearchGenre('EDUCATION')}}>EDUCATION</li>
+      <li className='genre w-full pl-2' id='family & relationships' onClick={e=>{setSearchGenre('FAMILY & RELATIONSHIPS')}}>FAMILY & RELATIONSHIPS</li>
+      <li className='genre w-full pl-2' id='fiction' onClick={e=>{setSearchGenre('FICTION')}}>FICTION</li>
+      {/* <li className='genre w-full pl-2' id='foreign language study' onClick={e=>{setSearchGenre('FOREIGN LANGUAGE STUDY')}}>FOREIGN LANGUAGE STUDY</li> */}
+      <li className='genre w-full pl-2' id='games & activities' onClick={e=>{setSearchGenre('GAMES & ACTIVITIES')}}>GAMES & ACTIVITIES</li>
+      <li className='genre w-full pl-2' id='gardening' onClick={e=>{setSearchGenre('GARDENING')}}>GARDENING </li>
+      <li className='genre w-full pl-2' id='health & fitness' onClick={e=>{setSearchGenre('HEALTH & FITNESS')}}>HEALTH & FITNESS</li>
+      <li className='genre w-full pl-2' id='history' onClick={e=>{setSearchGenre('HISTORY')}}>HISTORY</li>
+      <li className='genre w-full pl-2' id='house & home' onClick={e=>{setSearchGenre('HOUSE & HOME')}}>HOUSE & HOME</li>
+      <li className='genre w-full pl-2' id='humor' onClick={e=>{setSearchGenre('HUMOR')}}>HUMOR</li>
+      <li className='genre w-full pl-2' id='juvenile fiction' onClick={e=>{setSearchGenre('JUVENILE FICTION')}}>JUVENILE FICTION</li>
+      <li className='genre w-full pl-2' id='juvenile nonfiction' onClick={e=>{setSearchGenre('JUVENILE NONFICTION')}}>JUVENILE NONFICTION</li>
+      <li className='genre w-full pl-2' id='language arts & disciplines' onClick={e=>{setSearchGenre('LANGUAGE ARTS & DISCIPLINES')}}>LANGUAGE ARTS & DISCIPLINES</li>
+      <li className='genre w-full pl-2' id='law' onClick={e=>{setSearchGenre('LAW')}}>LAW</li>
+      <li className='genre w-full pl-2' id='literary collections' onClick={e=>{setSearchGenre('literary collections')}}>LITERARY COLLECTIONS</li>
+      <li className='genre w-full pl-2' id='literary criticism' onClick={e=>{setSearchGenre('LITERARY CRITICISM')}}>LITERARY CRITICISM</li>
+      <li className='genre w-full pl-2' id='mathematics' onClick={e=>{setSearchGenre('mathematics')}}>MATHEMATICS</li>
+      <li className='genre w-full pl-2' id='medical' onClick={e=>{setSearchGenre('medical')}}>MEDICAL</li>
+      <li className='genre w-full pl-2' id='music' onClick={e=>{setSearchGenre('music')}}>MUSIC</li>
+      <li className='genre w-full pl-2' id='nature' onClick={e=>{setSearchGenre('nature')}}>NATURE</li>
+      <li className='genre w-full pl-2' id='performing arts' onClick={e=>{setSearchGenre('performing arts')}}>PERFORMING ARTS</li>
+      <li className='genre w-full pl-2' id='pets' onClick={e=>{setSearchGenre('pets')}}>PETS</li>
+      <li className='genre w-full pl-2' id='philosophy' onClick={e=>{setSearchGenre('philospohy')}}>PHILOSOPHY </li>
+      <li className='genre w-full pl-2' id='photography' onClick={e=>{setSearchGenre('photography')}}>PHOTOGRAPHY</li>
+      <li className='genre w-full pl-2' id='poetry' onClick={e=>{setSearchGenre('poetry')}}>POETRY</li>
+      <li className='genre w-full pl-2' id='political science' onClick={e=>{setSearchGenre('political science')}}>POLITICAL SCIENCE</li>
+      <li className='genre w-full pl-2' id='psychology' onClick={e=>{setSearchGenre('psychology')}}>PSYCHOLOGY</li>
+      <li className='genre w-full pl-2' id='reference' onClick={e=>{setSearchGenre('reference')}}>REFERENCE</li>
+      <li className='genre w-full pl-2' id='religion' onClick={e=>{setSearchGenre('religion')}}>RELIGION</li>
+      <li className='genre w-full pl-2' id='science' onClick={e=>{setSearchGenre('sceince')}}>SCIENCE</li>
+      <li className='genre w-full pl-2' id='self-help' onClick={e=>{setSearchGenre('self-help')}}>SELF-HELP</li>
+      <li className='genre w-full pl-2' id='social science' onClick={e=>{setSearchGenre('social science')}}>SOCIAL SCIENCE</li>
+      <li className='genre w-full pl-2' id='sports & recreation' onClick={e=>{setSearchGenre('sports & recreation')}}>SPORTS & RECREATION</li>
+      <li className='genre w-full pl-2' id='study aids' onClick={e=>{setSearchGenre('study aids')}}>STUDY AIDS</li>
+      <li className='genre w-full pl-2' id='technology' onClick={e=>{setSearchGenre('technology')}}>TECHNOLOGY & ENGINEERING</li>
+      <li className='genre w-full pl-2' id='transportation' onClick={e=>{setSearchGenre('transportation')}}>TRANSPORTATION</li>
+      <li className='genre w-full pl-2' id='travel' onClick={e=>{setSearchGenre('travel')}}>TRAVEL</li>
+      <li className='genre w-full pl-2' id='true crime' onClick={e=>{setSearchGenre('true crime')}}>TRUE CRIME</li>
+      <li className='genre w-full pl-2' id='young adult fiction' onClick={e=>{setSearchGenre('young adult fiction')}}>YOUNG ADULT FICTION</li>
+      <li className='genre w-full pl-2' id='young adult nonfiction' onClick={e=>{setSearchGenre('young adult nonfiction')}}>YOUNG ADULT NONFICTION</li>
     </div>}
     </div>
 
@@ -246,8 +253,13 @@ function searchBooks(e?: string):void{
   </div>
 
     {title===undefined ? 
-  
-    <img src={require('../images/search.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '400px', marginTop: '10%', translate: '0 -10%'}}  />
+
+      <>
+    <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
+      style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
+      >Type what you are looking for in the inputs above and click the search button</div>
+    <img src={require('../images/search.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  />
+      </>
 
     :
 

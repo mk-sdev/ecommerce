@@ -2,21 +2,86 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 50px;
+    gap:10px;
+    justify-items: center;
   }
 
-  @media screen and (max-width: 700px){
-    #contener{
-
-        grid-template-columns: 1fr ;
-
-      }
-  }
-.image{
+  .image{
     width: 300px;
-    height: 400px
-}
-
-#info{
+    /* height: 400px */
+  }
+  
+  #info{
     display: flex;
     flex-direction: column;
+    font-family: Oswald;
+    /* align-items: center; */
+    /*  */
+    /* background-color: var(--light); */
+    
+    width: fit-content;
+    /* width: 100%; */
+    font-size: 25px;
+    border-radius: 5px
 }
+#add{
+  background-color: var(--goldenrod);
+  transition: .3s;
+  width: 70%
+}
+#add:hover{
+  background-color: var(--light);
+}
+#buttons{
+  /* background-color: red; */
+  display: flex;
+  gap: 10px;
+  color: snow;
+  justify-content: center;
+  align-items: center;
+}
+#plus, #minus{
+  background-color: var(--goldenrod);
+  transition: .3s;
+  border-radius: 5px !important;
+  /* background-color: var(--dark); */
+  width: 20%;
+  border: 2px solid black;
+  max-height: 40px 
+}
+#plus:hover, #minus:hover{
+  background-color: var(--light);
+}
+#quantity{
+  color: black;
+  font-size: 40px
+}
+#total{
+  width: 100%;
+  text-align: center;
+}
+#moreFrom{
+color: orange
+
+}
+.thin{
+  font-weight: 200;
+}
+span{
+  width: fit-content
+}
+    @media screen and (max-width: 700px){
+        .image{
+          width: 100%
+        }
+        #description{
+          padding-inline: 1em
+        }
+    }
+    @media screen and (max-width: 550px){
+     #contener{
+  
+          grid-template-columns: 1fr ;
+  
+        }
+    }

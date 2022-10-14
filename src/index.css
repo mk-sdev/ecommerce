@@ -4,7 +4,8 @@
 
 :root {
   --dark: rgb(47, 46, 65);
-  --goldenrod: rgb(249, 168, 38)
+  --goldenrod: rgb(249, 168, 38);
+  --light: hsl(37, 95%, 71%);
 }
 
 *::placeholder{
