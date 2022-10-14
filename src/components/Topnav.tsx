@@ -45,7 +45,7 @@ export default function Topnav() {
     </Link>
 
     <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faMagnifyingGlass} 
-    onClick={e=>{ searchBar.current?.focus(); search==='100px' ? setSearch('-100px') : setSearch('100px')}} />
+    onClick={e=>{ searchBar.current?.focus();  setSearch('100px')}} />
 
     <Link to='/profile'>
     <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faUser} />

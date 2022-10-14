@@ -22,9 +22,9 @@ export default function Books() {
   const [searchAuthor, setSearchAuthor] = useState<string | undefined>((title && title?.indexOf("_author:")>-1) ? title?.substring(title?.indexOf('_author:')+8, title?.indexOf('@')) : '')
 
   const [searchGenre, setSearchGenre] = useState<string | undefined>((title && title?.indexOf("_subject:")>-1) ? title?.substring(title?.indexOf('_subject:')+9, title?.indexOf('$')): '')
+  // const [searchKey, setSearchKey] = useState<string | undefined>((title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title : '')
 
-  const [searchKey, setSearchKey] = useState<string | undefined>(undefined)
-//gdybym zmienił zdanie to usunąć to co poniżej, zmienić url (! @ $) i usunąć useEffect jedno i zamienić setSearch--... na ''
+  //gdybym zmienił zdanie to usunąć to co poniżej, zmienić url (! @ $) i usunąć useEffect jedno i zamienić setSearch--... na ''
   // const [isTitle, setIsTitle] = useState<undefined | string>('')
   // const [isAuthor, setIsAuthor] = useState<undefined | string>('')
   // const [isGenre, setIsGenre] = useState<undefined | string>('')
@@ -41,18 +41,22 @@ export default function Books() {
     
     let genre = searchGenre ? 'subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'&' : ''
 
-    let key = searchKey ? searchKey+'&' : ''
-     console.log('',searchTitle, searchGenre, searchAuthor)
+    // setSearchKey((title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title : '')
+
+    let key = (title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title+'&' : ''
+    
+
+
     console.log(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
 
     
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{ 
-          setSearchKey(undefined)
+          // setSearchKey(undefined)
           setData(res.data.items)
         })
         .catch(err=>{console.log(err); 
-          setSearchKey(undefined)
+          // setSearchKey(undefined)
         })
 
   }, [title, page])
