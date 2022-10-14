@@ -82,7 +82,8 @@ oto id: {idd}
     price: {price}$
      rok: {date}, autors: {authors}, ilość stron: {pagecount} , ocena: {rate}
      <br />
-     opis: {description}
+     opis: 
+     <div dangerouslySetInnerHTML={{__html: description}} />
     </div>
 
     </div>
