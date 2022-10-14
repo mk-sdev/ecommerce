@@ -66,7 +66,9 @@ export default function Topnav() {
       style={{top: search}}>
       <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' value={title} ref={searchBar}
       onChange={e=>setTitle(e.target.value)} 
-      onKeyDown={e=>searchBooks(e.key)} ></input>
+      onKeyDown={e=>searchBooks(e.key)} 
+      onBlur={e=>setSearch('-100px')}>
+      </input>
       <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} 
       onClick={e=>searchBooks()}  />
       

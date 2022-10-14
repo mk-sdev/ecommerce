@@ -48,7 +48,7 @@ export default function Book() {
             setPagecount(res.data.volumeInfo.pageCount)
             setRate(res.data.volumeInfo.averageRating)
             setAuthors(res.data.volumeInfo.authors)
-            setPrice(res.data.saleInfo.retailPrice.amount)
+            setPrice(res.data.saleInfo.retailPrice.amount ? res.data.saleInfo.retailPrice.amount : 25)
    
         })
         .catch(err=>console.log(err))
@@ -66,48 +66,48 @@ export default function Book() {
 
 
     <div id="contener">
-    <img src={image} className='image' ></img>
+    <img src={image ? image : require('../images/image.svg').default} className='image' ></img>
    
    <div id="info" >
 
       
-     <span id='title' className='text-4xl'>{title1}</span>
+     <span id='title' className='text-4xl mx-auto pb-3'>{title1}</span>
      <span id='price'><span className='thin'>price: </span>{price}$</span>
      
 
-    {false? <button id='add' className='border-current border-2 rounded text-2xl'>add to cart</button> :
+    {false? <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto'>add to cart</button> :
     <>
-    <div id="buttons">
+    <div id="buttons" className='mt-5'>
     <button id='plus' >+</button>
     <span id='quantity'>0</span>
     <button id='minus' >-</button>
     </div>
 
     <input type="number" value='5' />
-    <span id='total'><span className='thin'>in total: </span> x $</span>
+    <span id='total' className='mb-5'><span className='thin'>in total: </span> x $</span>
     </>}
 
-    {/* {authors.length===1 ? 
+    {authors.length===1 ? 
 
     <span><span className='thin'>author: </span>
     {authors[0]}
     </span>
   :
-    <span><span className='thin'>author(s): </span>
-      {authors.map(({a, i}:any)=>{return <p key={i}>&nbsp; &nbsp; - {i}</p>})}
+    <span><span className='thin'>authors: </span>
+      {authors.map((a)=>{return <p key={a}>&nbsp; &nbsp; - {a}</p>})}
       </span>
 
-      } */}
- <span><span className='thin'>author(s): </span>
-      {authors.map(({a, i}:any)=>{return <p key={Math.random()}>&nbsp; &nbsp; - {a}</p>})}
-      </span>
+      }
+ {/* <span><span className='thin'>author(s): </span>
+      {authors.map((a)=>{return <p key={Math.random()}>&nbsp; &nbsp; - {a}</p>})}
+      </span> */}
 
 
     <span><span className='thin'>pages: </span> {pagecount}</span>
     <span><span className='thin'>date of release: </span> {date}</span>
     <span><span className='thin'>rate: </span> {rate ? rate : '4.2'}/5</span>
 
-    <Link to={`/books/_author:${authors}@`} id='moreFrom' className='text-2xl'>see more from this author</Link>
+    <Link to={`/books/_author:${authors}@`} id='moreFrom' className='text-2xl mx-auto'>see more from this author</Link>
     </div>
     </div>
 
