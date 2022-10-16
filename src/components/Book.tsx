@@ -112,8 +112,9 @@ export default function Book() {
      
      </div>
  
-     {/* <input type="number" value='5' /> */}
-     <span id='total' className='mb-5'><span className='thin'>in total: </span> x $</span>
+     <input type="number" value='5' />
+     
+     <span id='total' className='mb-5'><span className='thin'>in total: </span> {reservations.map((a:any, i:any)=>{return a[0]===id &&  a[3]*a[4]})} $</span>
      </> :
      <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto' onClick={e=>handleAdd()}>add to cart</button> 
    }

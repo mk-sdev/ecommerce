@@ -16,7 +16,7 @@ const logo = require("../images/logo.png")
 
 export default function Topnav() {
   const reservations = useSelector((state:RootState)=>state.reservations.value)
-  console.log(reservations.length)
+  // console.log(reservations.length)
   const navigate = useNavigate()
   const [search, setSearch] = useState('-100px')
   const [title, setTitle] = useState('')
@@ -58,7 +58,7 @@ export default function Topnav() {
 
     <div id="basket">
     <Link to='/cart'>
-      {reservations.length>0 ?     
+      {(reservations && reservations.length>0) ?     
       <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'>{reservations.length}</span>
     : <></>}
       <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faBasketShopping} />

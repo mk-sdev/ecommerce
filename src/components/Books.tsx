@@ -278,7 +278,7 @@ function searchBooks(e?: string):void{
 
                 <img src={require('../images/image.svg').default} alt="book cover" className='bookImg' />}
 
-               <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+               {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
               <div className="data">
                 <br />
                 <br />

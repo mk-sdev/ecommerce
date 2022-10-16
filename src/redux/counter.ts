@@ -18,11 +18,11 @@ export const reservationsSlice = createSlice({
         changeQuantity: (state, action: PayloadAction<any>)=>{
             // state.value[action.payload[1]] = state.value[action.payload[1]] +  action.payload[0]
             state.value[action.payload[1]][4] +=action.payload[0] 
-            console.log('payload ', state.value[action.payload[1]])
+
         },
         deleteBook: (state, action: PayloadAction<any>)=>{
                     state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
-        },  
+        },   
     },
 })
 

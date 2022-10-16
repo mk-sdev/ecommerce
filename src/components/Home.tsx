@@ -7,7 +7,6 @@ import {faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
 import { convertCompilerOptionsFromJson, setConstantValue } from 'typescript'
 import {Link} from 'react-router-dom'
 
-import Test from './test'
 
 export default function Home() {
 
@@ -143,7 +142,6 @@ useEffect(()=>{
       <div id="books2" className='w-full h-full absolute'></div>
     </div>
 
-    <Test></Test>
     
     <div id='homeItems'>
       <div id='recommended'>Recommended by Book Store</div>
@@ -153,7 +151,7 @@ useEffect(()=>{
           <Link key={i} to={`/book/${bookObj[i].id}`}><div className="item">
           <img src={bookObj[i].img} alt="" className='bookImg'/>
           {bookObj[i].bestseller ? <div className='bestseller'>bestseller</div> : null}
-                   <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} />
+                   {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
                   <div className="data">
                     <br />
                     <br />

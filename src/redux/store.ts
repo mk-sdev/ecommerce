@@ -3,9 +3,10 @@ import { configureStore } from '@reduxjs/toolkit'
 import reservationsReducer from './counter'
 
 
+
 export const store = configureStore({
   reducer: {
-    reservations: reservationsReducer
+    reservations: reservationsReducer,
   }
 })
 
