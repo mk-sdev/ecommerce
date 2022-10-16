@@ -66,7 +66,7 @@ export default function Book() {
     }, [])
 
     const handleAdd=()=>{
-      dispatch(addReservation([id!, image!, title1!, price!, 1, '1']))
+      dispatch(addReservation([id!, image!, title1!, price!, 1]))
     //   const whichArray = reservations.find((el:any)=>{return el[0]===id})
     //  setIndex(reservations.indexOf(whichArray))
     }

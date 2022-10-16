@@ -1,4 +1,7 @@
 import React, {useState, useRef} from 'react'
+import {RootState} from '../redux/store'
+import {useSelector} from 'react-redux'
+
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHouse} from '@fortawesome/free-solid-svg-icons'
 import {faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
@@ -10,8 +13,10 @@ import '../styles/topnav.css'
 import {Link, useNavigate} from 'react-router-dom'
 const logo = require("../images/logo.png")
 
+
 export default function Topnav() {
-  
+  const reservations = useSelector((state:RootState)=>state.reservations.value)
+  console.log(reservations.length)
   const navigate = useNavigate()
   const [search, setSearch] = useState('-100px')
   const [title, setTitle] = useState('')
@@ -53,8 +58,10 @@ export default function Topnav() {
 
     <div id="basket">
     <Link to='/cart'>
-    <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'></span>
-    <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faBasketShopping} />
+      {reservations.length>0 ?     
+      <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'>{reservations.length}</span>
+    : <></>}
+      <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faBasketShopping} />
     </Link>
     </div>
 
