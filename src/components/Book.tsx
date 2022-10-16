@@ -3,11 +3,19 @@ import { useParams, Link  } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/book.css'
 
+import {useDispatch, useSelector} from 'react-redux'
+import {RootState} from '../redux/store'
+import { addReservation, changeQuantity } from '../redux/counter'
 
 export default function Book() {
-    // const {title} = useParams()
-    const {id} = useParams()
-    const [image, setImage] = useState('')
+
+  const reservations = useSelector((state:RootState)=>state.reservations.value)
+  const dispatch = useDispatch()
+  
+  // const {title} = useParams()
+  const {id} = useParams()
+  const [add, setAdd] = useState(id)
+  const [image, setImage] = useState('')
     const [title1, setTitle1] = useState('')
     const [authors, setAuthors] = useState(['unknown'])
     const [pagecount, setPagecount] = useState('unknown')
@@ -15,7 +23,9 @@ export default function Book() {
     const [date, setDate] = useState('unknown')
     const [rate, setRate] = useState('4.8')
     const [price, setPrice] = useState(25)
-    const [idd, setId] = useState<any>('25')
+    // const [index, setIndex] = useState<number>(-1)
+    // const [idd, setId] = useState<any>('25')
+    // const [quantity, setQuantity] = useState(0)
 
     useEffect(()=>{
         // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
@@ -55,15 +65,22 @@ export default function Book() {
 
     }, [])
 
+    const handleAdd=()=>{
+      dispatch(addReservation([id!, image!, title1!, price!, 1, '1']))
+    //   const whichArray = reservations.find((el:any)=>{return el[0]===id})
+    //  setIndex(reservations.indexOf(whichArray))
+    }
+    
+    const handleQuantity = (e:number)=>{
+      
+      const whichArray = reservations.find((el:any)=>{return el[0]===id})
+      const indx = reservations.indexOf(whichArray)
 
-
-
-
-
+    dispatch(changeQuantity([e, indx]))
+    }
 
   return (
-    <div  className='component'>
-
+    <div  className='component'>    
 
     <div id="contener">
     <img src={image ? image : require('../images/image.svg').default} className='image' ></img>
@@ -74,18 +91,32 @@ export default function Book() {
      <span id='title' className='text-4xl mx-auto pb-3'>{title1}</span>
      <span id='price'><span className='thin'>price: </span>{price}$</span>
      
+     
 
-    {false? <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto'>add to cart</button> :
-    <>
-    <div id="buttons" className='mt-5'>
-    <button id='plus' >+</button>
-    <span id='quantity'>0</span>
-    <button id='minus' >-</button>
-    </div>
-
-    <input type="number" value='5' />
-    <span id='total' className='mb-5'><span className='thin'>in total: </span> x $</span>
-    </>}
+    {reservations.some((el:any)=>{ return el[0]===id}) ? 
+     <>
+     <div id="buttons" className='mt-5'>
+     <button id='plus' onClick={e=>handleQuantity(1)}>+</button>
+     <span id='quantity'>
+      {reservations[
+        reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
+        ][4]}
+      </span>
+      {reservations[
+        reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
+        ][4] >=2 ?
+        <button id='minus' onClick={e=>handleQuantity(-1)}>-</button>
+        :
+        <button id='minusDisabled'>-</button>
+      }
+     
+     </div>
+ 
+     {/* <input type="number" value='5' /> */}
+     <span id='total' className='mb-5'><span className='thin'>in total: </span> x $</span>
+     </> :
+     <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto' onClick={e=>handleAdd()}>add to cart</button> 
+   }
 
     {authors.length===1 ? 
 

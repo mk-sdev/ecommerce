@@ -7,6 +7,8 @@ import {faQuoteLeft, faQuoteRight}  from '@fortawesome/free-solid-svg-icons'
 import { convertCompilerOptionsFromJson, setConstantValue } from 'typescript'
 import {Link} from 'react-router-dom'
 
+import Test from './test'
+
 export default function Home() {
 
 useEffect(()=>{
@@ -131,6 +133,8 @@ useEffect(()=>{
   return (
     <div className='component' >
 
+ 
+
     <div id="books" className='w-full bg-black'>
       <p className='text-slate-100 relative' >Welcome to <span className='whitespace-nowrap'>Book Store</span></p>  
       <p className='text-slate-100 relative' >Looking for a book? Book Store is a place for you!</p>  
@@ -139,6 +143,8 @@ useEffect(()=>{
       <div id="books2" className='w-full h-full absolute'></div>
     </div>
 
+    <Test></Test>
+    
     <div id='homeItems'>
       <div id='recommended'>Recommended by Book Store</div>
 
