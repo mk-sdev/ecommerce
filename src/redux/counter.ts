@@ -23,9 +23,12 @@ export const reservationsSlice = createSlice({
         deleteBook: (state, action: PayloadAction<any>)=>{
                     state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
         },   
+        setQuantity: (state, action: PayloadAction<any>)=>{
+            state.value[action.payload[1]][4] = action.payload[0] 
+        },   
     },
 })
 
-export const {addReservation, changeQuantity, deleteBook} = reservationsSlice.actions
+export const {addReservation, changeQuantity, deleteBook, setQuantity} = reservationsSlice.actions
 
 export default reservationsSlice.reducer

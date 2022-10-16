@@ -5,7 +5,7 @@ import '../styles/book.css'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
-import { addReservation, changeQuantity } from '../redux/counter'
+import { addReservation, changeQuantity, setQuantity } from '../redux/counter'
 
 export default function Book() {
 
@@ -23,11 +23,13 @@ export default function Book() {
     const [date, setDate] = useState('unknown')
     const [rate, setRate] = useState('4.8')
     const [price, setPrice] = useState(25)
+
     // const [index, setIndex] = useState<number>(-1)
     // const [idd, setId] = useState<any>('25')
     // const [quantity, setQuantity] = useState(0)
 
     useEffect(()=>{
+      console.log(reservations.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
         // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         // .then(res=>{
             
@@ -79,6 +81,16 @@ export default function Book() {
     dispatch(changeQuantity([e, indx]))
     }
 
+    const handleQuantity2 = (e:number)=>{
+      const whichArray = reservations.find((el:any)=>{return el[0]===id})
+      const indx = reservations.indexOf(whichArray)
+
+      if(e>1)
+    dispatch(setQuantity([e, indx]))
+    else
+    dispatch(setQuantity([1, indx]))
+    }
+
   return (
     <div  className='component'>    
 
@@ -112,8 +124,10 @@ export default function Book() {
      
      </div>
  
-     <input type="number" value='5' />
-     
+     <input type="number" 
+     value={reservations[reservations.findIndex((el:any) => el[0] === id)][4]}
+     onChange={e=>handleQuantity2(+e.target.value)} />
+
      <span id='total' className='mb-5'><span className='thin'>in total: </span> {reservations.map((a:any, i:any)=>{return a[0]===id &&  a[3]*a[4]})} $</span>
      </> :
      <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto' onClick={e=>handleAdd()}>add to cart</button> 

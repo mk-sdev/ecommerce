@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
-import { changeQuantity, deleteBook} from '../redux/counter'
+import { changeQuantity, deleteBook, setQuantity} from '../redux/counter'
 
 
 
@@ -29,6 +29,16 @@ const handleQuantity = (e:number, id:string)=>{
   const indx = reservations.indexOf(whichArray)
   dispatch(changeQuantity([e, indx]))
 
+}
+
+const handleQuantity2 = (e:number, id:string)=>{
+  const whichArray = reservations.find((el:any)=>{return el[0]===id})
+  const indx = reservations.indexOf(whichArray)
+
+  if(e>1)
+dispatch(setQuantity([e, indx]))
+else
+dispatch(setQuantity([1, indx]))
 }
 
 const del = (id:string)=>{
@@ -72,6 +82,11 @@ const del = (id:string)=>{
                 <button id='minusDisabled'>-</button>
                 }
             </div>
+            <input type="number" 
+     value={props.props[4]}
+     onChange={e=>handleQuantity2(+e.target.value, props.props[0])} />
+
+
             <button id="delete"  className='text-3xl' onClick={e=>setShowDelete(true)}>delete</button>
 
             {showDelete && <div className="deleteModal absolute text-red-500">
