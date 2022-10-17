@@ -17,7 +17,9 @@ function App() {
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    const cat = localStorage.getItem('booksArray');
+    const cat = localStorage.getItem('booksArray') ?  localStorage.getItem('booksArray') : null;
+
+
     (typeof(cat)==='string' && books.length===0) ?  dispatch(setBooks(JSON.parse(cat))) : console.log('')
   }, [])
 
