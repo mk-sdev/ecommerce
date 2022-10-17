@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { Link , useParams, useNavigate} from 'react-router-dom'
 import '../styles/books.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBasketShopping, faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
+import {faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 import { objectTraps } from 'immer/dist/internal'
@@ -15,23 +15,14 @@ export default function Books() {
   const {title} = useParams()
   const {page} = useParams()
 
-  //used in inputs and to define the axios link
-  // const [searchTitle, setSearchTitle] = useState<string | undefined>(title?.replace('_title:', '').substr(0, indexOf(":")))
   const [searchTitle, setSearchTitle] = useState<string | undefined>((title && title?.indexOf("_title:")>-1) ? title?.substring(title?.indexOf('_title:')+7, title?.indexOf('!')) : '')
 
   const [searchAuthor, setSearchAuthor] = useState<string | undefined>((title && title?.indexOf("_author:")>-1) ? title?.substring(title?.indexOf('_author:')+8, title?.indexOf('@')) : '')
 
   const [searchGenre, setSearchGenre] = useState<string | undefined>((title && title?.indexOf("_subject:")>-1) ? title?.substring(title?.indexOf('_subject:')+9, title?.indexOf('$')): '')
-  // const [searchKey, setSearchKey] = useState<string | undefined>((title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title : '')
-
-  //gdybym zmienił zdanie to usunąć to co poniżej, zmienić url (! @ $) i usunąć useEffect jedno i zamienić setSearch--... na ''
-  // const [isTitle, setIsTitle] = useState<undefined | string>('')
-  // const [isAuthor, setIsAuthor] = useState<undefined | string>('')
-  // const [isGenre, setIsGenre] = useState<undefined | string>('')
 
   const [showGenres, setShowGenres] = useState(false)
   const [data, setData] = useState<any>()
-
 
 
   useEffect(()=>{
@@ -41,14 +32,7 @@ export default function Books() {
     
     let genre = searchGenre ? 'subject:'+searchGenre?.replace(/ /g,'+').toLowerCase()+'&' : ''
 
-    // setSearchKey((title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title : '')
-
     let key = (title && title?.indexOf("_title:")===-1 && title?.indexOf("_author:")===-1 && title?.indexOf("_subject:")===-1) ? title+'&' : ''
-    
-
-
-    console.log(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-
     
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{ 
@@ -63,25 +47,6 @@ export default function Books() {
 
 
      useEffect(()=>{
-
-    //tutaj lista ketogorii: https://bisg.org/page/bisacedition
-
-    // po gatunku:
-    //     axios.get(`https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    //     .then(res=>{ console.log(res.data)})
-    //    .catch(err=>console.log(err))
-
-
-    // po autorze:
-      //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=inauthor:"Richard+Moreno"&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-      //   .then(res=>{ console.log(res.data)})
-      //  .catch(err=>console.log(err))
-
-         //ilość wyszukań oraz od którego indexu zacząć:
-      //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=dupa&maxResults=5&startIndex=2&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-      //   .then(res=>{ console.log(res.data)})
-      //  .catch(err=>console.log(err))
-
       //w przypadku searchTitle i searchAuthor jeśli skałdają się z samych spacji, to stają się undefined. Jeśli są undefined to axios je pomija. Jeśli nie, to w miejscu spacji dodawane są plusy i całość jet sprowadzana do małyc liter. W url są uwzględniane tylko jeśli składają się z przynajmniej jednej litery
 
       searchTitle?.replaceAll(' ', '')==='' && setSearchTitle(undefined) 
@@ -100,46 +65,8 @@ export default function Books() {
    // setSearchAuthor(obj[2])
    // setSearchGenre(obj[3])
  }
-
-//  setTimeout(()=>{
-// //   if(title && title?.indexOf("_title:")>-1){
-// //   let isTitle = title?.replace('_title:', '').substr(0, title?.indexOf("_")-1)}
-  
-// //   if(title && title?.indexOf("_author:")>-1){
-// //   let isAuthor = title?.substr(title?.indexOf('_author:')+8, title?.replace('_title:', '').replace('_author:', '').indexOf('_') - ) 
-// // alert(isAuthor  )}
-// if(title && title?.indexOf("_title:")>-1){
-//   setIsTitle(title?.substring(title?.indexOf('_title:')+7, title?.indexOf('!')))
-
-// }
-// if(title && title?.indexOf("_author:")>-1){
-//   setIsAuthor(title?.substring(title?.indexOf('_author:')+8, title?.indexOf('@')))
-
-// }
-// if(title && title?.indexOf("_subject:")>-1){
-//   setIsGenre(title?.substring(title?.indexOf('_subject:')+9, title?.indexOf('$')))
-
-// }
-// console.log(isTitle, isAuthor, isGenre)
-//    axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchKey ? searchKey+'&' : ''}${isTitle ? 'intitle:'+isTitle+'&' : ''}${isAuthor ? 'inauthor:'+isAuthor+'&' : ''}${isGenre ? 'subject:'+isGenre+'&' : ''}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-//    .then(res=>{ 
-//      setSearchKey(undefined)
-//      setData(res.data.items)
-
-     
-//    })
-//    .catch(err=>{console.log(err); 
-//      setSearchKey(undefined)
-//    })
-//  }, 1000)
-//spróbowac w tablicy zależnosći dać title i page
 }, [])
-  //1. obczaić jeszcze czy sa się wyszukać bez tytułu np po samym autorze lub gatunku. jeśli się da to dodać w Book.tsx opcję zobacz więcej od tego autora oraz w topnav wyszukiwanie po gatunku. Jak nie to dać warunek w inputach że musi być tytuł podany.
-  //2. Druga kwestia to show more books, trzeba też to jakoś wykminić. Może dodać przycisk następnej strony.
-  //3. trzecia rzecz taka, że ten oto komponent można wykorzystać zarówno podczas wyszukiwania lupą , search for more, ale także new, bestsellers i discounts. Jeśli uda sie wykminić wysszukiwanie bez tytułu (patrz punkt 1) to nie trzeba nawet dodawać ręcznie.
 
-  //fucntion fn(){ pobieranie danych za API [wspomóc się repo tego gościa
-//https://github.com/Kirti-salunkhe/OpenBook/blob/main/src/Components/Main.js   ] }
 function searchBooks(e?: string):void{
   if(e==='Enter') {
       setShowGenres(false)
@@ -163,16 +90,13 @@ function searchBooks(e?: string):void{
   
     let li = document.querySelectorAll("li");
 
-    
     for (let i = 0; i < li.length; i++) {
-      // console.log(li[i].id.indexOf(searchGenre!.toLowerCase()))
       if (li[i].id.indexOf(searchGenre!.toLowerCase()) > -1) {
         li[i].setAttribute("style", "display: block");
       } else {
         li[i].setAttribute("style", "display: none");
       }
     }
-
   }
 
   return (
@@ -278,7 +202,6 @@ function searchBooks(e?: string):void{
 
                 <img src={require('../images/image.svg').default} alt="book cover" className='bookImg' />}
 
-               {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
               <div className="data">
                 <br />
                 <br />
@@ -288,8 +211,9 @@ function searchBooks(e?: string):void{
               </div>
           </div></Link>
         )
-      }) :  <div>{data}</div>}
-
+      }) 
+      :  
+      <div>{data}</div>}
 
           {title && 
             <div id="moreBooks" className='breadcrumbs'>

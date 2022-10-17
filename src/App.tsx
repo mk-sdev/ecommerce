@@ -25,7 +25,7 @@ function App() {
     localStorage.clear();
     localStorage.setItem('booksArray', JSON.stringify(books));
     const cat = localStorage.getItem('booksArray');
-    (typeof(cat)==='string' ) ?  console.log(JSON.parse(cat)) : console.log('du[a')
+    (typeof(cat)==='string' ) ?  console.log(JSON.parse(cat)) : console.log('')
   }, [books])
 
   return (

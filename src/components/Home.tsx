@@ -10,38 +10,6 @@ import {Link} from 'react-router-dom'
 
 export default function Home() {
 
-useEffect(()=>{
-    
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=starwars&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setStarwarsImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
-    // .catch(err=>console.log(err))
-
-  //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=meditations&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-  //   .then(res=>{setPrinceImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
-  // console.log(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
-  //   .catch(err=>console.log(err))
-    
-    // axios.get(`https://www.googleapis.com/books/v1/volumes?q=witcher&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    // .then(res=>{setWitcherImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)})
-    // .catch(err=>console.log(err))
-    
-  //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=billgates&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-  //   .then(res=>{setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail)})
-  //   .catch(err=>console.log(err))
-
-    // array.map((el, i)=>{
-    //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=${el}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-    //   .then(res=>{
-
-    //    if(i===0) setHarryImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
-    //    else if (i===1) setAnimalImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
-    //    else if (i===2) setGatesImg(res.data.items[1].volumeInfo.imageLinks.thumbnail);
-    //   })
-    //   .catch(err=>console.log(err))
-  
-    // })
-
-}, [])
 
   const bookObj = [{ //harry potter
     id: '8exSvgAACAAJ',
@@ -151,7 +119,6 @@ useEffect(()=>{
           <Link key={i} to={`/book/${bookObj[i].id}`}><div className="item">
           <img src={bookObj[i].img} alt="" className='bookImg'/>
           {bookObj[i].bestseller ? <div className='bestseller'>bestseller</div> : null}
-                   {/* <FontAwesomeIcon title='add' className='basket' icon={faBasketShopping} /> */}
                   <div className="data">
                     <br />
                     <br />
