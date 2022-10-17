@@ -5,11 +5,11 @@ import '../styles/book.css'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
-import { addReservation, changeQuantity, setQuantity } from '../redux/counter'
+import { addBook, changeQuantity, setQuantity } from '../redux/counter'
 
 export default function Book() {
 
-  const reservations = useSelector((state:RootState)=>state.reservations.value)
+  const books = useSelector((state:RootState)=>state.books.value)
   const dispatch = useDispatch()
   
   // const {title} = useParams()
@@ -29,7 +29,7 @@ export default function Book() {
     // const [quantity, setQuantity] = useState(0)
 
     useEffect(()=>{
-      console.log(reservations.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
+      console.log(books.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
         // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         // .then(res=>{
             
@@ -68,22 +68,22 @@ export default function Book() {
     }, [])
 
     const handleAdd=()=>{
-      dispatch(addReservation([id!, image!, title1!, price!, 1]))
-    //   const whichArray = reservations.find((el:any)=>{return el[0]===id})
-    //  setIndex(reservations.indexOf(whichArray))
+      dispatch(addBook([id!, image!, title1!, price!, 1]))
+    //   const whichArray = books.find((el:any)=>{return el[0]===id})
+    //  setIndex(books.indexOf(whichArray))
     }
     
     const handleQuantity = (e:number)=>{
       
-      const whichArray = reservations.find((el:any)=>{return el[0]===id})
-      const indx = reservations.indexOf(whichArray)
+      const whichArray = books.find((el:any)=>{return el[0]===id})
+      const indx = books.indexOf(whichArray)
 
     dispatch(changeQuantity([e, indx]))
     }
 
     const handleQuantity2 = (e:number)=>{
-      const whichArray = reservations.find((el:any)=>{return el[0]===id})
-      const indx = reservations.indexOf(whichArray)
+      const whichArray = books.find((el:any)=>{return el[0]===id})
+      const indx = books.indexOf(whichArray)
 
       if(e>1)
     dispatch(setQuantity([e, indx]))
@@ -105,17 +105,17 @@ export default function Book() {
      
      
 
-    {reservations.some((el:any)=>{ return el[0]===id}) ? 
+    {books.some((el:any)=>{ return el[0]===id}) ? 
      <>
      <div className="buttons mt-5" >
      <button className='plus' onClick={e=>handleQuantity(1)}>+</button>
      <span className='quantity'>
-      {reservations[
-        reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
+      {books[
+        books.indexOf(books.find((el:any)=>{return el[0]===id}))
         ][4]}
       </span>
-      {reservations[
-        reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
+      {books[
+        books.indexOf(books.find((el:any)=>{return el[0]===id}))
         ][4] >=2 ?
         <button className='minus' onClick={e=>handleQuantity(-1)}>-</button>
         :
@@ -125,10 +125,10 @@ export default function Book() {
      </div>
  
      <input type="number" 
-     value={reservations[reservations.findIndex((el:any) => el[0] === id)][4]}
+     value={books[books.findIndex((el:any) => el[0] === id)][4]}
      onChange={e=>handleQuantity2(+e.target.value)} />
 
-     <span id='total' className='mb-5'><span className='thin'>in total: </span> {reservations.map((a:any, i:any)=>{return a[0]===id &&  (a[3]*a[4]).toFixed(2)})} $</span>
+     <span id='total' className='mb-5'><span className='thin'>in total: </span> {books.map((a:any, i:any)=>{return a[0]===id &&  (a[3]*a[4]).toFixed(2)})} $</span>
      </> :
      <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto' onClick={e=>handleAdd()}>add to cart</button> 
    }

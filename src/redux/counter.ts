@@ -1,34 +1,36 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 
-interface ReservationState{
+interface BookState{
     value: any
 }
 
-const initialState: ReservationState={
+const initialState: BookState={
     value: []
 }
 
-export const reservationsSlice = createSlice({
-    name: 'reservations',
+export const booksSlice = createSlice({
+    name: 'books',
     initialState,
     reducers: {
-        addReservation: (state, action: PayloadAction<any>)=>{
+        addBook: (state, action: PayloadAction<any>)=>{
             state.value.push(action.payload)
         },
         changeQuantity: (state, action: PayloadAction<any>)=>{
-            // state.value[action.payload[1]] = state.value[action.payload[1]] +  action.payload[0]
             state.value[action.payload[1]][4] +=action.payload[0] 
-
         },
         deleteBook: (state, action: PayloadAction<any>)=>{
-                    state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
+            state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
         },   
         setQuantity: (state, action: PayloadAction<any>)=>{
             state.value[action.payload[1]][4] = action.payload[0] 
         },   
+        setBooks: (state, action: PayloadAction<any>)=>{
+            state.value=action.payload
+            console.log(state.value)
+        },   
     },
 })
 
-export const {addReservation, changeQuantity, deleteBook, setQuantity} = reservationsSlice.actions
+export const {addBook, changeQuantity, deleteBook, setQuantity, setBooks} = booksSlice.actions
 
-export default reservationsSlice.reducer
+export default booksSlice.reducer

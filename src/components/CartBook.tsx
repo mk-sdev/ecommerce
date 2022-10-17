@@ -10,7 +10,7 @@ import { changeQuantity, deleteBook, setQuantity} from '../redux/counter'
 
 export default function CartBook(props:any) {
 
-    const reservations = useSelector((state:RootState)=>state.reservations.value)
+    const books = useSelector((state:RootState)=>state.books.value)
 
 
 const [showDelete, setShowDelete] = useState(false)
@@ -26,15 +26,15 @@ useEffect(()=>{
 const handleQuantity = (e:number, id:string)=>{
   console.log(props.props[3]*props.props[4])
 
-  const whichArray = reservations.find((el:any)=>{return el[0]===id})
-  const indx = reservations.indexOf(whichArray)
+  const whichArray = books.find((el:any)=>{return el[0]===id})
+  const indx = books.indexOf(whichArray)
   dispatch(changeQuantity([e, indx]))
 
 }
 
 const handleQuantity2 = (e:number, id:string)=>{
-  const whichArray = reservations.find((el:any)=>{return el[0]===id})
-  const indx = reservations.indexOf(whichArray)
+  const whichArray = books.find((el:any)=>{return el[0]===id})
+  const indx = books.indexOf(whichArray)
 
   if(e>1)
 dispatch(setQuantity([e, indx]))
@@ -43,8 +43,8 @@ dispatch(setQuantity([1, indx]))
 }
 
 const del = (id:string)=>{
-  const whichArray = reservations.find((el:any)=>{return el[0]===id})
-  const indx = reservations.indexOf(whichArray)
+  const whichArray = books.find((el:any)=>{return el[0]===id})
+  const indx = books.indexOf(whichArray)
 
     // dispatch(opacity(indx))
     setOpacity('0')
