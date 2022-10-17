@@ -25,9 +25,7 @@ root.render(
  // </React.StrictMode>
 );
 
-//scrol restoration, uporządkowanie kodu (usunięcie niepotrzebnych rzeczy), czy jakieś nazwy ze sobą nie kolidują, dostosować do typescriptu, obrazki w zależności czy jest jakiś error podczas wyszukiwania, wyszukiwanie za pomocą url, zamienić na select i options
-//padding przy .component itp, stopka, breadcrumbs, opisy zamienić na xml
-
+//scrol restoration, uporządkowanie kodu (usunięcie niepotrzebnych rzeczy), czy jakieś nazwy ze sobą nie kolidują, dostosować do typescriptu, obrazki w zależności czy jest jakiś error podczas wyszukiwania, hashrouter (lub pokombinować z obecnym routingiem), I pay , info e cart jak nie ma niczego w koszyku tak jak jest w books u góry
 // {
 //   "kind": "books#volume",
 //   "id": "zyTCAlFPjgYC",
