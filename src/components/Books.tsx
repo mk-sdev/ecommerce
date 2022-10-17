@@ -181,18 +181,18 @@ function searchBooks(e?: string):void{
   <div id='inputs' className='p-3 flex flex-wrap'
   style={{justifyContent: 'center', alignItems: 'center', gap: '20px'}}>
 
-    <input id='titleInp' type="text" placeholder='title' value={searchTitle} 
+    <input className='text-center' id='titleInp' type="text" placeholder='title' value={searchTitle} 
     onChange={e=>setSearchTitle(e.target.value)}  />
 
-    <input id='authorInp' type="text" placeholder='author' value={searchAuthor}
+    <input className='text-center' id='authorInp' type="text" placeholder='author' value={searchAuthor}
     onChange={e=>setSearchAuthor(e.target.value)}/>
 
     <div id="genre" className='relative z-10' onMouseEnter={e=>{setShowGenres(true)}} onMouseLeave={e=>{setShowGenres(false)}} >
 
-    <input type="text" placeholder='subject'  
+    <input className='text-center w-full rounded-sm' type="text" placeholder='subject'  
     value={searchGenre?.toLowerCase().replaceAll('+', ' ')} 
     onChange={e=>{setSearchGenre(e.target.value); setShowGenres(true); searchFn()}} 
-    onKeyUp={e=>{searchBooks(e.key); searchFn()}}  className='w-full rounded-sm'/>
+    onKeyUp={e=>{searchBooks(e.key); searchFn()}}  />
 
     {showGenres && <div id='genreCon' onClick={e=>setShowGenres(false)} className='absolute w-full overflow-y-auto'>
       <li className='genre w-full pl-2' id='antiques & collectibles' onClick={e=>{setSearchGenre('antiques+&+collectibles')}}

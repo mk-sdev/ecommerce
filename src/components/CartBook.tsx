@@ -89,7 +89,7 @@ const del = (id:string)=>{
      onChange={e=>handleQuantity2(+e.target.value, props.props[0])} />
 <br />
 {!showDelete  ?
-            <button className='delete text-3xl bg-red-400 border-4 border-red-500 p-auto hover:bg-red-500 transition rounded-lg' onClick={e=>setShowDelete(true)}>delete &nbsp;
+            <button className='delete text-3xl bg-red-400 border-4 border-red-500 p-auto hover:bg-red-500 transition  rounded-lg' onClick={e=>setShowDelete(true)}>delete &nbsp;
             {/* <span> */}
              <FontAwesomeIcon className='hover:cursor-pointer text-2xl' icon={ faTrash} />
              {/* </span> */}

@@ -40,9 +40,9 @@
   }
 }
 
-input:not(input[type="text"]){
+/* input:not(input[type="text"]){
   text-align: center;
-}
+} */
 
 body {
   margin: 0;

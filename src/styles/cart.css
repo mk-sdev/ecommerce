@@ -55,11 +55,31 @@ hr{
     left: 50% !important;
     width: 90% !important;
 }
+.payBtn1{
+font-size: 30px;
+    position: fixed;
+    z-index: 10
+}
+/* .payBtn2{
+font-size: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+    bottom: 10px;
+} */
 @media screen and (max-width: 650px){
     .cartBook{
         /* width: 75%; */
         grid-template-columns: 1fr !important;
     }
+    .payBtn1{
+        font-size: 20px;
+        /* bottom: 30px */
+        }
 
-
+        #finalPrice{
+            font-size: 30px
+        }
+        .cartBook{
+            width: 100%;
+        }
 }

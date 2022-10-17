@@ -157,6 +157,7 @@ transition: .3s
     width: 20%;
     min-width: 200px;
     border-radius: 2px;
+    /* text-align: center; */
 }
 
 #searchBtn{
