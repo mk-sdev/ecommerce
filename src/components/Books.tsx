@@ -24,7 +24,10 @@ export default function Books() {
   const [showGenres, setShowGenres] = useState(false)
   const [data, setData] = useState<any>()
 
-
+  useEffect(()=>  {
+    window.scrollTo(0, 0);
+  },[]);
+  
   useEffect(()=>{
     let titlee = searchTitle ?'intitle:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'&' : ''
     
@@ -180,64 +183,124 @@ function searchBooks(e?: string):void{
   {/* //jeszcze po cenie i długosci */}
   </div>
 
+
+
+
     {title===undefined ? 
 
       <>
-    <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
-      style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
-      >Type what you are looking for in the inputs above and click the search button</div>
-    <img src={require('../images/search.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  />
+        <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
+          style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
+          >Type what you are looking for in the inputs above and click the search button.</div>
+        <img src={require('../images/search.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  />
       </>
 
     :
 
-    <div id='homeItems' style={{display: title!==undefined ? 'grid' : 'block'}}>
+      <>
+        {(data && data.length>0) ?
+            <div id='homeItems' style={{display: title!==undefined ? 'grid' : 'block'}}>
 
-      {data ? data.map((a: any, i: any)=>{
-        return (
-          <Link to={`/book/${data[i].id}`} key={i}> <div className='item'>
-               {data[i].volumeInfo.imageLinks ? 
+             {data ? data.map((a: any, i: any)=>{
+               return (
+                 <Link to={`/book/${data[i].id}`} key={i}> <div className='item'>
+                      {data[i].volumeInfo.imageLinks ? 
 
-               <img src={data[i].volumeInfo.imageLinks.thumbnail} alt={data[i].volumeInfo.title+' cover'} className='bookImg'/> : 
+                      <img src={data[i].volumeInfo.imageLinks.thumbnail} alt={data[i].volumeInfo.title+' cover'} className='bookImg'/> : 
+                      
+                       <img src={require('../images/image.svg').default} alt="book cover" className='bookImg' />}
 
-                <img src={require('../images/image.svg').default} alt="book cover" className='bookImg' />}
+                     <div className="data">
+                       <br />
+                       <br />
+                       <br />
+                       <div className='title'>{data[i].volumeInfo.title}</div>
+                       <div className='price'>{data[i].saleInfo.retailPrice ? data[i].saleInfo.retailPrice.amount+'$' : '25$'}</div>
+                     </div>
+                 </div></Link>
+               )
+             }) 
+           :  
+               <></>}
 
-              <div className="data">
-                <br />
-                <br />
-                <br />
-                <div className='title'>{data[i].volumeInfo.title}</div>
-                <div className='price'>{data[i].saleInfo.retailPrice ? data[i].saleInfo.retailPrice.amount+'$' : '25$'}</div>
-              </div>
-          </div></Link>
-        )
-      }) 
-      :  
-      <div>{data}</div>}
+                {title && data && data.length>0 &&
+                  <div id="moreBooks" className='breadcrumbs'>
+                  
+                     {page && +page>=2 &&
+                       <Link to={`/books/${title}/${page? +page-1 : 1}`} id='moreBooks'>
+                        previous page
+                        </Link>
+                      }
+                      {page && +page==1 &&
+                       <Link to={`/books/${title}`} id='moreBooks'>
+                        previous page
+                        </Link>
+                      }
 
-          {title && 
-            <div id="moreBooks" className='breadcrumbs'>
+                        <Link to={`/books/${title}/${page? +page+1 : 1}`} id='moreBooks'>
+                        next page
+                        </Link>
+                    
+                  </div>}
+             </div>
 
-               {page && +page>=2 &&
-                 <Link to={`/books/${title}/${page? +page-1 : 1}`} id='moreBooks'>
-                  previous page
-                  </Link>
-                }
-                {page && +page==1 &&
-                 <Link to={`/books/${title}`} id='moreBooks'>
-                  previous page
-                  </Link>
-                }
+         : 
 
-                  <Link to={`/books/${title}/${page? +page+1 : 1}`} id='moreBooks'>
-                  next page
-                  </Link>
-            
-            </div>}
-      </div>
+           <>
+              <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
+              style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
+              >Couldn't find anything.</div>
+              <img src={require('../images/nothing.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  />
+            </>
+        }
+      </>
     }
+
+
 
     </div>
   )
 }
+// 
+// 
+// 
+// 
+// 
+// struktura :
+// 
+// {title===undefined ? 
 
+//    <>
+//     inputy, info u góry i obrazek
+//    </>
+
+// :
+
+
+//    <>
+//     {(data && data.length>0) ?
+
+
+//            <div id='homeItems' style={{display: title!==undefined ? 'grid' : 'block'}}>
+
+//                   {data ? 
+//                     data.map wyświetlające książki      
+//                    
+//                     :  
+//                     <>nic</>}
+
+//                      {title && data && data.length>0 &&
+//                       breadcrumbs}
+
+//             </div>// koniec grida homeIems
+
+//            : 
+
+//           <>
+//            info że nic nie znaleziono i obrazek
+//           </>
+
+//     }// koniec(data && data.length>0)
+
+//   </>
+// }

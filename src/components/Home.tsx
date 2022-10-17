@@ -10,7 +10,10 @@ import {Link} from 'react-router-dom'
 
 export default function Home() {
 
-
+  useEffect(()=>  {
+    window.scrollTo(0, 0);
+  },[]);
+  
   const bookObj = [{ //harry potter
     id: '8exSvgAACAAJ',
     img: 'http://books.google.com/books/content?id=8exSvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',

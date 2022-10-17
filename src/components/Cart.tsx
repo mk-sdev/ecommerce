@@ -3,7 +3,8 @@ import CartBook from './CartBook'
 import '../styles/cart.css'
 import {useSelector, useDispatch} from 'react-redux'
 import {RootState} from '../redux/store'
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faArrowRight}  from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -13,7 +14,9 @@ export default function Cart() {
 
   const dispatch = useDispatch()
 
-
+  useEffect(()=>  {
+    window.scrollTo(0, 0);
+  },[]);
 
 
   return (
@@ -22,11 +25,18 @@ export default function Cart() {
      {
        (books && books[0]===undefined )
        ?
-       <img src={require('../images/empty.svg').default} alt="" className='cartImage absolute inset-2/4  ' style={{maxWidth: '300px'}} ></img>
+       <> <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
+       style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
+       >Your cart is currently empty.</div>
+
+         <img src={require('../images/empty.svg').default} alt="" className='cartImage absolute inset-2/4  ' style={{maxWidth: '300px'}} ></img>
+         </>
+     
        :
        
        <>
-       <button className='payBtn1 px-5 mt-5 right-5  bg-green-500 rounded-md border-2 my-auto hover:bg-green-600 border-green-600 border-2 transition'>I pay</button>
+       <button className='payBtn1 px-5 mt-5 right-5  bg-green-500 rounded-md border-2 my-auto hover:bg-green-600 border-green-600 border-2 transition'>Go to payment&nbsp;
+       <FontAwesomeIcon icon={faArrowRight} /></button>
         <br />
       {
         books.map((a:any, i:any)=>{

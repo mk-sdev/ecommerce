@@ -67,7 +67,9 @@ const del = (id:string)=>{
           backgroundColor: Opacity==='1' ? 'transparent' : 'rgb(255, 0, 0, .5)'   }} >
             <Link  to={`/book/${props.props[0]}`} className='inline-block'>
          <span className='cartTitle'>{props.props[2]}, {props.props[3]}$</span> 
-            <img src={`${props.props[1]}`} alt="" width='200px' height='500px'  />
+            <img src={props.props[1] ? `${props.props[1]}` : require('../images/image.svg').default} 
+            alt="" width='200px' height='500px'  />
+            
           </Link>
 
         <div id="right" >

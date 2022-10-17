@@ -27,7 +27,10 @@ export default function Book() {
     // const [index, setIndex] = useState<number>(-1)
     // const [idd, setId] = useState<any>('25')
     // const [quantity, setQuantity] = useState(0)
-
+    useEffect(()=>  {
+      window.scrollTo(0, 0);
+    },[]);
+    
     useEffect(()=>{
       console.log(books.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
         // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
