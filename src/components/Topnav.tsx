@@ -59,7 +59,7 @@ export default function Topnav() {
     <div id="basket">
     <Link to='/cart'>
       {(reservations && reservations.length>0) ?     
-      <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'>{reservations.length}</span>
+      <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'></span>
     : <></>}
       <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faBasketShopping} />
     </Link>

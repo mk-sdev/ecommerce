@@ -107,9 +107,9 @@ export default function Book() {
 
     {reservations.some((el:any)=>{ return el[0]===id}) ? 
      <>
-     <div id="buttons" className='mt-5'>
-     <button id='plus' onClick={e=>handleQuantity(1)}>+</button>
-     <span id='quantity'>
+     <div className="buttons mt-5" >
+     <button className='plus' onClick={e=>handleQuantity(1)}>+</button>
+     <span className='quantity'>
       {reservations[
         reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
         ][4]}
@@ -117,9 +117,9 @@ export default function Book() {
       {reservations[
         reservations.indexOf(reservations.find((el:any)=>{return el[0]===id}))
         ][4] >=2 ?
-        <button id='minus' onClick={e=>handleQuantity(-1)}>-</button>
+        <button className='minus' onClick={e=>handleQuantity(-1)}>-</button>
         :
-        <button id='minusDisabled'>-</button>
+        <button className='minusDisabled'></button>
       }
      
      </div>
@@ -128,7 +128,7 @@ export default function Book() {
      value={reservations[reservations.findIndex((el:any) => el[0] === id)][4]}
      onChange={e=>handleQuantity2(+e.target.value)} />
 
-     <span id='total' className='mb-5'><span className='thin'>in total: </span> {reservations.map((a:any, i:any)=>{return a[0]===id &&  a[3]*a[4]})} $</span>
+     <span id='total' className='mb-5'><span className='thin'>in total: </span> {reservations.map((a:any, i:any)=>{return a[0]===id &&  (a[3]*a[4]).toFixed(2)})} $</span>
      </> :
      <button id='add' className='border-current border-2 rounded text-2xl my-5 mx-auto' onClick={e=>handleAdd()}>add to cart</button> 
    }

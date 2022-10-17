@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faTrash} from '@fortawesome/free-solid-svg-icons'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
 import { changeQuantity, deleteBook, setQuantity} from '../redux/counter'
@@ -51,6 +52,7 @@ const del = (id:string)=>{
       
       dispatch(deleteBook(id))
       setOpacity('1')
+      setShowDelete(false)
     }, 500)
   // document.querySelector(id)!setAttribute("style", "display: none");
 
@@ -60,41 +62,47 @@ const del = (id:string)=>{
     // <div>{props.props}</div>
     
         
-          <div id={props.props[0]}  
+          <div id={props.props[0]}  className='cartBook'
           style={{opacity: Opacity, transition: 'opacity .5s', 
-          backgroundColor: Opacity==='1' ? 'transparent' : 'red'   }} >
-            <Link  to={`/book/${props.props[0]}`}>
-          {props.props[2]}
-            <img src={`${props.props[1]}`} alt="" width='200px' height='500px' />
-
-
+          backgroundColor: Opacity==='1' ? 'transparent' : 'rgb(255, 0, 0, .5)'   }} >
+            <Link  to={`/book/${props.props[0]}`} className='inline-block'>
+         <span className='cartTitle'>{props.props[2]}, {props.props[3]}$</span> 
+            <img src={`${props.props[1]}`} alt="" width='200px' height='500px'  />
           </Link>
 
-            <div id="buttons" className='mt-5'>
+        <div id="right" >
+          <p className='text-center text-2xl mt-5'>define quantity</p>
+            <div className="buttons" >
 
-                <button id='plus' onClick={e=>{handleQuantity(1, props.props[0])}}>+</button>
-                <span id='quantity'>{props.props[4]}</span>
+                <button className='plus' onClick={e=>{handleQuantity(1, props.props[0])}}>+</button>
+                <span className='quantity'>{props.props[4]}</span>
               
                 {
                 props.props[4] >=2 ?
-                <button id='minus' onClick={e=>{handleQuantity(-1, props.props[0])}}>-</button>
+                <button className='minus' onClick={e=>{handleQuantity(-1, props.props[0])}}>-</button>
                 :
-                <button id='minusDisabled'>-</button>
+                <button className='minusDisabled' ></button>
                 }
             </div>
-            <input type="number" 
+            <input type="number" className='w-full'
      value={props.props[4]}
      onChange={e=>handleQuantity2(+e.target.value, props.props[0])} />
-
-
-            <button id="delete"  className='text-3xl' onClick={e=>setShowDelete(true)}>delete</button>
-
-            {showDelete && <div className="deleteModal absolute text-red-500">
-              <button onClick={e=>del(props.props[0])}>delete</button>
+<br />
+{!showDelete  ?
+            <button className='delete text-3xl bg-red-400 border-4 border-red-500 p-auto hover:bg-red-500 transition rounded-lg' onClick={e=>setShowDelete(true)}>delete &nbsp;
+            {/* <span> */}
+             <FontAwesomeIcon className='hover:cursor-pointer text-2xl' icon={ faTrash} />
+             {/* </span> */}
+             </button>
+:
+            <>
+              <p className='w-full text-center'>Are you sure you want to remove this item?</p>
+             <div className="deleteModal">
+              <button onClick={e=>del(props.props[0])} className='text-red-500 hover:underline'>Yes, delete it</button>
               <br />
-              <button onClick={e=>setShowDelete(false)}>I changed my mind</button>
-            </div>}
-
+              <button onClick={e=>setShowDelete(false)} className='text-green-500 hover:underline'>I changed my mind</button>
+            </div></>}
+            </div>
           </div>
         
       
