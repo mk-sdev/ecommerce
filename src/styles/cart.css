@@ -1,6 +1,11 @@
 .cartImage{
     translate: -50% -50%;
 }
+@media screen and (max-height: 500px) {
+    .cartImage{
+        display: none
+    }
+}
 .component *{
     font-family: Oswald;
 }

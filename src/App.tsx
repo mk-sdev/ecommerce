@@ -8,6 +8,7 @@ import Books from './components/Books';
 import Cart from './components/Cart'
 import Footer from './components/Footer';
 import Book from './components/Book'
+import NotFound from './components/NotFound'
 import {useSelector, useDispatch} from 'react-redux'
 import {RootState} from './redux/store'
 import { setBooks } from './redux/counter'
@@ -47,6 +48,7 @@ function App() {
   <Route path='/books/:title/:page' element={<Books/>}></Route>
   {/* <Route path='/books/:title/:nr' element={<Book/>}></Route> */}
   <Route path='/book/:id/' element={<Book/>}></Route>
+  <Route path='*' element={<NotFound/>}></Route>
 </Routes>
 
 
