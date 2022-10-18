@@ -1,21 +1,23 @@
 {
   "files": {
-    "main.css": "/ecommerce/static/css/main.ac3b3526.css",
-    "main.js": "/ecommerce/static/js/main.00a41bb8.js",
+    "main.css": "/ecommerce/static/css/main.11876c7a.css",
+    "main.js": "/ecommerce/static/js/main.919bb237.js",
     "static/media/books.jpg": "/ecommerce/static/media/books.4257a2232ff44540e7ce.jpg",
     "static/media/books2.jpg": "/ecommerce/static/media/books2.86a4f3d2669488474ccb.jpg",
+    "static/media/notfound.svg": "/ecommerce/static/media/notfound.65479e2dfe16b7fa3ffd7b02a95f8152.svg",
     "static/media/money.svg": "/ecommerce/static/media/money.6f68d64cd8ef2e960b25dc520883418d.svg",
     "static/media/books.svg": "/ecommerce/static/media/books.77555ed2e7172305372169b7b6cbd65b.svg",
     "static/media/delivery.svg": "/ecommerce/static/media/delivery.dbc5e1db6152eb402528b37849dc01ab.svg",
     "static/media/search.svg": "/ecommerce/static/media/search.fc647c72d1132f8a1d35d8655d104013.svg",
     "static/media/empty.svg": "/ecommerce/static/media/empty.184bfe1666bd857910d096d628a65f09.svg",
+    "static/media/nothing.svg": "/ecommerce/static/media/nothing.bd0385cbef1ce1329227ee58220fb20d.svg",
     "static/media/image.svg": "/ecommerce/static/media/image.4e6b22902f44bd49c6bc92d3492f8805.svg",
     "index.html": "/ecommerce/index.html",
-    "main.ac3b3526.css.map": "/ecommerce/static/css/main.ac3b3526.css.map",
-    "main.00a41bb8.js.map": "/ecommerce/static/js/main.00a41bb8.js.map"
+    "main.11876c7a.css.map": "/ecommerce/static/css/main.11876c7a.css.map",
+    "main.919bb237.js.map": "/ecommerce/static/js/main.919bb237.js.map"
   },
   "entrypoints": [
-    "static/css/main.ac3b3526.css",
-    "static/js/main.00a41bb8.js"
+    "static/css/main.11876c7a.css",
+    "static/js/main.919bb237.js"
   ]
 }
