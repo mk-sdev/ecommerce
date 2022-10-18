@@ -8,10 +8,12 @@ import Books from './components/Books';
 import Cart from './components/Cart'
 import Footer from './components/Footer';
 import Book from './components/Book'
+import New from './components/New'
+import Favourite from './components/Favourite'
 import NotFound from './components/NotFound'
 import {useSelector, useDispatch} from 'react-redux'
 import {RootState} from './redux/store'
-import { setBooks } from './redux/counter'
+import { setBooks } from './redux/cart'
 
 function App() {
   const books = useSelector((state:RootState)=>state.books.value)
@@ -43,6 +45,8 @@ function App() {
   <Route path='/ecommerce' element={<Home/>}></Route>
   <Route path='/profile' element={<Profile/>}></Route>
   <Route path='/cart' element={<Cart/>}></Route>
+  <Route path='/new' element={<New/>}></Route>
+  <Route path='/favourite' element={<Favourite/>}></Route>
   <Route path='/books' element={<Books/>}></Route>
   <Route path='/books/:title' element={<Books/>}></Route>
   <Route path='/books/:title/:page' element={<Books/>}></Route>

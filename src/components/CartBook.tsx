@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faTrash} from '@fortawesome/free-solid-svg-icons'
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
-import { changeQuantity, deleteBook, setQuantity} from '../redux/counter'
+import { changeQuantity, deleteBook, setQuantity} from '../redux/cart'
 
 
 

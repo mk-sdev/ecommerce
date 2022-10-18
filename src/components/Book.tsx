@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faHeart}  from '@fortawesome/free-solid-svg-icons'
+import {faHeart as farHeart}  from '@fortawesome/free-regular-svg-icons'
 import { useParams, Link  } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/book.css'
 
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
-import { addBook, changeQuantity, setQuantity } from '../redux/counter'
+import { addBook, changeQuantity, setQuantity } from '../redux/cart'
+import {addFav, delFav } from '../redux/fav'
 
 export default function Book() {
 
   const books = useSelector((state:RootState)=>state.books.value)
+  const favbooks = useSelector((state:RootState)=>state.favbooks.value)
   const dispatch = useDispatch()
   
   // const {title} = useParams()
@@ -33,22 +38,7 @@ export default function Book() {
     
     useEffect(()=>{
       console.log(books.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
-        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
-        // .then(res=>{
-            
-                // setId(res.data.items[Number(nr)].id)
-                // console.log(res.data.items[Number(nr)].id)
-            // setImage(res.data.items[Number(nr)].volumeInfo.imageLinks.thumbnail);
-            // setTitle1(res.data.items[Number(nr)].volumeInfo.title)
-            // setDate(res.data.items[Number(nr)].volumeInfo.publishedDate)
-            // setDescription(res.data.items[Number(nr)].volumeInfo.description)
-            // setPagecount(res.data.items[Number(nr)].volumeInfo.pageCount)
-            // setRate(res.data.items[Number(nr)].volumeInfo.averageRating)
-            // setAuthors(res.data.items[Number(nr)].volumeInfo.authors)
-            // setPrice(res.data.items[Number(nr)].saleInfo.retailPrice.amount)
-   
-        // })
-        // .catch(err=>console.log(err))
+        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&
 
 
       //szukaj po id:
@@ -103,7 +93,19 @@ export default function Book() {
    <div id="info" >
 
       
-     <span id='title' className='text-4xl mx-auto pb-3'>{title1}</span>
+     <span id='title' className='text-4xl mx-auto pb-3'>
+
+   {favbooks.some((el:any)=>{ return el[0]===id}) ?
+    <><FontAwesomeIcon icon={faHeart} className='text-4xl text-red-500        hover:cursor-pointer hover:text-red-300 transition' title='remove from favourite' />
+     &nbsp;</>
+    :
+    <>
+       <><FontAwesomeIcon icon={farHeart} className='text-4xl text-red-400 hover:cursor-pointer hover:text-red-600 transition' title='add to favourite' />
+      &nbsp;</>
+    </>
+
+    }
+      {title1}</span>
      <span id='price'><span className='thin'>price: </span>{price}$</span>
      
      
@@ -157,6 +159,7 @@ export default function Book() {
     <span><span className='thin'>rate: </span> {rate ? rate : '4.2'}/5</span>
 
     <Link to={`/books/_author:${authors}@`} id='moreFrom' className='text-2xl mx-auto'>see more from this author</Link>
+
     </div>
     </div>
 

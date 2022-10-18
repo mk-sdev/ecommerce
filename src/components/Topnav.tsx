@@ -37,9 +37,9 @@ export default function Topnav() {
     <Link to='/' style={{display: 'inline-block'}}><img id='topBarLogo' src={String(logo)} alt="" width='150px' className='hover:cursor-pointer' /></Link>
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
-      <Link to='/books/new'>NEW</Link>
+      <Link to='/new'>NEW</Link>
       <Link to='/books/bestsellers'>BESTSELLERS</Link>
-      <Link to='/books/discounts'>DISCOUNTS</Link>
+      <Link to='/favourite'>FAVOURITE</Link>
     <FontAwesomeIcon id='xMark' className='text-red-500 hover:text-red-400 hover:cursor-pointer' icon={faSquareXmark} onClick={e=>setMenu(true)} />
     </div>
 

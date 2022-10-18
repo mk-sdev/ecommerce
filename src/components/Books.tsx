@@ -27,6 +27,10 @@ export default function Books() {
   useEffect(()=>  {
     window.scrollTo(0, 0);
   },[]);
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, [data])
+
   
   useEffect(()=>{
     let titlee = searchTitle ?'intitle:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'&' : ''
@@ -45,10 +49,9 @@ export default function Books() {
         .catch(err=>{console.log(err); 
           // setSearchKey(undefined)
         })
-
-  }, [title, page])
-
-
+      }, [title, page])
+      
+     
      useEffect(()=>{
       //w przypadku searchTitle i searchAuthor jeśli skałdają się z samych spacji, to stają się undefined. Jeśli są undefined to axios je pomija. Jeśli nie, to w miejscu spacji dodawane są plusy i całość jet sprowadzana do małyc liter. W url są uwzględniane tylko jeśli składają się z przynajmniej jednej litery
 
