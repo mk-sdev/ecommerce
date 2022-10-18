@@ -26,7 +26,6 @@ export const booksSlice = createSlice({
         },   
         setBooks: (state, action: PayloadAction<any>)=>{
             state.value=action.payload
-            console.log(state.value)
         },   
     },
 })

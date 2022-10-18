@@ -5,7 +5,7 @@ interface FavState{
 }
 
 const initialState: FavState={
-    value: [['8exSvgAACAAJ', 'http://books.google.com/books/content?id=8exSvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api', 'Harry Potter and The Chamber of Secrets']]
+    value: []
 }
 
 export const favSlice = createSlice({
@@ -16,11 +16,15 @@ export const favSlice = createSlice({
             state.value.push(action.payload)
         },
         delFav: (state, action: PayloadAction<any>)=>{
+            // alert(typeof(action.payload))
             state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
         },   
+        setFav: (state, action: PayloadAction<any>)=>{
+            state.value=action.payload
+        },
     },
 })
 
-export const {addFav, delFav} = favSlice.actions
+export const {addFav, delFav, setFav} = favSlice.actions
 
 export default favSlice.reducer

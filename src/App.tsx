@@ -14,24 +14,35 @@ import NotFound from './components/NotFound'
 import {useSelector, useDispatch} from 'react-redux'
 import {RootState} from './redux/store'
 import { setBooks } from './redux/cart'
+import { setFav } from './redux/fav'
 
 function App() {
   const books = useSelector((state:RootState)=>state.books.value)
+  const favbooks = useSelector((state:RootState)=>state.favbooks.value)
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    const cat = localStorage.getItem('booksArray') ?  localStorage.getItem('booksArray') : null;
+    const B = localStorage.getItem('booksArray') ?  localStorage.getItem('booksArray') : null;
 
+    const F = localStorage.getItem('favArray') ?  localStorage.getItem('favArray') : null;
 
-    (typeof(cat)==='string' && books.length===0) ?  dispatch(setBooks(JSON.parse(cat))) : console.log('')
+  {  (typeof(B)==='string' && books.length===0) ?  dispatch(setBooks(JSON.parse(B))) : console.log('')}
+
+  {  (typeof(F)==='string' && favbooks.length===0) ?  dispatch(setFav(JSON.parse(F))) : console.log('')}
+
   }, [])
 
   useEffect(()=>{
     localStorage.clear();
     localStorage.setItem('booksArray', JSON.stringify(books));
-    const cat = localStorage.getItem('booksArray');
-    (typeof(cat)==='string' ) ?  console.log(JSON.parse(cat)) : console.log('')
-  }, [books])
+    const B = localStorage.getItem('booksArray');
+    {(typeof(B)==='string' ) ?  console.log(JSON.parse(B)) : console.log('')}
+
+    localStorage.setItem('favArray', JSON.stringify(favbooks));
+    const F = localStorage.getItem('favArray');
+   {(typeof(F)==='string' ) ?  console.log(JSON.parse(F)) : console.log('')}
+  }, [books, favbooks])
+  
 
   return (
     <>

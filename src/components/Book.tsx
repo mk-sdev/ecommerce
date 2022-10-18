@@ -84,6 +84,17 @@ export default function Book() {
     dispatch(setQuantity([1, indx]))
     }
 
+    const handleFav = ()=>{
+      // favbooks.some((el:any)=>{ return el[0]===id}) ?
+      //   alert('dupa')
+      // :
+      // alert('kupa')
+      favbooks.some((el:any)=>{ return el[0]===id}) ?
+      dispatch(delFav(id!))
+      :
+      dispatch(addFav([id!, image!, title1!]))
+    }
+
   return (
     <div  className='component'>    
 
@@ -96,11 +107,13 @@ export default function Book() {
      <span id='title' className='text-4xl mx-auto pb-3'>
 
    {favbooks.some((el:any)=>{ return el[0]===id}) ?
-    <><FontAwesomeIcon icon={faHeart} className='text-4xl text-red-500        hover:cursor-pointer hover:text-red-300 transition' title='remove from favourite' />
+    <><FontAwesomeIcon icon={faHeart} className='text-4xl text-red-500        hover:cursor-pointer hover:text-red-300 transition' title='remove from favourite'
+    onClick={e=>handleFav()} />
      &nbsp;</>
     :
     <>
-       <><FontAwesomeIcon icon={farHeart} className='text-4xl text-red-400 hover:cursor-pointer hover:text-red-600 transition' title='add to favourite' />
+       <><FontAwesomeIcon icon={farHeart} className='text-4xl text-red-400 hover:cursor-pointer hover:text-red-600 transition' title='add to favourite'
+       onClick={e=>handleFav()} />
       &nbsp;</>
     </>
 
