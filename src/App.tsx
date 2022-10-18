@@ -43,13 +43,9 @@ function App() {
    {(typeof(F)==='string' ) ?  console.log(JSON.parse(F)) : console.log('')}
   }, [books, favbooks])
   
-
   return (
     <>
-
-
 <Topnav></Topnav >
-
 
 <Routes>
   <Route path='/' element={<Home/>}></Route>
@@ -57,6 +53,7 @@ function App() {
   <Route path='/profile' element={<Profile/>}></Route>
   <Route path='/cart' element={<Cart/>}></Route>
   <Route path='/new' element={<New/>}></Route>
+  <Route path='/bestsellers' element={<New/>}></Route>
   <Route path='/favourite' element={<Favourite/>}></Route>
   <Route path='/books' element={<Books/>}></Route>
   <Route path='/books/:title' element={<Books/>}></Route>
@@ -66,10 +63,7 @@ function App() {
   <Route path='*' element={<NotFound/>}></Route>
 </Routes>
 
-
 <Footer></Footer>
-    
-   
     </>
   );
 }

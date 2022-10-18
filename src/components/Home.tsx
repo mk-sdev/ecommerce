@@ -61,7 +61,7 @@ export default function Home() {
     img: 'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     title: "Euclid's elements",
     price: '25$',
-    bestseller: false
+    bestseller: true
   },
   {
     id: 'DqLPAAAAMAAJ',

@@ -6,19 +6,14 @@ import '../styles/books.css'
 import {useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
 
-
 export default function Books() {
 
     const favbooks= useSelector((state:RootState)=>state.favbooks.value)
-
- 
 
   useEffect(()=>  {
     window.scrollTo(0, 0);
   },[]);
 
-
-  
   return (
     <div className='component books' style={{paddingTop: '0'}} >
 
@@ -38,7 +33,7 @@ export default function Books() {
           style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
           >here are ur fav books</div>
        
-            <div id='homeItems' >
+            <div id='homeItems'>
 
             { favbooks.map((a: any, i: any)=>{
               return (
@@ -61,18 +56,6 @@ export default function Books() {
             </div>
             
           </>}
-
-
-
-
-
-
-
-
-
-
-
-
 
     </div>
   )

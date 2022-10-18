@@ -89,28 +89,7 @@
     font-size: 20px;
     z-index: 11
 }
-/* #searchBar::before{
-content: '';
-position: absolute;
-top: 0;
-left: 0;
-width: 10px;
-height: 100%;
-background-image: linear-gradient(#fff, #fff, #e3e3e3);
 
-filter: blur(1px)
-}
-#searchBar::after{
-    content: '';
-    position: absolute;
-    top: 0;
-    right: -1px;
-    width: 10px;
-    height: 100%;
-    background-color: #9d9d9d;
-    z-index: 1;
-    filter: blur(1px)
-    } */
 #searchInput{
     width: calc(100% - 50px);
     margin-left: 10px;

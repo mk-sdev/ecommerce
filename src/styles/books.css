@@ -87,6 +87,28 @@ transition: .3s
     border-bottom-left-radius: 5px;
     box-shadow: -1px 2px 2px 2px rgb(128, 128, 128, .8)
 }
+.new{
+    background-color: rgb(104, 227, 166);
+    border-left: 4px solid green;
+    border-top: 4px solid green;
+    border-bottom: 4px solid green;
+    color: black;
+    width: 120px;
+    height: 40px;
+    position: absolute;
+    top: 10px; 
+    right: 0px;
+    font-size: 20px;
+    line-height: 20px;
+    font-family: Oswald;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 7px;
+    padding-bottom: auto;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: -1px 2px 2px 2px rgb(128, 128, 128, .8) 
+}
 #recommended{
     grid-column: 1/5;
     font-family: Oswald;

@@ -16,7 +16,6 @@ export const favSlice = createSlice({
             state.value.push(action.payload)
         },
         delFav: (state, action: PayloadAction<any>)=>{
-            // alert(typeof(action.payload))
             state.value = state.value.filter((el:any)=>{return el[0]!==action.payload})
         },   
         setFav: (state, action: PayloadAction<any>)=>{

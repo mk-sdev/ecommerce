@@ -13,7 +13,6 @@ import '../styles/topnav.css'
 import {Link, useNavigate} from 'react-router-dom'
 const logo = require("../images/logo.png")
 
-
 export default function Topnav() {
   const books = useSelector((state:RootState)=>state.books.value)
   // console.log(books.length)
@@ -38,7 +37,7 @@ export default function Topnav() {
 
     <div id="topBarLinks" className={`text-black font-semibold ${!menu && 'open'}`}>
       <Link to='/new'>NEW</Link>
-      <Link to='/books/bestsellers'>BESTSELLERS</Link>
+      <Link to='/bestsellers'>BESTSELLERS</Link>
       <Link to='/favourite'>FAVOURITE</Link>
     <FontAwesomeIcon id='xMark' className='text-red-500 hover:text-red-400 hover:cursor-pointer' icon={faSquareXmark} onClick={e=>setMenu(true)} />
     </div>

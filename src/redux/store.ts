@@ -1,9 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-// ...
 import booksReducer from './cart'
 import favReducer from './fav'
-
-
 
 export const store = configureStore({
   reducer: {
