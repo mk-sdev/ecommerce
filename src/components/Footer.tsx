@@ -2,18 +2,18 @@ import React from 'react'
 import '../styles/footer.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faInstagram, faPinterest, faTwitter}  from '@fortawesome/free-brands-svg-icons'
-
+import { Link } from 'react-router-dom'
 export default function Footer() {
   return (
     <>
     <div id='footer' className='relative'>
 
     <div id="footerLinks" className='relative'>
-      <a href="">STATUT</a>·
-      <a href="">PAYMENT</a>·
-      <a href="">CONTACT</a>·
-      <a href="">DELIVERY</a>·
-      <a href="">FAQ</a>
+      <Link to='*' >STATUT</Link>·
+      <Link to='*' >PAYMENT</Link>·
+      <Link to='*' >CONTACT</Link>·
+      <Link to='*' >DELIVERY</Link>·
+      <Link to='*' >FAQ</Link>
     </div>
 
     <div id="socials" className='relative'>
