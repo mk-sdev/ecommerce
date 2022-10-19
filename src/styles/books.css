@@ -158,7 +158,7 @@ transition: .3s
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     #homeItems{
         grid-template-columns: 1fr;
     }
