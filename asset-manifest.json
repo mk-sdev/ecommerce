@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ecommerce/static/css/main.11533220.css",
-    "main.js": "/ecommerce/static/js/main.849909b1.js",
+    "main.js": "/ecommerce/static/js/main.1ceb6f30.js",
     "static/media/books.jpg": "/ecommerce/static/media/books.4257a2232ff44540e7ce.jpg",
     "static/media/books2.jpg": "/ecommerce/static/media/books2.86a4f3d2669488474ccb.jpg",
     "static/media/notfound.svg": "/ecommerce/static/media/notfound.65479e2dfe16b7fa3ffd7b02a95f8152.svg",
@@ -14,10 +14,10 @@
     "static/media/image.svg": "/ecommerce/static/media/image.4e6b22902f44bd49c6bc92d3492f8805.svg",
     "index.html": "/ecommerce/index.html",
     "main.11533220.css.map": "/ecommerce/static/css/main.11533220.css.map",
-    "main.849909b1.js.map": "/ecommerce/static/js/main.849909b1.js.map"
+    "main.1ceb6f30.js.map": "/ecommerce/static/js/main.1ceb6f30.js.map"
   },
   "entrypoints": [
     "static/css/main.11533220.css",
-    "static/js/main.849909b1.js"
+    "static/js/main.1ceb6f30.js"
   ]
 }
