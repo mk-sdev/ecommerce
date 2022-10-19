@@ -1,31 +1,27 @@
 
 #books{
-    /* width: 100% !important; */
     height: calc(100vh - 70px);
-    /* min-height: 400px; */
-    /* background-image: url('../images/books.jpg'); */
     background-position-y: bottom;
     background-size: cover;
     text-align: center;
     font-size: 5em;
     padding-top: 7%;
     font-weight: bold;
-    /* color: snow; */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    /* animation: books 35s infinite alternate ease-in-out; */
     overflow: hidden;
     margin-bottom: 0
 }
+
 #books1, #books2{
     top: 0;
     left: 0;
     background-size: cover;
 }
+
 #books1{
     background-image: url('../images/books.jpg');
     background-position-y: bottom;
     z-index: 2;
-
     animation: books1 20s linear infinite;
 }
 
@@ -99,7 +95,6 @@
     z-index: 3;
     animation: jump 2s linear infinite alternate;
     bottom: 5%;
-    /* left: 50%; */
 }
 
 @keyframes jump {

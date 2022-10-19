@@ -5,6 +5,7 @@
     position: fixed !important;
     z-index: 11
 }
+
 #topBarLogo{
     display: block;
     margin-left: 50px
@@ -29,6 +30,7 @@
 #topBarLinks a{
     color: var(--dark) 
 }
+
 #topBarLinks a:hover{
     color: dimgray;
     transition: color .3s
@@ -36,7 +38,7 @@
 
 #topBarIcons{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
     position: absolute;
@@ -48,7 +50,6 @@
 
 .topBarIcons{
     color: var(--dark) 
-
 }
 
 .topBarIcons:hover{
@@ -126,12 +127,15 @@ background-color: transparent;
         backdrop-filter: blur(5px);
         font-size: 2em;
     }
+
     #topBarLinks a{
         color: snow
     }
+
     #topBarLinks a:hover{
         color: lightgray
     }
+
     .open{
         left: 0 !important;
         opacity: 1 !important;
@@ -146,7 +150,7 @@ background-color: transparent;
     }
 
     #topBarIcons{
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         width: max(30%, 300px);
         right: 25px
     }
@@ -170,6 +174,7 @@ background-color: transparent;
         width: max(50%, 140px);
         right: 10px
     }
+
     .topBarIcons{
         font-size: 20px;
     }

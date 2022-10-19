@@ -1,13 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { Link , useParams, useLocation} from 'react-router-dom'
+import { Link , useLocation} from 'react-router-dom'
 import '../styles/books.css'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 import { objectTraps } from 'immer/dist/internal'
 
 export default function Books() {  
   const location = useLocation()
-
-
   const [bookObj, setBookObj] = useState<any>([])
 
   useEffect(()=>  {
@@ -24,7 +22,7 @@ export default function Books() {
     title: 'Atomic Habits',
     price: '52.99$',
   },
-  {//animal liberation
+  {
     id: 'crbWwAEACAAJ',
     img: 'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     title: 'Animal Liberation',
@@ -68,26 +66,19 @@ export default function Books() {
   },
 ]
 
-
-
-
-
-
-
-
   const newObj = [{ 
     id: 'otD1zQEACAAJ',
     img: 'http://books.google.com/books/content?id=otD1zQEACAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72U3EZmWYHoFP004hV7X-qKNNbTOh8jAGxjceHwLkf_ExKyckmw0GGPmxhuB88yp0tn1nrBe0rbQI2ZBdJCav3tUBo6DAl7Rg8df4BcADL2olKPad_Mvfn7BMWBOAbVdXYGwi6S&source=gbs_api',
     title: 'The Candy House',
     price: '25$',
   },
-  {//animal liberation
+  {
     id: 'IwgpEAAAQBAJ',
     img: 'http://books.google.com/books/publisher/content?id=IwgpEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72-8_UavupCB_qHX-FPstyXhCqU7AKEnlqhJk_Ea6W1oPAiQRWsyelHZYlAgSbHyysVHnAiMZcxLPbwe6moWlNdjTW8-TYPMv1-y8fPayBNdEbF0bIby2c0KoQP6rQCX-Upoe4R&source=gbs_api',
     title: 'To Paradise',
     price: '58.39$',
   },
-  {//superintelligence
+  {
     id: '91EgEAAAQBAJ',
     img: 'http://books.google.com/books/publisher/content?id=91EgEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72H5pEoLrQ2eRs7fwpqhXkWm032uj2MhEOGCXmXoL9nuAtmjbISWAiY-ZxL-tDFPwTKQ-34onhmWdbc077-5I4TODmvg8jjF6iXfsPnWziz7GeTFU9wt5uJ_92pEGh00OIJEqBt&source=gbs_api',
     title: 'Fiona and Jane',
@@ -158,19 +149,9 @@ export default function Books() {
         {location.pathname==='/bestsellers' && "Bestsellers"}
         </div>
 
-
-
-
-
-
     {false ? 
 
-      <>
-
-    {/* <img src={require('../images/search.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  /> */}
-
       <img src={require('../images/notfound.svg').default} alt="" className='cartImage absolute inset-2/4  ' style={{maxWidth: '300px'}} ></img>
-      </>
 
     :
 
@@ -197,10 +178,6 @@ export default function Books() {
 
       </div>
     }
-
-
-
-
 
     </div>
   )

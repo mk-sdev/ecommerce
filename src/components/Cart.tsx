@@ -1,23 +1,17 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect } from 'react'
 import CartBook from './CartBook'
 import '../styles/cart.css'
-import {useSelector, useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowRight}  from '@fortawesome/free-solid-svg-icons'
 
-
-
 export default function Cart() {
-
   const books = useSelector((state:RootState)=>state.books.value)
-
-  const dispatch = useDispatch()
 
   useEffect(()=>  {
     window.scrollTo(0, 0);
   },[]);
-
 
   return (
     <div className='component'>
@@ -54,14 +48,9 @@ export default function Cart() {
     }).reduce((a:any, i:any)=>{
       return (a+i)
     }).toFixed(2) }$ &nbsp;
-    {/* <button className='payBtn2 text-green-500 hover:underline my-auto'>I pay</button> */}
     </div> 
       </>
      }
-
-
-
-
 
     </div>
   )

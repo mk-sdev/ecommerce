@@ -5,7 +5,6 @@ import {useSelector} from 'react-redux'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faHouse} from '@fortawesome/free-solid-svg-icons'
 import {faMagnifyingGlass}  from '@fortawesome/free-solid-svg-icons'
-import {faUser}  from '@fortawesome/free-solid-svg-icons'
 import {faBasketShopping}  from '@fortawesome/free-solid-svg-icons'
 import {faSquareXmark}  from '@fortawesome/free-solid-svg-icons'
 import {faBars}  from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +14,6 @@ const logo = require("../images/logo.png")
 
 export default function Topnav() {
   const books = useSelector((state:RootState)=>state.books.value)
-  // console.log(books.length)
   const navigate = useNavigate()
   const [search, setSearch] = useState('-100px')
   const [title, setTitle] = useState('')
@@ -42,7 +40,6 @@ export default function Topnav() {
     <FontAwesomeIcon id='xMark' className='text-red-500 hover:text-red-400 hover:cursor-pointer' icon={faSquareXmark} onClick={e=>setMenu(true)} />
     </div>
 
-
   <div id="topBarIcons">
     <Link to='/'>
     <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={ faHouse} />
@@ -51,15 +48,12 @@ export default function Topnav() {
     <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faMagnifyingGlass} 
     onClick={e=>{ searchBar.current?.focus();  setSearch('100px')}} />
 
-    <Link to='/profile'>
-    <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faUser} />
-    </Link>
-
     <div id="basket">
     <Link to='/cart'>
       {(books && books.length>0) ?     
       <span id="notification" className='bg-orange-400 rounded-full bottom-0 left-0'></span>
     : <></>}
+
       <FontAwesomeIcon className='topBarIcons text-black hover:cursor-pointer text-2xl' icon={faBasketShopping} />
     </Link>
     </div>
@@ -78,9 +72,8 @@ export default function Topnav() {
       <FontAwesomeIcon id='glass' className=' text-dimgray hover:cursor-pointer text-md md:text-xl' icon={faMagnifyingGlass} 
       onClick={e=>searchBooks()}  />
       
-      
       <div id="shadow"></div>
-      {/* <FontAwesomeIcon style={{position: 'absolute', top: '-100%', right: '0px'}} className='text-red-500 text-3xl hover:text-red-400' icon={faSquareXmark} onClick={e=>setMenu(true)} /> */}
+
     </div>
 
     </>

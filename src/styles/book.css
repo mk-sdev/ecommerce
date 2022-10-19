@@ -10,88 +10,93 @@
 
   .image{
     width: 300px;
-    /* height: 400px */
   }
   
   #info{
     display: flex;
     flex-direction: column;
     font-family: Oswald;
-    /* align-items: center; */
-    /*  */
-    /* background-color: var(--light); */
-    
     width: fit-content;
-    /* width: 100%; */
     font-size: 25px;
     border-radius: 5px
 }
+
 #add{
   background-color: var(--goldenrod);
   transition: .3s;
   width: 70%;
 }
+
 #add:hover{
   background-color: var(--light);
 }
+
 .buttons{
-  /* background-color: red; */
   display: flex;
   gap: 10px;
   color: snow;
   justify-content: center;
   align-items: center;
 }
+
 .plus, .minus{
   background-color: var(--goldenrod);
   transition: .3s;
   border-radius: 5px;
-  /* background-color: var(--dark); */
   width: 20%;
   border: 2px solid var(--light);
   max-height: 40px ;
   color: black
 }
+
 .plus:hover, .minus:hover{
   background-color: var(--light);
 }
+
 .quantity{
   color: black;
   font-size: 40px
 }
+
 input[type='number']{
   border-radius: 5px;
   border: 2px solid black;
   padding-left: 5px;
   max-width: 390px;
-  /* min-width: 210px; */
   margin-inline: auto
 }
+
 #total{
   width: 100%;
   text-align: center;
 }
+
 #moreFrom{
 color: orange;
 transition: .3s;
 }
+
 #moreFrom:hover{
 color: var(--light)
 }
 .thin{
   font-weight: 200;
 }
+
 span{
   width: fit-content
 }
+
 #description{
   max-width: 930px;
   margin-inline: auto
 }
+
     @media screen and (max-width: 700px){
         .image{
           width: 100%
         }
+
         #description{
           padding-inline: 1em
         }
@@ -106,8 +111,6 @@ span{
 
     @media screen and (max-width: 550px){
      #contener{
-  
           grid-template-columns: 1fr ;
-  
         }
     }

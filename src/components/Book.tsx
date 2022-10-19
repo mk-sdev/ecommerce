@@ -5,7 +5,6 @@ import {faHeart as farHeart}  from '@fortawesome/free-regular-svg-icons'
 import { useParams, Link  } from 'react-router-dom'
 import axios from 'axios'
 import '../styles/book.css'
-
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
 import { addBook, changeQuantity, setQuantity } from '../redux/cart'
@@ -16,10 +15,7 @@ export default function Book() {
   const books = useSelector((state:RootState)=>state.books.value)
   const favbooks = useSelector((state:RootState)=>state.favbooks.value)
   const dispatch = useDispatch()
-  
-  // const {title} = useParams()
   const {id} = useParams()
-  const [add, setAdd] = useState(id)
   const [image, setImage] = useState('')
     const [title1, setTitle1] = useState('')
     const [authors, setAuthors] = useState(['unknown'])
@@ -29,23 +25,14 @@ export default function Book() {
     const [rate, setRate] = useState('4.8')
     const [price, setPrice] = useState(25)
 
-    // const [index, setIndex] = useState<number>(-1)
-    // const [idd, setId] = useState<any>('25')
-    // const [quantity, setQuantity] = useState(0)
     useEffect(()=>  {
       window.scrollTo(0, 0);
     },[]);
     
     useEffect(()=>{
-      console.log(books.map((a:any, i:any)=>{return (a[0]===id ? a[4] : null)}))
-        // axios.get(`https://www.googleapis.com/books/v1/volumes?q=${title}&
 
-
-      //szukaj po id:
      axios.get(`https://www.googleapis.com/books/v1/volumes/${id}?key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{
-            
-          console.log(res.data)
             setImage(res.data.volumeInfo.imageLinks.thumbnail);
             setTitle1(res.data.volumeInfo.title)
             setDate(res.data.volumeInfo.publishedDate)
@@ -54,23 +41,17 @@ export default function Book() {
             setRate(res.data.volumeInfo.averageRating)
             setAuthors(res.data.volumeInfo.authors)
             setPrice(res.data.saleInfo.retailPrice.amount ? res.data.saleInfo.retailPrice.amount : 25)
-   
         })
         .catch(err=>console.log(err))
-
     }, [])
 
     const handleAdd=()=>{
       dispatch(addBook([id!, image!, title1!, price!, 1]))
-    //   const whichArray = books.find((el:any)=>{return el[0]===id})
-    //  setIndex(books.indexOf(whichArray))
     }
     
     const handleQuantity = (e:number)=>{
-      
       const whichArray = books.find((el:any)=>{return el[0]===id})
       const indx = books.indexOf(whichArray)
-
     dispatch(changeQuantity([e, indx]))
     }
 
@@ -85,10 +66,6 @@ export default function Book() {
     }
 
     const handleFav = ()=>{
-      // favbooks.some((el:any)=>{ return el[0]===id}) ?
-      //   alert('dupa')
-      // :
-      // alert('kupa')
       favbooks.some((el:any)=>{ return el[0]===id}) ?
       dispatch(delFav(id!))
       :
@@ -102,8 +79,6 @@ export default function Book() {
     <img src={image ? image : require('../images/image.svg').default} className='image' ></img>
    
    <div id="info" >
-
-
       
      <span id='title' className='text-4xl mx-auto pb-3'>
 
@@ -123,7 +98,6 @@ export default function Book() {
      <span id='price'><span className='thin'>price: </span>{price}$</span>
      
      
-
     {books.some((el:any)=>{ return el[0]===id}) ? 
      <>
      <div className="buttons mt-5" >
@@ -163,10 +137,6 @@ export default function Book() {
       </span>
 
       }
- {/* <span><span className='thin'>author(s): </span>
-      {authors.map((a)=>{return <p key={Math.random()}>&nbsp; &nbsp; - {a}</p>})}
-      </span> */}
-
 
     <span><span className='thin'>pages: </span> {pagecount}</span>
     <span><span className='thin'>date of release: </span> {date}</span>
@@ -179,8 +149,6 @@ export default function Book() {
 
      <div id='description' className='px-10 pb-5' dangerouslySetInnerHTML={{__html: description}} />
     
-
-
     </div>
   )
 }

@@ -1,9 +1,7 @@
 import React, {useEffect} from 'react';
-import './App.css';
 import Topnav from './components/Topnav';
 import {Routes, Route} from 'react-router-dom'
 import Home from './components/Home';
-import Profile from './components/Profile';
 import Books from './components/Books';
 import Cart from './components/Cart'
 import Footer from './components/Footer';
@@ -35,12 +33,7 @@ function App() {
   useEffect(()=>{
     localStorage.clear();
     localStorage.setItem('booksArray', JSON.stringify(books));
-    const B = localStorage.getItem('booksArray');
-    {(typeof(B)==='string' ) ?  console.log(JSON.parse(B)) : console.log('')}
-
     localStorage.setItem('favArray', JSON.stringify(favbooks));
-    const F = localStorage.getItem('favArray');
-   {(typeof(F)==='string' ) ?  console.log(JSON.parse(F)) : console.log('')}
   }, [books, favbooks])
   
   return (
@@ -50,7 +43,6 @@ function App() {
 <Routes>
   <Route path='/' element={<Home/>}></Route>
   <Route path='/ecommerce' element={<Home/>}></Route>
-  <Route path='/profile' element={<Profile/>}></Route>
   <Route path='/cart' element={<Cart/>}></Route>
   <Route path='/new' element={<New/>}></Route>
   <Route path='/bestsellers' element={<New/>}></Route>
@@ -58,7 +50,6 @@ function App() {
   <Route path='/books' element={<Books/>}></Route>
   <Route path='/books/:title' element={<Books/>}></Route>
   <Route path='/books/:title/:page' element={<Books/>}></Route>
-  {/* <Route path='/books/:title/:nr' element={<Book/>}></Route> */}
   <Route path='/book/:id/' element={<Book/>}></Route>
   <Route path='*' element={<NotFound/>}></Route>
 </Routes>

@@ -7,11 +7,8 @@ import axios from 'axios'
 import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript'
 import { objectTraps } from 'immer/dist/internal'
 
-
 export default function Books() {
   const navigate=useNavigate()
-  
-  //used to navigate
   const {title} = useParams()
   const {page} = useParams()
 
@@ -27,11 +24,11 @@ export default function Books() {
   useEffect(()=>  {
     window.scrollTo(0, 0);
   },[]);
+
   useEffect(()=>{
     window.scrollTo(0, 0);
   }, [data])
 
-  
   useEffect(()=>{
     let titlee = searchTitle ?'intitle:'+searchTitle?.replace(/ /g,'+').toLowerCase()+'&' : ''
     
@@ -43,15 +40,12 @@ export default function Books() {
     
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=${key}${genre}${titlee}${author}maxResults=12&startIndex=${page === undefined ? 0 : 12*+page+1}&key=AIzaSyDrK5Q5wFwSWpS7MLeCjyC8vCrR1g_wD3o`)
         .then(res=>{ 
-          // setSearchKey(undefined)
           setData(res.data.items)
         })
         .catch(err=>{console.log(err); 
-          // setSearchKey(undefined)
         })
       }, [title, page])
       
-     
      useEffect(()=>{
       //w przypadku searchTitle i searchAuthor jeśli skałdają się z samych spacji, to stają się undefined. Jeśli są undefined to axios je pomija. Jeśli nie, to w miejscu spacji dodawane są plusy i całość jet sprowadzana do małyc liter. W url są uwzględniane tylko jeśli składają się z przynajmniej jednej litery
 
@@ -142,7 +136,6 @@ function searchBooks(e?: string):void{
       <li className='genre w-full pl-2' id='education' onClick={e=>{setSearchGenre('EDUCATION')}}>EDUCATION</li>
       <li className='genre w-full pl-2' id='family & relationships' onClick={e=>{setSearchGenre('FAMILY & RELATIONSHIPS')}}>FAMILY & RELATIONSHIPS</li>
       <li className='genre w-full pl-2' id='fiction' onClick={e=>{setSearchGenre('FICTION')}}>FICTION</li>
-      {/* <li className='genre w-full pl-2' id='foreign language study' onClick={e=>{setSearchGenre('FOREIGN LANGUAGE STUDY')}}>FOREIGN LANGUAGE STUDY</li> */}
       <li className='genre w-full pl-2' id='games & activities' onClick={e=>{setSearchGenre('GAMES & ACTIVITIES')}}>GAMES & ACTIVITIES</li>
       <li className='genre w-full pl-2' id='gardening' onClick={e=>{setSearchGenre('GARDENING')}}>GARDENING </li>
       <li className='genre w-full pl-2' id='health & fitness' onClick={e=>{setSearchGenre('HEALTH & FITNESS')}}>HEALTH & FITNESS</li>
@@ -183,10 +176,7 @@ function searchBooks(e?: string):void{
     </div>
 
     <button id='searchBtn' onClick={e=>searchBooksBtn()} >search  <FontAwesomeIcon icon={ faMagnifyingGlass} /> </button>
-  {/* //jeszcze po cenie i długosci */}
   </div>
-
-
 
 
     {title===undefined ? 
@@ -259,16 +249,13 @@ function searchBooks(e?: string):void{
       </>
     }
 
-
-
     </div>
   )
 }
-// 
-// 
-// 
-// 
-// 
+
+
+
+
 // struktura :
 // 
 // {title===undefined ? 

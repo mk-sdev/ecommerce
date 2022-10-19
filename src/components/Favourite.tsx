@@ -1,8 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import { Link , useParams, useNavigate} from 'react-router-dom'
+import React, {useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/books.css'
-
-
 import {useSelector} from 'react-redux'
 import {RootState} from '../redux/store'
 
@@ -26,12 +24,11 @@ export default function Books() {
        </>}
 
 
-
        { favbooks.length>0 && 
        <>
         <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
           style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
-          >here are ur fav books</div>
+          >Here are your favourite books.</div>
        
             <div id='homeItems'>
 

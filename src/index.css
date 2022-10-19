@@ -19,10 +19,7 @@
 ::-webkit-scrollbar{
   background-color: lightgray
 }
-/* body, html{ */
-  /* overflow-x: hidden */
-  /* contain: paint; */
-/* } */
+
 .books{
   padding-top: 50px;
   padding-bottom: 50px;
@@ -40,10 +37,6 @@
   }
 }
 
-/* input:not(input[type="text"]){
-  text-align: center;
-} */
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -53,7 +46,3 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
