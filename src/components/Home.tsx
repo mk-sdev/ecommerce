@@ -71,18 +71,18 @@ export default function Home() {
     bestseller: true
   },
   {
-    id: 'PIypDwAAQBAJ',
-    img: 'http://books.google.com/books/content?id=PIypDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-    title: "Rich Dad Poor Dad",
-    price: '36.59$',
+    id: 'TsdEzDtSdl4C',
+    img: 'http://books.google.com/books/content?id=TsdEzDtSdl4C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE7178qY5LVcCWogq4HkIKwIs_95m_IZv1Cu2Ow5jxebDCwPMQHXpcwyj7cKGHtWVfywwvHZhfM_3nFlkFP2EszdEUH5n5d300sotW0I-C0gzGbiwIw3S9Sdv0bj43GhbmuOiCSOo&source=gbs_api',
+    title: "The Next 100 Years",
+    price: '25$',
     bestseller: true
   },
   {
-    id: 'Uwn0CAAAQBAJ',
-    img: 'http://books.google.com/books/content?id=Uwn0CAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-    title: "The old man and the sea",
-    price: '52.37$',
-    bestseller: false
+    id: 'IwgpEAAAQBAJ',
+    img: 'http://books.google.com/books/publisher/content?id=IwgpEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE72-8_UavupCB_qHX-FPstyXhCqU7AKEnlqhJk_Ea6W1oPAiQRWsyelHZYlAgSbHyysVHnAiMZcxLPbwe6moWlNdjTW8-TYPMv1-y8fPayBNdEbF0bIby2c0KoQP6rQCX-Upoe4R&source=gbs_api',
+    title: 'To Paradise',
+    price: '58.39$',
+    new: true,
   },
   {
     id: '0fehDAAAQBAJ',
@@ -122,6 +122,7 @@ export default function Home() {
           <Link key={i} to={`/book/${bookObj[i].id}`}><div className="item">
           <img src={bookObj[i].img} alt="" className='bookImg'/>
           {bookObj[i].bestseller ? <div className='bestseller'>bestseller</div> : null}
+          {bookObj[i].new ? <div className='new'>new</div> : null}
                   <div className="data">
                     <br />
                     <br />

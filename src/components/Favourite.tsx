@@ -21,7 +21,7 @@ export default function Books() {
        <>
         <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
           style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
-          >you dont have fav books</div>
+          >You don't have favourite books.</div>
         <img src={require('../images/nothing.svg').default} alt="" className='w-full m-auto' style={{maxWidth: '300px', marginTop: '10%', translate: '0 -10%'}}  />
        </>}
 

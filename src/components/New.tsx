@@ -24,24 +24,48 @@ export default function Books() {
     title: 'Atomic Habits',
     price: '52.99$',
   },
-  // {//animal liberation
-  //   id: 'crbWwAEACAAJ',
-  //   img: 'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-  //   title: 'Animal Liberation',
-  //   price: '25$',
-  // },
-  // {
-  //   id: 'nc1UAAAAYAAJ',
-  //   img: 'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-  //   title: "Euclid's elements",
-  //   price: '25$',
-  // },
-  // {
-  //   id: 'DqLPAAAAMAAJ',
-  //   img: 'http://books.google.com/books/content?id=_NsHAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-  //   title: "The Lord of The Rings",
-  //   price: '25$',
-  // },
+  {//animal liberation
+    id: 'crbWwAEACAAJ',
+    img: 'http://books.google.com/books/content?id=crbWwAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'Animal Liberation',
+    price: '25$',
+  },
+  {
+    id: 'nc1UAAAAYAAJ',
+    img: 'http://books.google.com/books/content?id=nc1UAAAAYAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "Euclid's elements",
+    price: '25$',
+  },
+  {
+    id: 'DqLPAAAAMAAJ',
+    img: 'http://books.google.com/books/content?id=_NsHAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: "The Lord of The Rings",
+    price: '25$',
+  },
+  {
+    id: 'x3tgDwAAQBAJ',
+    img: 'http://books.google.com/books/publisher/content?id=x3tgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE716jOWAwcAJGFsFIsT_ki-cfA_4nVtBVubYLvcQ0bMBPZzXJLC8vVCMPfzIIyA2Fv5Tz_YGibANR4j7nm23QqivsoQQilqW0YS5X4CM7hlKUYF5J6AKa2xFIVn0g1vAYKzO1bEn&source=gbs_api',
+    title: "Normal People",
+    price: '33.37$',
+  },
+  {
+    id: 'ZuKTvERuPG8C',
+    img: 'http://books.google.com/books/content?id=ZuKTvERuPG8C&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE70Xni8-3p6oK_s83lOnk5-hI979ciFTd_27gOQ5gfvmmHJiR8QgzcjsxrPCWaVqKm0SCj_Mcwi4veVrzmtRWjXz5Z644KMBFcq8ELPn3ZOcsADUaaZKFwicP3RrylNr1FSWq7us&source=gbs_api',
+    title: "Thinking, Fast and Slow",
+    price: '49.88$',
+  },
+  {
+    id: 'u8w_DwAAQBAJ',
+    img: 'http://books.google.com/books/publisher/content?id=u8w_DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&imgtk=AFLRE73tJfs4uplpsNoMLZiUXgCVp5_feJSwiC4v69TgI-HdYiyws7E-_6i4OOp59RJy28bzdddn0JeX8d71zyg6SDUMb64aNx9BzdDiCVL5Zj7ShhGTy7ZAYm9TJRY-gl5jnHAM4_tW&source=gbs_api',
+    title: "12 Rules for Life",
+    price: '37.99$',
+  },
+  {
+    id: 'TsdEzDtSdl4C',
+    img: 'http://books.google.com/books/content?id=TsdEzDtSdl4C&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE7178qY5LVcCWogq4HkIKwIs_95m_IZv1Cu2Ow5jxebDCwPMQHXpcwyj7cKGHtWVfywwvHZhfM_3nFlkFP2EszdEUH5n5d300sotW0I-C0gzGbiwIw3S9Sdv0bj43GhbmuOiCSOo&source=gbs_api',
+    title: "The Next 100 Years",
+    price: '25$',
+  },
 ]
 
 
@@ -129,8 +153,11 @@ export default function Books() {
     <div className='component books' style={{paddingTop: '0'}} >
 
       <div className='w-full text-center bg-red-500 py-2 px-1 mb-10 font-normal' 
-       style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}
-       >New Books</div>
+       style={{background: 'hsl(37, 95%, 71%)', fontFamily: 'Oswald', color: 'var(--dark)'}}>
+        {location.pathname==='/new' && "New Books"}
+        {location.pathname==='/bestsellers' && "Bestsellers"}
+        </div>
+
 
 
 

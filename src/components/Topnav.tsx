@@ -70,7 +70,7 @@ export default function Topnav() {
 
     <div id="searchBar" className='rounded-md text-black font-semibold' 
       style={{top: search}}>
-      <input id='searchInput' className='rounded-l-sm ' placeholder='type any title' type='text' value={title} ref={searchBar}
+      <input id='searchInput' className='rounded-l-sm ' placeholder='type anything' type='text' value={title} ref={searchBar}
       onChange={e=>setTitle(e.target.value)} 
       onKeyDown={e=>searchBooks(e.key)} 
       onBlur={e=>setSearch('-100px')}>

@@ -103,11 +103,7 @@ export default function Book() {
    
    <div id="info" >
 
-   {id}
-<br />
-{image}
-<br />
-{title1}
+
       
      <span id='title' className='text-4xl mx-auto pb-3'>
 
