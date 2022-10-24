@@ -1,3 +1,10 @@
+# Bookstore e-commerce website
+
+This is a website of a fictional bookstore written with Typesctipt, React and Tailwind CSS. 
+All of the books are taken from Google Books REST API using axios library. 
+Thanks to React Router v6 it is possible to navigate through differen subpages. 
+Implemented Redux Toolkit enables to store data like favourite books
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
