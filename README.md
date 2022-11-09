@@ -1,4 +1,5 @@
 # Bookstore e-commerce website
+## GitHub pages link: https://mkaletaa.github.io/ecommerce/
 
 This is a website of a fictional bookstore written with Typesctipt, React and Tailwind CSS. 
 All of the books are taken from Google Books REST API using axios library. 
